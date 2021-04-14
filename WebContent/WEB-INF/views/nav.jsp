@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<style>
+	
+
+</style>
+
 <nav class="navbar navbar-expand-lg bg-primary">
-  <div class="container-fluid">
+  <div class="container-fluid  navi">
     <a class="navbar-brand" href="/introduce">EGProject</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     	<!-- nav 왼쪽 -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"  id="navi">
+        <li class="nav-item"  id="navi">
           <a class="nav-link active" href="/introduce">소개</a>
         </li>
         <li class="nav-item">
@@ -25,7 +30,7 @@
       </ul>
       <!-- nav 왼쪽 끝 -->
       <!-- nav 오른쪽 -->
-      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0"  id="navi">
       	<% if (session.getAttribute("userId") != null) { %>
 	    	<li class="nav-item">
 	    		<a class="nav-link active" href="#">마이페이지</a>

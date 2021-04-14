@@ -18,7 +18,7 @@ public class NoticeServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/notice.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/notice.jsp");
 		view.forward(request, response);
 	}
 

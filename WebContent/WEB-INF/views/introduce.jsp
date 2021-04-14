@@ -10,6 +10,11 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<!-- <link href="./css/egproject.css" rel="stylesheet"> -->
 	<!-- Bootstrap & css end -->
+	
+	<style>
+		
+		
+	</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/nav.jsp" %>
@@ -42,7 +47,7 @@
 	</div>
 	<br>
 	<div class="container-lg">
-		<div class="row row-cols-1 row-cols-lg-2 g-4">
+		<div class="row row-cols-1 row-cols-lg-2 g-4 bg-color">
 			<div class="col">
 				<img class="rounded" src="<%=request.getContextPath()%>/files/images/sample-vertical.jpg" alt="메인 이미지" width="100%">
 			</div>

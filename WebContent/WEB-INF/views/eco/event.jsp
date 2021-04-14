@@ -23,18 +23,10 @@
 
 	<div class="container-lg">
 		<div class="row">
-			<div class="col-md-3" align="center">
-				<ul class="list-group list-group-flush">
-					<li style="list-style: none; font-size: 30px">에코마당</li>
-					<li class="list-group-item"><a href="/board/event"
-						style="text-decoration: none">이벤트</a></li>
-					<li class="list-group-item"><a href="/board/notice"
-						style="text-decoration: none">공지사항</a></li>
-					<li class="list-group-item"><a href="#"
-						style="text-decoration: none">에코게시판</a></li>
-				</ul>
-
-			</div>
+		
+		<!-- 서브 내비게이션 -->
+        <%@ include file="/WEB-INF/views/eco/ecosubnavi.jsp" %>
+        
 			<div class="col-md-6" style="margin-light: 200px; margin-top: 100px">
 				<a href="#" class="list-group-item active">
 					<h4 class="list-group-item-heading">이벤트페이지1</h4>

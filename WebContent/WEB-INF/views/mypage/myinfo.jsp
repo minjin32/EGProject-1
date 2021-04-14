@@ -21,38 +21,19 @@
    <div class="container-lg">
      <div class="row">
          <!-- 서브 내비게이션 -->
-        <%@ include file="/WEB-INF/views/mysubnavi.jsp" %>
+        <%@ include file="/WEB-INF/views/mypage/mysubnavi.jsp" %>
 
 		<!-- 개인화면 부분 -->
-		<div class="col p-5">
-			<div style="height:900px">
-				<div style="height:10%; width:100%"><h1>내 정보</h1></div>
-				<div style="height:40%; width:100%">
-				<div>
-               		<ul class="nav flex-column" style="padding:50px;" >
-                  <li class="nav-item"
-                  style="height: 40px; width: 80px; background-color: #D1E9CA; text-align: center; margin-bottom: 10px;">이름</li>
-               <li class="nav-item"
-                  style="height: 40px; width: 80px; background-color: #D1E9CA; text-align: center;  margin-bottom: 10px">닉네임</li>
-                  <li class="nav-item"
-                  style="height: 40px; width: 80px; background-color: #D1E9CA; text-align: center;  margin-bottom: 10px">생년월일</li>
-                  <li class="nav-item"
-                  style="height: 40px; width: 80px; background-color: #D1E9CA; text-align: center;  margin-bottom: 10px">주소</li>
-                  <li class="nav-item"
-                  style="height: 40px; width: 80px; background-color: #D1E9CA; text-align: center;  margin-bottom: 10px">휴대전화</li>
-                  <li class="nav-item"
-                  style="height: 40px; width: 80px; background-color: #D1E9CA; text-align: center; margin-bottom: 10px">이메일</li>
-               <li class="nav-item"
-                  style="height: 40px; width: 80px; background-color: #D1E9CA; text-align: center; position:relative; top:100px; left:90%">
-					수정</li>
-               </ul>
-            </div>   
-            
-         </div>
-         </div>
+		<div class="col p-5" style="border:1px solid black">
+			<div class="col-md-5" style=" ">
+				<input type="text">
+				<input type="text">
+         	</div>
+         	<div class="col-md-7">
+         		<input type="text">
          
          
-		</div>
+			</div>
 	</div>
     </div>
    </div>

@@ -16,7 +16,7 @@
 	  <div class="row">
 	  
         <!-- 서브 내비게이션 -->
-        <%@ include file="/WEB-INF/views/ecosubnavi.jsp" %>
+        <%@ include file="/WEB-INF/views/eco/ecosubnavi.jsp" %>
       
       <div class="col p-5">
       	<div  style="border:1px solid #789F6F; height:650px">
