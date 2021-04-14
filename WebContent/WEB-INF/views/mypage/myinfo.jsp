@@ -21,7 +21,7 @@
    <div class="container-lg">
      <div class="row">
          <!-- 서브 내비게이션 -->
-        <%@ include file="/WEB-INF/views/mysubnavi.jsp" %>
+        <%@ include file="/WEB-INF/views/mypage/mysubnavi.jsp" %>
 
 		<!-- 개인화면 부분 -->
 		<div class="col p-5">

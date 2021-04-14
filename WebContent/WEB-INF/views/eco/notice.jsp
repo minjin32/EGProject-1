@@ -16,7 +16,7 @@
        <div class="container-lg">
 	  <div class="row">
       	<!-- 서브 내비게이션 -->
-        <%@ include file="/WEB-INF/views/ecosubnavi.jsp" %>
+        <%@ include file="/WEB-INF/views/eco/ecosubnavi.jsp" %>
       <div class="col p-5">
       	<button type="button" class="btn btn-outline-success" style="float: right; margin-left: 5px;">ID로 검색</button>
       	<input type="text" class="btn btn-outline-success" style="float: right; margin-left: 5px;">
