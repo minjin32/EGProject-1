@@ -7,7 +7,10 @@
 	<!-- Bootstrap & css-->
 	<link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-	<!-- <link href="./css/egproject.css" rel="stylesheet"> -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- <link href="./css/egproject.css" rel="stylesheet"> -->
 	<!-- Bootstrap & css end -->
 	<style>
 	.menubox {
@@ -71,107 +74,158 @@
 			</div>
 		</div>
 		<br> <br>
-		<!-- 메뉴 탭 start -->
-		<div class="d-flex bd-highlight mb-3">
-			<div class="p-2 bd-highlight">
-				<button type="button" class="btn btn-outline-dark">추천메뉴</button>
-			</div>
-			<div class="p-2 bd-highlight">
-				<button type="button" class="btn btn-outline-dark">전체메뉴</button>
-			</div>
-			<div class="ms-auto p-2 bd-highlight">
-				<button type="button" class="btn btn-outline-dark">리뷰</button>
-			</div>
-		</div>
-		<hr>
-		<div class="row">
-			<div class="col-lg">
-				<div class="card m-4">
-					<div class="row p-4">
-						<div class="col-9">
-							<h5>싱글세트</h5>
-							<p>14,000원</p>
-							<a href="#">장바구니 담기</a>
-						</div>
-						<div class="col-3">
-							<img class="w-100"
-								src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
-								alt="메뉴 이미지">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg">
-				<div class="card m-4">
-					<div class="row p-4">
-						<div class="col-9">
-							<h5>싱글세트</h5>
-							<p>14,000원</p>
-							<a href="#">장바구니 담기</a>
-						</div>
-						<div class="col-3">
-							<img class="w-100"
-								src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
-								alt="메뉴 이미지">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg">
-				<div class="card m-4">
-					<div class="row p-4">
-						<div class="col-9">
-							<h5>싱글세트</h5>
-							<p>14,000원</p>
-							<a href="#">장바구니 담기</a>
-						</div>
-						<div class="col-3">
-							<img class="w-100"
-								src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
-								alt="메뉴 이미지">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg">
-				<div class="card m-4">
-					<div class="row p-4">
-						<div class="col-9">
-							<h5>싱글세트</h5>
-							<p>14,000원</p>
-							<a href="#">장바구니 담기</a>
-						</div>
-						<div class="col-3">
-							<img class="w-100"
-								src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
-								alt="메뉴 이미지">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
-	<div class="container-lg">
-		<div class="mb-3">
-			<label for="exampleFormControlTextarea1" class="form-label">리뷰작성</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1"
-				rows="3"></textarea>
-		</div>
-	</div>
-	<div class="container-lg">
-		<hr>
-		<div class="row mt-0">
-		
-			<div class="col-lg-6 pe-1">
-				<div class="row">
-					<img class="me-3 py-1" style="border-radius: 50px; max-height: 250px;" src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" alt="">
-				</div>
-			</div>
-			<div class="col-lg-6 ps-1">
-				<div class="row">
-					<div class="ms-3 py-1" style="border: 1px solid black; height: 220px; width: 95%; text-align: center">내용</div>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link active"	data-toggle="tab" href="#recMenu">추천메뉴</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menuAll">전체메뉴</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#review">리뷰</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="recMenu">
+						<div class="row">
+							<div class="col-lg">
+								<div class="card m-4">
+									<div class="row p-4">
+										<div class="col-9">
+											<h5>싱글세트</h5>
+											<p>14,000원</p>
+											<a href="#">장바구니 담기</a>
+										</div>
+										<div class="col-3">
+											<img class="w-100"
+												src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
+												alt="메뉴 이미지">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg">
+								<div class="card m-4">
+									<div class="row p-4">
+										<div class="col-9">
+											<h5>싱글세트</h5>
+											<p>14,000원</p>
+											<a href="#">장바구니 담기</a>
+										</div>
+										<div class="col-3">
+											<img class="w-100"
+												src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
+												alt="메뉴 이미지">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="menuAll">
+						<div class="row">
+							<div class="col-lg">
+								<div class="card m-4">
+									<div class="row p-4">
+										<div class="col-9">
+											<h5>싱글세트</h5>
+											<p>14,000원</p>
+											<a href="#">장바구니 담기</a>
+										</div>
+										<div class="col-3">
+											<img class="w-100"
+												src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
+												alt="메뉴 이미지">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg">
+								<div class="card m-4">
+									<div class="row p-4">
+										<div class="col-9">
+											<h5>싱글세트</h5>
+											<p>14,000원</p>
+											<a href="#">장바구니 담기</a>
+										</div>
+										<div class="col-3">
+											<img class="w-100"
+												src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
+												alt="메뉴 이미지">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="review">
+						<div class="container-lg">
+								<div class="member">
+	      							<table border="0" width="100%" cellspacing="0" cellpadding="0" class="info_bg" style="table-layout:fixed;padding:0 0 0 0">
+<!--     	       							<tbody> -->
+    	       								<tr valign="top">
+						                        <td class="info_bg" width="6px"></td>
+						                        <td class="separator2" width="3px"></td>
+						                        <td width="3px"></td>
+						                        <td style=" padding:2px 4px 4px 5px;word-break:break-all;">
+						                            
+						                        <b>회원 ID</b>
+						                        
+						                        <div id="commentContent_1977088" class="over_hide link-point" style="position:relative;overflow:hidden;width:100%;padding:4px 0 0 0;color:#000;min-height: 40px;line-height: 18px;">
+					                                존맛탱 족발은 무조건 여기서밖에 안먹음<br>
+					                          		담주에 또 시킬게요~<br>
+					                            </div>
+					                            <div class="mt8 over_hide">
+					                                <font class="eng-day" title="">12:01:30</font>
+					                                <span class="comment-btn-layout">
+					                               </span>
+                            					</div>
+                            					<nav class="navbar navbar-dark bg-dark">
+												  <div class="container-fluid">
+												    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+												      <span class="navbar-toggler-icon"></span>
+												    </button>
+												  </div>
+												</nav>
+												<div class="collapse" id="navbarToggleExternalContent">
+												  <div class="bg-dark p-4">
+												    <h5 class="text-white h4">Collapsed content</h5>
+												    <span class="text-muted">이미지 넣어야하구 색깔도 바꿔야해</span>
+												  </div>
+												</div>
+<!--     	       							</tbody> -->
+    	       						</table>
+    	       						<p style="border-bottom:1px solid #efefef;"></p>
+								</div>
+								<div class="Entrepreneur">
+	      							<table border="0" width="100%" cellspacing="0" cellpadding="0" class="info_bg" style="table-layout:fixed;padding:0 0 0 0">
+<!--     	       							<tbody> -->
+    	       								<tr valign="top">
+						                        <td width="100px" align="right" style="padding:0 0 0 0">
+						                        <img class="w-100"
+													src="<%=request.getContextPath()%>/files/images/earth.jpg" alt="답글 이미지">
+												</td>
+						                        <td class="info_bg" width="6px"></td>
+						                        <td class="separator2" width="3px"></td>
+						                        <td width="3px"></td>
+						                        <td style=" padding:2px 4px 4px 5px;word-break:break-all;">
+						                            
+						                        <b>사장님 댓글</b>
+						                        
+						                        <div id="commentContent_1977088" class="over_hide link-point" style="position:relative;overflow:hidden;width:100%;padding:4px 0 0 0;color:#000;min-height: 40px;line-height: 18px;">
+					                                감사합니다 고객님.<br>
+					                          		앞으로도 좋은 음식으로 보답하겠습니다.<br>
+					                            </div>
+					                            <div class="mt8 over_hide">
+					                                <font class="eng-day" title="">12:01:30</font>
+					                                <span class="comment-btn-layout">
+					                               </span>
+                            					</div>
+<!--     	       							</tbody> -->
+    	       						</table>
+    	       						<p style="border-bottom:1px solid #efefef;"></p>
+								</div>
+							</div>
+						
+					</div>
 				</div>
 			</div>
 		</div>

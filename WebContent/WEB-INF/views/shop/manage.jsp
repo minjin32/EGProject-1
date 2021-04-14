@@ -10,10 +10,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<!-- Bootstrap & css end -->
 <style>
-	.menubox {
-		height: 200px;
-	}
-	
 	.list-group-item {
 		height: 120px;
 	}
@@ -21,6 +17,16 @@
 		background-color: #605759;
 		border-color: #605759;
 	}
+
+	.menubox {
+		height: 200px;
+	}
+	
+	.modal-header {
+		background-color: #605759;
+		color: white;
+	}
+	
 </style>
 <script>
 	window.addEventListener("DOMContentLoaded", function() {
@@ -60,15 +66,124 @@
 <body>
 	<%@ include file="/WEB-INF/views/nav.jsp" %>
 	
+	<div class="modal fade" id="modal-accept" tabindex="-1"><!-- 주문 모달 start -->
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-accept-label">접수대기</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+				</div>
+				<div class="modal-body" style="display: none;"><!-- 조리시간 start -->
+					<div class="row">
+						<p align="center">조리 예상시간을 선택하세요.</p>
+					</div>
+					<div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
+						<div class="col">
+					    	<div class="p-3 border bg-light">5분 이내</div>
+					    </div>
+					    <div class="col">
+					    	<div class="p-3 border bg-light">10분 이내</div>
+					    </div>
+					    <div class="col">
+					    	<div class="p-3 border bg-light">15분 이내</div>
+					    </div>
+					    <div class="col">
+					    	<div class="p-3 border bg-light">20분 이내</div>
+					    </div>
+					    <div class="col">
+					    	<div class="p-3 border bg-light">30분 이내</div>
+					    </div>
+					    <div class="col">
+					    	<div class="p-3 border bg-light">30분 이상</div>
+					    </div>
+					</div>
+					<div class="row mt-4">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="예상시간 직접입력 (분)">
+							<button class="btn btn-primary" type="button">입력</button>
+						</div>
+					</div>
+				</div><!-- 조리시간 end -->
+				<div class="modal-body"><!-- 거부사유 start -->
+					<div class="row">
+						<p align="center">거부 사유를 선택하세요.</p>
+					</div>
+					<div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3">
+						<div class="col">
+					    	<div class="p-3 border bg-light">영업종료</div>
+					    </div>
+					    <div class="col">
+					    	<div class="p-3 border bg-light">재료소진</div>
+					    </div>
+					    <div class="col">
+					    	<div class="p-3 border bg-light">주문폭주</div>
+					    </div>
+					    <div class="col">
+					    	<div class="p-3 border bg-light">고객정보 오류</div>
+					    </div>
+					</div>
+					<div class="row mt-4">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="거절사유 직접입력">
+							<button class="btn btn-primary" type="button">입력</button>
+						</div>
+					</div>
+				</div><!-- 거부사유 end -->
+				<div class="row">
+					<div class="d-flex justify-content-around align-items-center mx-auto">
+						<button class="btn btn-primary col" type="button" id="btn-accept" style="border: 1px solid gray; background-color: #605759; height: 48px;">주문거부</button>
+						<button class="btn btn-primary col" type="button" id="btn-reject" style="border: 1px solid gray; height: 48px;">주문접수</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- 주문 모달 end -->
+	<div class="modal fade" id="modal-eco" tabindex="-1"><!-- 에코 모달 start -->
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-accept-label">포인트 적립</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<p align="center">핸드폰 번호를 입력하세요.</p>
+					</div>
+					<div class="row mt-4">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="핸드폰 번호">
+							<button class="btn btn-primary" type="button">입력</button>
+						</div>
+					</div>
+				</div>
+				<br>
+				<br>
+				<div class="row">
+					<div class="d-flex justify-content-around align-items-center mx-auto">
+						<button class="btn btn-primary col" type="button" id="btn-reject" style="border: 1px solid gray; height: 48px;">적립하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- 에코 모달 end -->
+	
 	<div class="nav" style="height: 3rem; background-color: #605759;">
-		<ul class="nav container tab-content">
-			<li class="nav-item">
-				<a class="nav-link toggle-main-tab" href="#" style="color:white;">주문 접수</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link toggle-main-tab" href="#" style="color:white;">매장 관리</a>
-			</li>
-		</ul>
+		<div class="container">
+			<ul class="nav tab-content">
+				<li class="nav-item">
+					<a class="nav-link toggle-main-tab" href="#" style="color:white;">주문 접수</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link toggle-main-tab" href="#" style="color:white;">매장 관리</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-target="#modal-accept" data-bs-toggle="modal" style="color:white;">테스트(주문접수)</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-target="#modal-eco" data-bs-toggle="modal" style="color:white;">테스트(번호입력)</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 	
 	<div class="container-lg">
@@ -237,10 +352,10 @@
 		<div class="row toggle-main-view"><!-- 주문접수 start -->
 		<div class="row d-lg-none d-block py-3"><!-- 모바일 탭 start -->
 			<div class="row d-flex justify-content-around align-items-center mx-auto">
-					<input type="button" class="btn btn-primary col" value="접수대기" style="border: 1px solid gray;">
-					<input type="button" class="btn btn-primary col" value="처리중" style="border: 1px solid gray;">
-					<input type="button" class="btn btn-primary col" value="완료" style="border: 1px solid gray;">
-					<input type="button" class="btn btn-primary col" value="전체" style="border: 1px solid gray;">
+				<input type="button" class="btn btn-primary col" value="접수대기" style="border: 1px solid gray;">
+				<input type="button" class="btn btn-primary col" value="처리중" style="border: 1px solid gray;">
+				<input type="button" class="btn btn-primary col" value="완료" style="border: 1px solid gray;">
+				<input type="button" class="btn btn-primary col" value="전체" style="border: 1px solid gray;">
 			</div>
 		</div><!-- 모바일 탭 end -->
 		
