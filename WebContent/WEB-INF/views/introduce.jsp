@@ -22,13 +22,13 @@
 	  </div>
 	  <div class="carousel-inner">
 	    <div class="carousel-item active">
-	      <img src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" class="d-block w-100" alt="...">
+	      <img src="<%=request.getContextPath()%>/files/images/main1.jpg" class="d-block w-100" alt="...">
 	    </div>
 	    <div class="carousel-item">
-	      <img src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" class="d-block w-100" alt="...">
+	      <img src="<%=request.getContextPath()%>/files/images/main22.jpg" class="d-block w-100" alt="...">
 	    </div>
 	    <div class="carousel-item">
-	      <img src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" class="d-block w-100" alt="...">
+	      <img src="<%=request.getContextPath()%>/files/images/main3.jpg" class="d-block w-100" alt="...">
 	    </div>
 	  </div>
 	  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -44,10 +44,10 @@
 	<div class="container-lg">
 		<div class="row row-cols-1 row-cols-lg-2 g-4">
 			<div class="col">
-				<img class="rounded" src="<%=request.getContextPath()%>/files/images/sample-vertical.jpg" alt="메인 이미지" width="100%">
+				<img class="rounded" src="<%=request.getContextPath()%>/files/images/mid2.jpg" alt="메인 이미지" width="100%">
 			</div>
 			<div class="col">
-				<img class="rounded" src="<%=request.getContextPath()%>/files/images/sample-vertical.jpg" alt="메인 이미지" width="100%">
+				<img class="rounded" src="<%=request.getContextPath()%>/files/images/mid1.jpg" alt="메인 이미지" width="100%">
 			</div>
 			<div class="col intro-img-grid g-0">
 				<div class="row" align="center">
@@ -88,7 +88,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<img class="rounded" src="<%=request.getContextPath()%>/files/images/sample-vertical.jpg" alt="메인 이미지" width="100%">
+				<img class="rounded" src="<%=request.getContextPath()%>/files/images/mid3-001.jpg" alt="메인 이미지" width="100%">
 			</div>
 		</div>
 	</div>

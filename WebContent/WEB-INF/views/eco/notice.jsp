@@ -7,6 +7,14 @@
 <title>공지사항</title>
 <link href="../bootstrap/bootstrap.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<style>
+	.h-color:hover{
+		background-color:#D1E9CA;
+		color:#605759;
+		border-color: #789F6F;
+		border-style: none;
+	}
+</style>
 </head>
 <body>
 	<!-- 내비게이션 -->
@@ -16,11 +24,13 @@
        <div class="container-lg">
 	  <div class="row">
       	<!-- 서브 내비게이션 -->
-        <%@ include file="/WEB-INF/views/ecosubnavi.jsp" %>
+        <%@ include file="/WEB-INF/views/eco/ecosubnavi.jsp" %>
+        
+        
       <div class="col p-5">
-      	<button type="button" class="btn btn-outline-success" style="float: right; margin-left: 5px;">ID로 검색</button>
-      	<input type="text" class="btn btn-outline-success" style="float: right; margin-left: 5px;">
-      	<button type="button" class="btn btn-outline-success" style="float: right">검색</button><br>
+      	<button type="button" class="btn btn-outline-success h-color" style="float: right; margin-left: 5px;">ID로 검색</button>
+      	<input type="text" class="btn btn-outline-success h-color" style="float: right; margin-left: 5px;">
+      	<button type="button" class="btn btn-outline-success h-color" style="float: right">검색</button><br>
       	<table border="1px" class="table" style="margin-top: 30px">
 			<tr>
 				<th class="table-success" style="text-align:center; width:15%">번호</th>
@@ -90,7 +100,7 @@
 			</tr>
 			</table>
 			<form action="/board/noticewrite" method="get">
-			<button type="submit" class="btn btn-outline-success" style="float: right">글쓰기</button>
+			<button type="submit" class="btn btn-outline-success h-color" style="float: right">글쓰기</button>
 			</form>
       </div>
       </div>
