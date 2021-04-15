@@ -13,9 +13,7 @@
     <!-- <link href="./css/egproject.css" rel="stylesheet"> -->
 	<!-- Bootstrap & css end -->
 	<style>
-	.menubox {
-		height: 200px;
-	}
+	
 	</style>
 </head>
 <body>
