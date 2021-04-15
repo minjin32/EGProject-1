@@ -27,6 +27,15 @@
 		color: white;
 	}
 	
+	.nav{
+		height:100%;
+	}
+	
+	.nav-item{
+		width:25%
+	}
+	
+
 </style>
 <script>
 	window.addEventListener("DOMContentLoaded", function() {
@@ -167,20 +176,20 @@
 		</div>
 	</div><!-- 에코 모달 end -->
 	
-	<div class="nav" style="height: 3rem; background-color: #605759;">
-		<div class="container">
+	<div class="nav" style="background-color: #f7f5ed;">
+		<div class="container submn">
 			<ul class="nav tab-content">
 				<li class="nav-item">
-					<a class="nav-link toggle-main-tab" href="#" style="color:white;">주문 접수</a>
+					<a class="nav-link toggle-main-tab" href="#" style="color:#f7f5ed; background-color:#0e2c01; height:100%">주문 접수</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link toggle-main-tab" href="#" style="color:white;">매장 관리</a>
+					<a class="nav-link toggle-main-tab" href="#" style="color:black;">매장 관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-bs-target="#modal-accept" data-bs-toggle="modal" style="color:white;">테스트(주문접수)</a>
+					<a class="nav-link" data-bs-target="#modal-accept" data-bs-toggle="modal" style="color:black;">테스트(주문접수)</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-bs-target="#modal-eco" data-bs-toggle="modal" style="color:white;">테스트(번호입력)</a>
+					<a class="nav-link" data-bs-target="#modal-eco" data-bs-toggle="modal" style="color:black;">테스트(번호입력)</a>
 				</li>
 			</ul>
 		</div>

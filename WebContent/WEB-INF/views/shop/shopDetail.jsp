@@ -246,7 +246,7 @@
 		</div>
 	</div>
 	<!-- 장바구니 -->
-			<div class="d-flex flex-row-reverse bd-highlight" id="cart">
+		<div class="d-flex flex-row-reverse bd-highlight" id="cart">
 			<a href="./cart.jsp" onclick="window.open(this.href,'_self', 'width=600px,height=800px);"'>
 			<img src="/files/images/carts.png" style="width: 80px;">
 			</a>
