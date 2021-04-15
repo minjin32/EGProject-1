@@ -1,4 +1,4 @@
-package echo.controller;
+package main;
 
 import java.io.IOException;
 
@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/echo/board")
-public class EchoBoardServlet extends HttpServlet {
+@WebServlet("/service/dep")
+public class Service_dep extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public EchoBoardServlet() {
+    public Service_dep() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/echo/board.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/service_dep.jsp");
 		view.forward(request, response);
 	}
 

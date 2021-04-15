@@ -37,9 +37,6 @@
   						<span class="input-group-text" id="inputGroup-sizing-defaultl" style="width: 130px; background-color: #D1E9CA" >닉네임</span>
 						</div>
 						
-						<div class="input-group mb-3" style="width:350px">
-  						<span class="input-group-text" id="inputGroup-sizing-default"  style="width: 130px;background-color: #D1E9CA">생일</span>
-						</div>
 						
 						<div class="input-group mb-3" style="width:350px">
   						<span class="input-group-text" id="inputGroup-sizing-default"  style="width: 130px;background-color: #D1E9CA">주소</span>
