@@ -16,9 +16,22 @@
 	.menubox {
 		height: 200px;
 	}
+	#cart {
+		position: fixed;
+		top : 80%;
+		left: 87%;
+		z-inde : 1;
+	}
 	</style>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#cart').click(function() {
+				$('#popup').hide();
+			});
+		});
+	</script>
 </head>
-<body>
+<body style="background-color: #f7f5ed">
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 	<div class="container" style="margin-top: 40px">
 		<div class="col-lg-6 ps-5">
@@ -41,6 +54,7 @@
 			</div>
 		</div>
 	</div>
+
 	<br>
 	<br>
 	<div class="container-lg">
@@ -74,6 +88,7 @@
 			</div>
 		</div>
 		<br> <br>
+
 	</div>
 	<div class="container">
 		<div class="row">
@@ -230,6 +245,12 @@
 			</div>
 		</div>
 	</div>
+	<!-- 장바구니 -->
+			<div class="d-flex flex-row-reverse bd-highlight" id="cart">
+			<a href="./cart.jsp" onclick="window.open(this.href,'_self', 'width=600px,height=800px);"'>
+			<img src="/files/images/carts.png" style="width: 80px;">
+			</a>
+		</div>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

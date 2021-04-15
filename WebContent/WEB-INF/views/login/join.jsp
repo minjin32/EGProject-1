@@ -186,24 +186,25 @@ select {
     padding: 21px 0 17px;
     border: 0;
     cursor: pointer;
-    color: #fff;
-    background-color: #789f6f;
+    color: #af8d2f;
+    background-color: #0e2c01;
     font-size: 20px;
     font-weight: 400;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    /* font-family: Dotum,'돋움',Helvetica,sans-serif; */
 }
 
 </style>
 
 </head>
-<body>
+<body style= " background-color: #f7f5ed; height: 900px;">
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 	<!-- Example split danger button -->
 	
 <!-- 회원가입 -->
       <!-- header -->
         <div id="header">
-            <h1>EGproject</h1>
+            <h1 style="font-weight:bold; color: #0e2c01;">회원가입</h1>
+           
         </div>
 
 
@@ -212,6 +213,7 @@ select {
 
             <!-- content-->
             <div id="content">
+            <hr>
 
                 <!-- ID -->
                 <div>
@@ -332,7 +334,7 @@ select {
                 <!-- JOIN BTN-->
                 <div class="btn_area">
                     <button type="button" id="btnJoin" class="btn btn-success">
-                        <span><a href="/login/login" style="text-decoration: none">가입하기</a></span>
+                        <span><a href="/login/login" style="text-decoration: none;">가입하기</a></span>
                     </button>
                 </div>
 
@@ -342,8 +344,6 @@ select {
             <!-- content-->
 
         </div> 
-        <!-- wrapper -->
-    <script src="main.js"></script>
 
 <!-- 아래 -->
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
