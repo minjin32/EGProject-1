@@ -14,6 +14,20 @@
 	crossorigin="anonymous"></script>
 <!-- <link href="./css/egproject.css" rel="stylesheet"> -->
 <!-- Bootstrap & css end -->
+<style>
+body {
+	background-color: #f7f5ed;
+}
+
+li.nav-item-1 {
+	height: 50px;
+	width: 100%;
+	background-color: #e4e0d7;
+	vertical-align: middle;
+	margin-top: 1px; '
+	margin-bottom: 1px;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
@@ -22,20 +36,14 @@
 	<div class="container" style="margin-top: 40px">
 		<div class="row g-4">
 			<div class="col-md-3">
-				<ul class="me-2"
-					style="border-right: 1px solid #D1E9CA; list-style: none">
+				<ul class="me-2" style="list-style: none">
 					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link active" href="/mypage">마이페이지 홈</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">내 정보</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="/orderlist">주문 내역</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">Q&A 문의</a></li>
+						style="font-weight: bold; font-size: 30px; border-bottom: 2px solid #0e2c01; padding-bottom: 60px"><a
+						class="nav-link active" href="/mypage">마이페이지</a></li>
+					<li class="nav-item-1"><a class="nav-link" href="#">내 정보</a></li>
+					<li class="nav-item-1"><a class="nav-link" href="/orderlist">주문
+							내역</a></li>
+					<li class="nav-item-1"><a class="nav-link" href="#">Q&A 문의</a></li>
 					<div style="width: 30%; height: 500px"></div>
 					<ul class="nav flex colum" style="font-size: 3px">회원탈퇴
 					</ul>
@@ -61,12 +69,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-body-right" style="margin-left: 20px" >
+					<div class="card-body-right" style="margin-left: 20px">
 						<button type="button" class="btn btn-outline-success"
 							style="height: 90%; width: 150px;">주문취소</button>
 					</div>
 				</ul>
-				
+
 				<br>
 
 				<ul class="list-group list-group-horizontal">
@@ -85,14 +93,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-body-right" style="margin-left: 20px" >
+					<div class="card-body-right" style="margin-left: 20px">
 						<button type="button" class="btn btn-outline-success"
 							style="height: 90%; width: 150px;">주문취소</button>
 					</div>
 				</ul>
-				
+
 				<br>
-				
+
 				<ul class="list-group list-group-horizontal">
 					<div class="card mb-3" style="width: 80%">
 						<div class="row g-0">
@@ -109,7 +117,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-body-right" style="margin-left: 20px" >
+					<div class="card-body-right" style="margin-left: 20px">
 						<button type="button" class="btn btn-outline-success"
 							style="height: 90%; width: 150px;">주문취소</button>
 					</div>
