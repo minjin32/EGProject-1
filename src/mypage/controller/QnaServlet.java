@@ -9,19 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class MyinfoServlet
- */
-@WebServlet("/myinfo")
-public class MyinfoServlet extends HttpServlet {
+@WebServlet("/mypage/qna/list")
+public class QnaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MyinfoServlet() {
+    public QnaServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view= request.getRequestDispatcher("WEB-INF/views/mypage/myinfo.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/qnaList.jsp");
 		view.forward(request, response);
 	}
 

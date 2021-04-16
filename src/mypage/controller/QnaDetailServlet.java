@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/qnadetail")
+@WebServlet("/mypage/qna/detail")
 public class QnaDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -18,7 +18,7 @@ public class QnaDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/mypage/qnadetail.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/qnaDetail.jsp");
 		view.forward(request, response);
 	}
 

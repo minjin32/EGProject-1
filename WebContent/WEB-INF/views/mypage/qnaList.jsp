@@ -14,17 +14,12 @@
 	
 	<div class="container-lg">
 	  <div class="row">
-	      <div class="col-md-3 p-3"  align="center">
-	          <ul class="list-group list-group-flush">
-					<li style="list-style:none; font-size:30px">에코마당</li>
-					<li class="list-group-item"><a href="#" style="text-decoration : none">이벤트</a></li>
-					<li class="list-group-item"><a href="/board/notice" style="text-decoration : none">공지사항</a></li>
-					<li class="list-group-item"><a href="#" style="text-decoration : none">에코게시판</a></li>
-				</ul>
-	      </div>
+	      <div class="col-lg-3 p-3" align="center">
+				<%@ include file="/WEB-INF/views/mypage/subnav.jsp"%>
+			</div>
 	        <div class="col-md-9 p-5">
-      	<button type="button" class="btn btn-outline-success" style="float: right; margin-left: 5px;"">ID로 검색</button>
-      	<input type="text" class="btn btn-outline-success" style="float: right; margin-left: 5px;"">
+      	<button type="button" class="btn btn-outline-success" style="float: right; margin-left: 5px;">ID로 검색</button>
+      	<input type="text" class="btn btn-outline-success" style="float: right; margin-left: 5px;">
       	<button type="button" class="btn btn-outline-success" style="float: right">검색</button><br>
       	<table border="1px" class="table" style="margin-top: 30px">
 			<tr>

@@ -24,7 +24,7 @@
        <div class="container-lg">
 	  <div class="row">
       	<!-- 서브 내비게이션 -->
-        <%@ include file="/WEB-INF/views/eco/ecosubnavi.jsp" %>
+        <%@ include file="/WEB-INF/views/eco/subnav.jsp" %>
         
         
       <div class="col p-5">

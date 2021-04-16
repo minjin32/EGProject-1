@@ -21,7 +21,7 @@
 	
 	<div class="container-md">
 		<div class="d-flex justify-content-center">
-			<div class="row shop-search-selects" style="padding: 4rem 2rem 4em 2em; border-top: 1px solid #e4e0d7; border-bottom: 1px solid #e4e0d7;">
+			<form class="row shop-search-selects" style="padding: 4rem 2rem 4em 2em; border-top: 1px solid #e4e0d7; border-bottom: 1px solid #e4e0d7;">
 				<select class="col form-select ms-3" name="address1">
 				  <option selected>시, 도</option>
 				  <option value="1">서울특별시</option>
@@ -62,7 +62,7 @@
 				  <option value="7">이화동</option>
 				</select>
 				<input type="submit" class="btn btn-primary col ms-2" value="검색" href="#">
-			</div>
+			</form>
 		</div>
 		
 		<br><br>

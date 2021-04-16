@@ -13,15 +13,26 @@
     <!-- <link href="./css/egproject.css" rel="stylesheet"> -->
 	<!-- Bootstrap & css end -->
 	<style>
-	.menubox {
-		height: 200px;
-	}
 	#cart {
 		position: fixed;
 		top : 80%;
 		left: 87%;
 		z-inde : 1;
 	}
+	
+	.menubox {
+		height: 200px;
+	}
+	
+	.review {
+		min-height: 156px;
+	}
+	
+	.review-modal-img {
+		max-width: 760px;
+		max-height: 640px;
+	}
+	
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -96,7 +107,7 @@
 				<ul class="nav nav-tabs">
 					<li class="nav-item"><a class="nav-link active"	data-toggle="tab" href="#recMenu">추천메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menuAll">전체메뉴</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#review">리뷰</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#review-area">리뷰</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="recMenu">
@@ -171,11 +182,54 @@
 							</div>
 						</div>
 					</div>
+					<div id="review-area" class="container tab-pane fade mt-2">
+						<!-- 이미지 포함된 리뷰 start -->
+						<div id="review" class="row review justify-content-lg-center px-1 py-2">
+							<div class="col-md-2">
+								<img class="review-img img-fluid img-thumbnail" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="리뷰이미지" data-bs-toggle="modal" data-bs-target="#review-image-modal">
+							</div>
+							<div class="col py-2">
+								<div class="row">
+									<div class="col">
+										<h5 class="float-left">닉네임이지롱</h5>
+									</div>
+									<div class="col" align="right">
+										<div>2021년 4월 15일</div>
+									</div>
+								</div>
+								<div class="row">
+									<p>이 집 맛있어요!! 공짜로 주면 또 먹을래요!!</p>
+								</div>
+							</div>
+						</div>
+						<!-- 이미지 포함된 리뷰 end -->
+						<hr>
+						<!-- 이미지 없는 리뷰 start -->
+						<div id="review" class="row review justify-content-lg-center px-1 py-2">
+							<div class="col py-2">
+								<div class="row">
+									<div class="col">
+										<h5 class="float-left">닉네임이지롱</h5>
+									</div>
+									<div class="col" align="right">
+										<div>2021년 4월 15일</div>
+									</div>
+								</div>
+								<div class="row">
+									<p>이 집 맛있어요!! 공짜로 주면 또 먹을래요!!</p>
+								</div>
+							</div>
+						</div>
+						<!-- 이미지 없는 리뷰 end -->
+					</div>
+					
+					
+					<!-- 
 					<div class="tab-pane fade" id="review">
 						<div class="container-lg">
 								<div class="member">
 	      							<table border="0" width="100%" cellspacing="0" cellpadding="0" class="info_bg" style="table-layout:fixed;padding:0 0 0 0">
-<!--     	       							<tbody> -->
+     	       							<tbody>
     	       								<tr valign="top">
 						                        <td class="info_bg" width="6px"></td>
 						                        <td class="separator2" width="3px"></td>
@@ -206,13 +260,13 @@
 												    <span class="text-muted">이미지 넣어야하구 색깔도 바꿔야해</span>
 												  </div>
 												</div>
-<!--     	       							</tbody> -->
+     	       							</tbody>
     	       						</table>
     	       						<p style="border-bottom:1px solid #efefef;"></p>
 								</div>
 								<div class="Entrepreneur">
 	      							<table border="0" width="100%" cellspacing="0" cellpadding="0" class="info_bg" style="table-layout:fixed;padding:0 0 0 0">
-<!--     	       							<tbody> -->
+     	       							<tbody>
     	       								<tr valign="top">
 						                        <td width="100px" align="right" style="padding:0 0 0 0">
 						                        <img class="w-100"
@@ -234,23 +288,41 @@
 					                                <span class="comment-btn-layout">
 					                               </span>
                             					</div>
-<!--     	       							</tbody> -->
+	  	       							</tbody>
     	       						</table>
     	       						<p style="border-bottom:1px solid #efefef;"></p>
 								</div>
 							</div>
-						
-					</div>
+						</div>
+						-->
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 장바구니 -->
+	<!-- 장바구니 start -->
 		<div class="d-flex flex-row-reverse bd-highlight" id="cart">
-			<a href="./cart.jsp" onclick="window.open(this.href,'_self', 'width=600px,height=800px);"'>
+			<a href="./cart.jsp" onclick="window.open(this.href,'_self', 'width=600px,height=800px);">
 			<img src="/files/images/carts.png" style="width: 80px;">
 			</a>
 		</div>
+	<!-- 장바구니 end -->
+	<!-- 리뷰이미지 확대 start -->
+	<div class="modal fade" id="review-image-modal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">리뷰이미지</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">
+					<img class="review-modal-img rounded mx-auto d-block" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="리뷰이미지 확대">
+				</div>
+			</div>
+		</div>	
+	</div>
+	<!-- 리뷰이미지 확대 end -->
+		
+		
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

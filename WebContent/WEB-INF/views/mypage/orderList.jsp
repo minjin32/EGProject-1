@@ -19,26 +19,9 @@
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 
 	<div class="container" style="margin-top: 40px">
-		<div class="row g-4">
-			<div class="col-md-3">
-				<ul class="me-2"
-					style="border-right: 1px solid #D1E9CA; list-style: none">
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link active" href="/mypage">마이페이지 홈</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">내 정보</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="/orderlist">주문 내역</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">Q&A 문의</a></li>
-					<div style="width: 30%; height: 500px"></div>
-					<ul class="nav flex colum" style="font-size: 3px">회원탈퇴
-					</ul>
-				</ul>
+		<div class="row">
+			<div class="col-lg-3 p-3" align="center">
+				<%@ include file="/WEB-INF/views/mypage/subnav.jsp"%>
 			</div>
 			<div class="col-md-9">
 				<ul class="list-group list-group-horizontal">

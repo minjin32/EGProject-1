@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/qnawrite")
+@WebServlet("/mypage/qna/write")
 public class QnaWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -18,7 +18,7 @@ public class QnaWriteServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/qnawrite.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/qnaWrite.jsp");
 		view.forward(request, response);
 	}
 

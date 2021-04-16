@@ -17,77 +17,49 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
-
-	<!-- 메뉴 바 -->
-	<div class="container" style="margin-top: 40px">
-		<div class="row g-4">
-			<div class="col-md-3">
-				<ul class="me-2"
-					style="border-right: 1px solid #D1E9CA; list-style:none">
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link active" href="/mypage">마이페이지 홈</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">내 정보</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="/orderlist">주문 내역</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">Q&A 문의</a></li>
-					<div style="width: 30%; height: 500px"></div>
-					<ul class="nav flex colum" style="font-size: 3px">회원탈퇴
-					</ul>
-				</ul>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 p-3" align="center">
+				<%@ include file="/WEB-INF/views/mypage/subnav.jsp"%>
 			</div>
-
-
-
-			<div class="col-md-9">
+			
+			<div class="col-lg-9 p-5">
 				<div class="row">
-					<ul class="list-group list-group-horizontal">
-						<img src="/files/images/user.png" class="img-thumbnail"
-							style="border-color: white; height: 50px; width: 50px; margin-bottom: 10px; margin-right: 10px"
-							"alt="사용자 아이콘" />
-						<h3>회원 님 안녕하세요!</h3>
-					</ul>
+					<div class="list-group list-group-horizontal">
+						<img src="/files/images/user.png" class="img-thumbnail" style="border-color: white; height: 50px; width: 50px; margin-bottom: 10px; margin-right: 10px" alt="사용자 아이콘" />
+						<h3 class="pt-2">김길동님 안녕하세요!</h3>
+					</div>
 				</div>
-				<div class="row">
-					<ul class="list-group list-group-horizontal"
-						style="border: 3px solid #D1E9CA; height: 200px; width: 100%; border-radius: 30px; vertical-align: center">
-						<div class="col-md-3">
-							<li class="list-group-item"
-								style="width: 100%; height: 100px; margin-top: 40px; text-align: center; border-color: white">
-								에코포인트
-								<h1 class="display-6" style="margin-top: 15px">250</h1>
-							</li>
+				<div class="row p-4" style="border: 4px solid #0e2c01; border-radius: 24px;">
+					<div class="row">
+						<div class="col-3" align="center">
+							<h3>에코포인트</h3>
 						</div>
-						<div class="col-md-3">
-							<li class="list-group-item"
-								style="width: 100; height: 100px; margin-top: 40px; text-align: center; border-color: white">
-								순위
-								<h1 class="display-6" style="margin-top: 15px">7%</h1>
-							</li>
+						<div class="col-3" align="center">
+							<h3>순위</h3>
 						</div>
-
-						<div class="col-md-3">
-							<li class="list-group-item"
-								style="width: 100; height: 100px; margin-top: 40px; text-align: center; border-color: white">
-								등급
-								<h1 class="display-6" style="margin-top: 15px">열매</h1>
-							</li>
+						<div class="col-3" align="center">
+							<h3>등급</h3>
 						</div>
-
-						<div class="col-md-3">
-							<li class="list-group-item"
-								style="width: 100%; height: 100px; margin-top: 40px; text-align: center; border-color: white">내가
-								심은 나무
-								<h1 class="display-6" style="margin-top: 15px">7그루</h1>
-
-							</li>
+						<div class="col-3" align="center">
+							<h3>내가 심은 나무</h3>
 						</div>
-					</ul>
+					</div>
+					<div class="row pt-4">
+						<div class="col-3" align="center">
+							<h2>2000</h2>
+						</div>
+						<div class="col-3" align="center">
+							<h2>상위 7%</h2>
+						</div>
+						<div class="col-3" align="center">
+							<h2>5</h2>
+						</div>
+						<div class="col-3" align="center">
+							<h2>7그루</h2>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

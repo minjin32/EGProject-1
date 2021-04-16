@@ -31,11 +31,6 @@
 		height:100%;
 	}
 	
-	.nav-item{
-		width:25%
-	}
-	
-
 </style>
 <script>
 	window.addEventListener("DOMContentLoaded", function() {
