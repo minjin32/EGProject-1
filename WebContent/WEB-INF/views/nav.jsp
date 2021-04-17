@@ -39,7 +39,7 @@
 	          </a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link active" href="/ecoboard">에코마당</a>
+	          <a class="nav-link active" href="/eco/board/list">에코마당</a>
 	        </li>
 	      </ul>
 	      <!-- nav 왼쪽 끝 -->
@@ -53,6 +53,12 @@
 	          <li class="nav-item">
 	             <a class="nav-link active" href="#">로그인</a>
 	          </li>
+	          <li class="nav-item"><!-- 마이페이지 테스트용 start -->
+	             <a class="nav-link active" href="/mypage">마이페이지테스트버튼</a>
+	          </li><!-- 마이페이지 테스트용 end -->
+	          <li class="nav-item"><!-- 사업자페이지 테스트용 start -->
+	             <a class="nav-link active" href="/shop/manage">사업자페이지테스트용</a>
+	          </li><!-- 사업자페이지 테스트용 end -->
 	       <% } %>
 	      </ul>
 	      <!-- nav 오른쪽 끝 -->

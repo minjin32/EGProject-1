@@ -1,4 +1,4 @@
-package board.controller;
+package eco.controller;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class eventServlet
+ * Servlet implementation class BoardWriteServlet
  */
-@WebServlet("/board/event")
-public class eventServlet extends HttpServlet {
+@WebServlet("/eco/board/write")
+public class BoardWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventServlet() {
+    public BoardWriteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class eventServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/event.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/boardWrite.jsp");
 		view.forward(request, response);
 	}
 

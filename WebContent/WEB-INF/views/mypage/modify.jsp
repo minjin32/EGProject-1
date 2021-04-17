@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보</title>
+<title>정보 수정 - EGProject</title>
 <link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css"
 	rel="stylesheet">
 <script
@@ -15,7 +15,6 @@
 <!-- Bootstrap & css end -->
 </head>
 <body>
-	<!-- header부분  -->
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 
 	<div class="container-lg">
@@ -23,99 +22,49 @@
 			<div class="col-lg-3 p-3" align="center">
 				<%@ include file="/WEB-INF/views/mypage/subnav.jsp"%>
 			</div>
-			<!-- 개인화면 부분 -->
-			<div class="col p-5">
-				<div style="height: 900px;">
-					<div style="height: 10%; width: 100%;">
+			<div class="col-lg-9 p-4">
+				<div>
+					<div style="height: 10%;">
 						<h1>정보 수정</h1>
 					</div>
-					<div
-						style="height: 40%; width: 100%; padding: 50px; backgorund-color: red">
-
-						<div class="input-group mb-3" style="width: 350px">
-							<span class="input-group-text" id="inputGroup-sizing-default"
-								style="width: 130px; background-color: #D1E9CA">이름</span> <input
-								type="text" class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default" style="width: 50px">
+					<form>
+						<div class="mb-3">
+							<label for="id" class="form-label">아이디</label>
+							<input type="text" class="form-control" id="id" value="member1" disabled>
+							<div id="idHelp" class="form-text">아이디는 수정이 불가능합니다.</div>
 						</div>
-
-						<div class="input-group mb-3" style="width: 350px">
-							<span class="input-group-text" id="inputGroup-sizing-defaultl"
-								style="width: 130px; background-color: #D1E9CA">닉네임</span> <input
-								type="text" class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default"
-								style="width: 100px">
+						<div class="mb-3">
+							<label for="name" class="form-label">이름</label>
+							<input type="text" class="form-control" value="김길동" id="name">
 						</div>
-
-						<div class="input-group mb-3" style="width: 350px">
-							<span class="input-group-text" id="inputGroup-sizing-default"
-								style="width: 130px; background-color: #D1E9CA">비밀번호</span> <input
-								type="text" class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default"
-								style="width: 100px">
+						<div class="mb-3">
+							<label for="nickname" class="form-label">닉네임</label>
+							<input type="text" class="form-control" value="고길동친구" id="nickname">
 						</div>
-
-						<div class="input-group mb-3" style="width: 350px">
-							<span class="input-group-text" id="inputGroup-sizing-default"
-								style="width: 130px; background-color: #D1E9CA">비밀번호 확인</span> <input
-								type="text" class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default"
-								style="width: 100px">
+						<div class="mb-3">
+							<label for="birthday" class="form-label">생일</label>
+							<input type="text" class="form-control" value="2021-04-16" id="birthday">
 						</div>
-
-						<div class="input-group mb-3" style="width: 350px">
-							<span class="input-group-text" id="inputGroup-sizing-default"
-								style="width: 130px; background-color: #D1E9CA">생일</span> <input
-								type="text" class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default"
-								style="width: 100px">
+						<div class="mb-3">
+							<label for="address" class="form-label">주소</label>
+							<input type="text" class="form-control" value="서울특별시 종로구" id="address">
 						</div>
-
-						<div class="input-group mb-3" style="width: 350px">
-							<span class="input-group-text" id="inputGroup-sizing-default"
-								style="width: 130px; background-color: #D1E9CA">주소</span> <input
-								type="text" class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default"
-								style="width: 100px">
+						<div class="mb-3">
+							<label for="phone" class="form-label">휴대전화</label>
+							<input type="text" class="form-control" value="010-0000-0000" id="phone">
 						</div>
-
-						<div class="input-group mb-3" style="width: 350px">
-							<span class="input-group-text" id="inputGroup-sizing-default"
-								style="width: 130px; background-color: #D1E9CA">휴대전화</span> <input
-								type="text" class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default"
-								style="width: 100px">
+						<div class="mb-3">
+							<label for="email" class="form-label">이메일</label>
+							<input type="email" class="form-control" value="gildongkim@naver.com" id="email">
 						</div>
-
-						<div class="input-group mb-3" style="width: 350px">
-							<span class="input-group-text" id="inputGroup-sizing-default"
-								style="width: 130px; background-color: #D1E9CA">이메일</span> <input
-								type="text" class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default"
-								style="width: 100px">
-						</div>
-
-						<div class="control-group">
-							<!-- Button -->
-							<div class="controls">
-								<button class="btn btn-success" style="float: right;">수정완료</button>
-							</div>
-						</div>
-					</div>
+						<button type="submit" class="btn btn-primary mx-1" style="float: right;">수정완료</button>
+						<a href="/mypage/info"><button type="button" class="btn btn-primary mx-1" style="float: right; background-color: gray; border: 1px solid gray;">취소</button></a>
+					</form>
 				</div>
 
 			</div>
 		</div>
 	</div>
-		<!-- footer부분  -->
-		<%@ include file="/WEB-INF/views/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

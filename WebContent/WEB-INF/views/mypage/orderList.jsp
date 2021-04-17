@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>주문내역</title>
-<!-- Bootstrap & css-->
 <link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css"
 	rel="stylesheet">
 <script
@@ -14,89 +13,127 @@
 	crossorigin="anonymous"></script>
 <!-- <link href="./css/egproject.css" rel="stylesheet"> -->
 <!-- Bootstrap & css end -->
+<style>
+	.btn-cancel-order {
+		width: 100%;
+	}
+	
+	.menu-pic {
+		object-fit: cover;
+	}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 
-	<div class="container" style="margin-top: 40px">
+	<div class="container-lg">
 		<div class="row">
 			<div class="col-lg-3 p-3" align="center">
 				<%@ include file="/WEB-INF/views/mypage/subnav.jsp"%>
 			</div>
-			<div class="col-md-9">
-				<ul class="list-group list-group-horizontal">
-					<div class="card mb-3" style="width: 80%">
-						<div class="row g-0">
-							<div class="card-body" style="float: left">
-								<img src="/files/images/dumpling.jpg"
-									style="height: 100px; margin: 20px; float: left" alt="군만두" />
-								<h5 class="card-title" style="margin-top: 20px">군만두
-									A세트(야채군만두+콜라1.25리터)</h5>
-								<p class="card-text">짭짤이만두</p>
-								<p class="card-text" style="float: left">15000원</p>
-								<p class="card-text" style="text-align: right">
-									<small class="text-muted">2021.4.13 19:30</small>
-								</p>
+			<div class="col-lg-9 p-4">
+				<div>
+					<div style="height: 10%;">
+						<h1>주문내역</h1>
+					</div>
+					<div class="pt-4">
+						<div class="row order-history"><!-- 주문 한개 start -->
+							<div class="col-lg-2">
+								<img src="<%=request.getContextPath()%>/files/images/dumpling.jpg" class="rounded mx-auto d-block w-100" alt="메뉴사진">
 							</div>
-						</div>
-					</div>
-					<div class="card-body-right" style="margin-left: 20px" >
-						<button type="button" class="btn btn-outline-success"
-							style="height: 90%; width: 150px;">주문취소</button>
-					</div>
-				</ul>
-				
-				<br>
-
-				<ul class="list-group list-group-horizontal">
-					<div class="card mb-3" style="width: 80%">
-						<div class="row g-0">
-							<div class="card-body" style="float: left">
-								<img src="/files/images/dumpling.jpg"
-									style="height: 100px; margin: 20px; float: left" alt="군만두" />
-								<h5 class="card-title" style="margin-top: 20px">군만두
-									A세트(야채군만두+콜라1.25리터)</h5>
-								<p class="card-text">짭짤이만두</p>
-								<p class="card-text" style="float: left">15000원</p>
-								<p class="card-text" style="text-align: right">
-									<small class="text-muted">2021.4.13 19:30</small>
-								</p>
+							<div class="col-lg-8 mt-2">
+								<h5>군만두 A세트(야채군만두 + 콜라 1.25리터)</h5>
+								<p>짭짤이만두</p>
+								<div class="row">
+									<div class="col">
+										<p>15,000원</p>
+									</div>
+									<div class="col">
+										<div class="gap-2 d-md-flex justify-content-md-end">
+											<p >2021-04-16 12:12</p>
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="card-body-right" style="margin-left: 20px" >
-						<button type="button" class="btn btn-outline-success"
-							style="height: 90%; width: 150px;">주문취소</button>
-					</div>
-				</ul>
-				
-				<br>
-				
-				<ul class="list-group list-group-horizontal">
-					<div class="card mb-3" style="width: 80%">
-						<div class="row g-0">
-							<div class="card-body" style="float: left">
-								<img src="/files/images/dumpling.jpg"
-									style="height: 100px; margin: 20px; float: left" alt="군만두" />
-								<h5 class="card-title" style="margin-top: 20px">군만두
-									A세트(야채군만두+콜라1.25리터)</h5>
-								<p class="card-text">짭짤이만두</p>
-								<p class="card-text" style="float: left">15000원</p>
-								<p class="card-text" style="text-align: right">
-									<small class="text-muted">2021.4.13 19:30</small>
-								</p>
+							<div class="col-lg-2">
+								<input type="button" class="btn btn-primary btn-cancel-order" value="주문취소">
 							</div>
-						</div>
+						</div><!-- 주문 한개 end -->
+						<hr>
+						<div class="row order-history"><!-- 주문 한개 start -->
+							<div class="col-lg-2">
+								<img src="<%=request.getContextPath()%>/files/images/dumpling.jpg" class="rounded mx-auto d-block w-100" alt="메뉴사진">
+							</div>
+							<div class="col-lg-8 mt-2">
+								<h5>군만두 A세트(야채군만두 + 콜라 1.25리터)</h5>
+								<p>짭짤이만두</p>
+								<div class="row">
+									<div class="col">
+										<p>15,000원</p>
+									</div>
+									<div class="col">
+										<div class="gap-2 d-md-flex justify-content-md-end">
+											<p >2021-04-16 12:12</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-2">
+								<input type="button" class="btn btn-primary btn-cancel-order" value="조리중" disabled>
+							</div>
+						</div><!-- 주문 한개 end -->
+						<hr>
+						<div class="row order-history"><!-- 주문 한개 start -->
+							<div class="col-lg-2">
+								<img src="<%=request.getContextPath()%>/files/images/dumpling.jpg" class="rounded mx-auto d-block w-100" alt="메뉴사진">
+							</div>
+							<div class="col-lg-8 mt-2">
+								<h5>군만두 A세트(야채군만두 + 콜라 1.25리터)</h5>
+								<p>짭짤이만두</p>
+								<div class="row">
+									<div class="col">
+										<p>15,000원</p>
+									</div>
+									<div class="col">
+										<div class="gap-2 d-md-flex justify-content-md-end">
+											<p >2021-04-16 12:12</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-2">
+								<input type="button" class="btn btn-primary btn-cancel-order" value="완료" disabled>
+							</div>
+						</div><!-- 주문 한개 end -->
+						<hr>
+						<div class="row order-history"><!-- 주문 한개 start -->
+							<div class="col-lg-2">
+								<img src="<%=request.getContextPath()%>/files/images/dumpling.jpg" class="rounded mx-auto d-block w-100" alt="메뉴사진">
+							</div>
+							<div class="col-lg-8 mt-2">
+								<h5>군만두 A세트(야채군만두 + 콜라 1.25리터)</h5>
+								<p>짭짤이만두</p>
+								<div class="row">
+									<div class="col">
+										<p>15,000원</p>
+									</div>
+									<div class="col">
+										<div class="gap-2 d-md-flex justify-content-md-end">
+											<p >2021-04-16 12:12</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-2">
+								<input type="button" class="btn btn-primary btn-cancel-order" value="완료" disabled>
+							</div>
+						</div><!-- 주문 한개 end -->
 					</div>
-					<div class="card-body-right" style="margin-left: 20px" >
-						<button type="button" class="btn btn-outline-success"
-							style="height: 90%; width: 150px;">주문취소</button>
+					<div class="row">
+						<button class="btn btn-primary mt-4">더 불러오기</button>
 					</div>
-				</ul>
-
+				</div>
 			</div>
-
-
 		</div>
 	</div>
 

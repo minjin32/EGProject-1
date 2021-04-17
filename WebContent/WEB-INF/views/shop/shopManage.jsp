@@ -10,6 +10,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<!-- Bootstrap & css end -->
 <style>
+	.btn-secondary {
+		background-color: lightgray;
+		color: black;
+		width: 100%;
+	}
+
 	.list-group-item {
 		height: 120px;
 	}
@@ -114,21 +120,25 @@
 					</div>
 					<div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3">
 						<div class="col">
-					    	<div class="p-3 border bg-light">영업종료</div>
-					    </div>
-					    <div class="col">
-					    	<div class="p-3 border bg-light">재료소진</div>
-					    </div>
-					    <div class="col">
-					    	<div class="p-3 border bg-light">주문폭주</div>
-					    </div>
-					    <div class="col">
-					    	<div class="p-3 border bg-light">고객정보 오류</div>
-					    </div>
+							<input type="radio" class="btn-check" name="reject-reason" id="reject1" autocomplete="off">
+							<label class="btn btn-secondary" for="reject1">영업종료</label>
+						</div>
+						<div class="col">
+							<input type="radio" class="btn-check" name="reject-reason" id="reject2" autocomplete="off">
+							<label class="btn btn-secondary" for="reject2">재료소진</label>
+						</div>
+						<div class="col">
+							<input type="radio" class="btn-check" name="reject-reason" id="reject3" autocomplete="off">
+							<label class="btn btn-secondary" for="reject3">주문폭주</label>
+						</div>
+						<div class="col">
+							<input type="radio" class="btn-check" name="reject-reason" id="reject4" autocomplete="off">
+							<label class="btn btn-secondary" for="reject4">고객정보 오류</label>
+						</div>
 					</div>
 					<div class="row mt-4">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="거절사유 직접입력">
+							<input type="text" class="form-control" id="reject-text" placeholder="거절사유 직접입력">
 							<button class="btn btn-primary" type="button">입력</button>
 						</div>
 					</div>
@@ -175,10 +185,10 @@
 		<div class="container submn">
 			<ul class="nav tab-content">
 				<li class="nav-item">
-					<a class="nav-link toggle-main-tab" href="#" style="color:#f7f5ed; background-color:#0e2c01; height:100%">주문 접수</a>
+					<a class="nav-link toggle-main-tab" href="#" style="color:#f7f5ed; background-color:#0e2c01; height:100%">매장 관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link toggle-main-tab" href="#" style="color:black;">매장 관리</a>
+					<a class="nav-link toggle-main-tab" href="#" style="color:black;">주문 접수</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-bs-target="#modal-accept" data-bs-toggle="modal" style="color:black;">테스트(주문접수)</a>
@@ -366,7 +376,7 @@
 			
 			<div class="col-lg-3 pt-4 d-none d-lg-block"><!-- PC 탭 start -->
 				<div class="list-group" id="list-tab" role="tablist">
-			    	<div class="list-group-item list-group-item-action active" id="list-order-waiting-list" data-bs-toggle="list" href="#list-order-waiting" role="tab" aria-controls="order-waiting">
+			    	<div class="list-group-item list-group-item-action active" id="list-order-waiting-list"data-bs-toggle="list" href="#list-order-waiting"  role="tab" aria-controls="order-waiting">
 			    		<div class="row d-flex justify-content-center align-items-center" style="height: 100%;">
 			    			<div class="col-8">
 			    				<h3>접수대기</h3>

@@ -1,4 +1,4 @@
-package shop.controller;
+package eco.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/shop/manage")
-public class ShopManageServlet extends HttpServlet {
+/**
+ * Servlet implementation class EventWriteServlet
+ */
+@WebServlet("/eco/event/write")
+public class EventWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ShopManageServlet() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EventWriteServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/shop/shopManage.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/eventWrite.jsp");
 		view.forward(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

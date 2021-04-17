@@ -2935,9 +2935,9 @@ textarea.form-control-lg {
   box-shadow: 0 0 0 0.25rem #e9f7ab;
 }
 .btn-primary:disabled, .btn-primary.disabled {
-  color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  color: #595858;
+  background-color: #e4e0d7;
+  border-color: #e4e0d7;
 }
 
 .btn-secondary {

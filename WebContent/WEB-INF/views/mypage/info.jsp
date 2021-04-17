@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,58 +13,62 @@
 	crossorigin="anonymous"></script>
 <!-- <link href="./css/egproject.css" rel="stylesheet"> -->
 <!-- Bootstrap & css end -->
+<style>
+	.form-control:disabled {
+		background-color: white;
+	}
+</style>
 </head>
 <body>
-		<!-- header부분  -->
-		<%@ include file="/WEB-INF/views/nav.jsp"%>
+	<%@ include file="/WEB-INF/views/nav.jsp"%>
 
-   <div class="container-lg">
-     	<div class="row">
-	        <div class="col-lg-3 p-3" align="center">
+	<div class="container-lg">
+		<div class="row">
+			<div class="col-lg-3 p-3" align="center">
 				<%@ include file="/WEB-INF/views/mypage/subnav.jsp"%>
 			</div>
-			<!-- 개인화면 부분 -->
-			<div class="col p-5">
-				<div style="height:900px">
-					<div style="height:10%; width:100%;" ><h1>내 정보</h1></div>
-						<div class="p-4" style="height:40%; max-width:500px; backgorund-color:red">
-							<div class="input-group mb-3" style="width:100%">
-	  							<span class="input-group-text" id="inputGroup-sizing-default" style="width: 130px; background-color: #D1E9CA">이름</span>
-	  							<div class="form-control">김길동</div>
-							</div>
-							
-							<div class="input-group mb-3" style="width:350px">
-	  						<span class="input-group-text" id="inputGroup-sizing-defaultl" style="width: 130px; background-color: #D1E9CA" >닉네임</span>
-							</div>
-							
-							<div class="input-group mb-3" style="width:350px">
-	  						<span class="input-group-text" id="inputGroup-sizing-default"  style="width: 130px;background-color: #D1E9CA">생일</span>
-							</div>
-							
-							<div class="input-group mb-3" style="width:350px">
-	  						<span class="input-group-text" id="inputGroup-sizing-default"  style="width: 130px;background-color: #D1E9CA">주소</span>
-							</div>
-							
-							<div class="input-group mb-3" style="width:350px">
-	  						<span class="input-group-text" id="inputGroup-sizing-default"  style="width: 130px;background-color: #D1E9CA">휴대전화</span>
-							</div>
-							
-							<div class="input-group mb-3" style="width:350px">
-	  						<span class="input-group-text" id="inputGroup-sizing-default"  style="width: 130px;background-color: #D1E9CA">이메일</span>
-							</div>
-	               
-	              			 <div class="control-group">
-					     	 <div class="controls"  >
-					        <button class="btn btn-success" style="float: right;">수정하기</button>
-				     	 </div>
+			<div class="col-lg-9 p-4">
+				<div>
+					<div style="height: 10%;">
+						<h1>내 정보</h1>
+					</div>
+					<div>
+						<div class="mb-3">
+							<label for="id" class="form-label">아이디</label>
+							<input type="text" class="form-control" id="id" value="member1" disabled>
+							<div id="idHelp" class="form-text">아이디는 수정이 불가능합니다.</div>
 						</div>
-            		</div>   
-        		 </div>
-        	 </div>
+						<div class="mb-3">
+							<label for="name" class="form-label">이름</label>
+							<input type="text" class="form-control" value="김길동" id="name" disabled>
+						</div>
+						<div class="mb-3">
+							<label for="nickname" class="form-label">닉네임</label>
+							<input type="text" class="form-control" value="고길동친구" id="nickname" disabled>
+						</div>
+						<div class="mb-3">
+							<label for="birthday" class="form-label">생일</label>
+							<input type="text" class="form-control" value="2021-04-16" id="birthday" disabled>
+						</div>
+						<div class="mb-3">
+							<label for="address" class="form-label">주소</label>
+							<input type="text" class="form-control" value="서울특별시 종로구" id="address" disabled>
+						</div>
+						<div class="mb-3">
+							<label for="phone" class="form-label">휴대전화</label>
+							<input type="text" class="form-control" value="010-0000-0000" id="phone" disabled>
+						</div>
+						<div class="mb-3">
+							<label for="email" class="form-label">이메일</label>
+							<input type="email" class="form-control" value="gildongkim@naver.com" id="email" disabled>
+						</div>
+						<a href="/mypage/modify"><button type="button" class="btn btn-primary mx-1" style="float: right;">수정하기</button></a>
+					</div>
+				</div>
+			</div>
 		</div>
-   	</div>
+	</div>
 
-		<!-- footer부분  -->
-		<%@ include file="/WEB-INF/views/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

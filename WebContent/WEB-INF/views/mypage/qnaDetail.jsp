@@ -29,6 +29,18 @@
 					<h2 class="pb-2">QnA 내용</h2>
 					<form class="p-4" style="border: 1px solid #789F6F; border-radius: 5px;">
 						<div class="mb-3">
+							<div class="row">
+								<div class="col">
+									<b>작성자 </b>
+									<span>김길동</span>
+								</div>
+								<div class="col gap-2 d-md-flex justify-content-md-end">
+									<b>작성일시  </b>
+									<span>2021-04-16</span>
+								</div>
+							</div>
+						</div>
+						<div class="mb-3">
 							<input type="text" class="form-control" value="사업자 등록 요청합니다.">
 						</div>
 						<div class="mb-3">

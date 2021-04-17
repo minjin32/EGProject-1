@@ -18,13 +18,13 @@
 <body>
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 	
-	<div class="container">
+	<div class="container-lg">
 		<div class="row">
 			<div class="col-lg-3 p-3" align="center">
 				<%@ include file="/WEB-INF/views/mypage/subnav.jsp"%>
 			</div>
 			
-			<div class="col-lg-9 p-5">
+			<div class="col-lg-9 p-4">
 				<div class="row">
 					<div class="list-group list-group-horizontal">
 						<img src="/files/images/user.png" class="img-thumbnail" style="border-color: white; height: 50px; width: 50px; margin-bottom: 10px; margin-right: 10px" alt="사용자 아이콘" />

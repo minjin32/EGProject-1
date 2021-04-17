@@ -1,41 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-	<style>
-	.font{
-		color : #605759;
-		font-weight:bold;
+<style>
+	.btn-submenu-pc {
+		width: 90%;
+		height: 4rem;
 	}
 	
-	.m-color{
-		background-color: #D1E9CA;
-		color: #605759;
-		font-weight:bold;
-		margin : 3px;
+	a {
+		text-decoration: none;
 	}
-	</style>
-</head>
-	<body>
-	<!-- PC 탭 start -->
-	<div class="col-md-3 p-3 d-none d-lg-block"  align="center">
+	
+	a:hover {
+		text-decoration: none;
+	}
+</style>
+<!-- PC 서브내비 start -->
+<div class="gy-5 d-none d-lg-block">
+	<div class="row g-2">
 		<ul class="list-group list-group-flush">
-						<li class="font" style="list-style:none; font-size:30px">에코마당</li>
-						<li class="font list-group-item"><a href="#" style="text-decoration : none">이벤트</a></li>
-						<li class="font list-group-item"><a href="/board/notice" style="text-decoration : none">공지사항</a></li>
-						<li class="font list-group-item"><a href="#" style="text-decoration : none">에코게시판</a></li>
-		</ul>
+	      <li style="list-style:none; font-size:30px;"><a href="/eco/board/list">에코마당</a></li>
+	      <li class="list-group-item"><a href="/eco/board/list" style="text-decoration : none">에코게시판</a></li>
+	      <li class="list-group-item"><a href="/eco/event" style="text-decoration : none">이벤트</a></li>
+	      <li class="list-group-item"><a href="/eco/notice/list" style="text-decoration : none">공지사항</a></li>
+	   </ul>
 	</div>
-	
-	<!-- 모바일 탭 start -->
-	<div class="row d-lg-none d-block py-3">
-		<div class="row d-flex justify-content-around align-items-center mx-auto">
-			<input type="button" class="btn btn-primary col m-color" value="이벤트" style="border: 1px solid gray;">
-			<input type="button" class="btn btn-primary col m-color" value="공지사항" style="border: 1px solid gray;">
-			<input type="button" class="btn btn-primary col m-color" value="에코게시판" style="border: 1px solid gray;">
-		</div>
+</div>
+<!-- PC 서브내비 end -->
+<!-- 모바일 서브내비 start -->
+<div class="d-lg-none d-block pb-4">
+	<div class="btn-group" role="group" style="width: 100%;">
+		<button type="button" class="btn btn-primary">
+			MyPage 홈
+		</button>
+		<button type="button" class="btn btn-primary">
+			내 정보
+		</button>
+		<button type="button" class="btn btn-primary">
+			주문 내역
+		</button>
+		<button type="button" class="btn btn-primary">
+			QnA 문의
+		</button>
 	</div>
-	<!-- 모바일 탭 end -->
-	</body>
-</html>
+</div>
+<!-- 모바일 서브내비 end -->
