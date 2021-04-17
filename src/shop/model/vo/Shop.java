@@ -3,32 +3,33 @@ package shop.model.vo;
 import java.sql.Date;
 
 public class Shop {
-	private int number;
-	private String ownerId;
+	private int shopNumber;
+	private String memberId;
 	private String shopName;
-	private int businessNumber;
-	private String address;
-	private String address1;
-	private String address2;
-	private String address3;
-	private String phone;
-	private String ownerName;
-	private Date openTime;
-	private Date closeTime;
-	private String introduce;
-	private String origin;
-	private int type;
-	public int getNumber() {
-		return number;
+	private int shopBusinessNumber;
+	private String shopAddress;
+	private String shopAddress1;
+	private String shopAddress2;
+	private String shopAddress3;
+	private String shopPhone;
+	private String shopOwner;
+	private Date shopOpenTime;
+	private Date shopCloseTime;
+	private String shopIntroduce;
+	private String shopOrigin;
+	private int shopType;
+	
+	public int getShopNumber() {
+		return shopNumber;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+	public void setShopNumber(int shopNumber) {
+		this.shopNumber = shopNumber;
 	}
-	public String getOwnerId() {
-		return ownerId;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getShopName() {
 		return shopName;
@@ -36,84 +37,87 @@ public class Shop {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-	public int getBusinessNumber() {
-		return businessNumber;
+	public int getShopBusinessNumber() {
+		return shopBusinessNumber;
 	}
-	public void setBusinessNumber(int businessNumber) {
-		this.businessNumber = businessNumber;
+	public void setShopBusinessNumber(int shopBusinessNumber) {
+		this.shopBusinessNumber = shopBusinessNumber;
 	}
-	public String getAddress() {
-		return address;
+	public String getShopAddress() {
+		return shopAddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setShopAddress(String shopAddress) {
+		this.shopAddress = shopAddress;
 	}
-	public String getAddress1() {
-		return address1;
+	public String getShopAddress1() {
+		return shopAddress1;
 	}
-	public void setAddress1(String address1) {
-		this.address1 = address1;
+	public void setShopAddress1(String shopAddress1) {
+		this.shopAddress1 = shopAddress1;
 	}
-	public String getAddress2() {
-		return address2;
+	public String getShopAddress2() {
+		return shopAddress2;
 	}
-	public void setAddress2(String address2) {
-		this.address2 = address2;
+	public void setShopAddress2(String shopAddress2) {
+		this.shopAddress2 = shopAddress2;
 	}
-	public String getAddress3() {
-		return address3;
+	public String getShopAddress3() {
+		return shopAddress3;
 	}
-	public void setAddress3(String address3) {
-		this.address3 = address3;
+	public void setShopAddress3(String shopAddress3) {
+		this.shopAddress3 = shopAddress3;
 	}
-	public String getPhone() {
-		return phone;
+	public String getShopPhone() {
+		return shopPhone;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setShopPhone(String shopPhone) {
+		this.shopPhone = shopPhone;
 	}
-	public String getOwnerName() {
-		return ownerName;
+	public String getShopOwner() {
+		return shopOwner;
 	}
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
+	public void setShopOwner(String shopOwner) {
+		this.shopOwner = shopOwner;
 	}
-	public Date getOpenTime() {
-		return openTime;
+	public Date getShopOpenTime() {
+		return shopOpenTime;
 	}
-	public void setOpenTime(Date openTime) {
-		this.openTime = openTime;
+	public void setShopOpenTime(Date shopOpenTime) {
+		this.shopOpenTime = shopOpenTime;
 	}
-	public Date getCloseTime() {
-		return closeTime;
+	public Date getShopCloseTime() {
+		return shopCloseTime;
 	}
-	public void setCloseTime(Date closeTime) {
-		this.closeTime = closeTime;
+	public void setShopCloseTime(Date shopCloseTime) {
+		this.shopCloseTime = shopCloseTime;
 	}
-	public String getIntroduce() {
-		return introduce;
+	public String getShopIntroduce() {
+		return shopIntroduce;
 	}
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public void setShopIntroduce(String shopIntroduce) {
+		this.shopIntroduce = shopIntroduce;
 	}
-	public String getOrigin() {
-		return origin;
+	public String getShopOrigin() {
+		return shopOrigin;
 	}
-	public void setOrigin(String origin) {
-		this.origin = origin;
+	public void setShopOrigin(String shopOrigin) {
+		this.shopOrigin = shopOrigin;
 	}
-	public int getType() {
-		return type;
+	public int getShopType() {
+		return shopType;
 	}
-	public void setType(int type) {
-		this.type = type;
+	public void setShopType(int shopType) {
+		this.shopType = shopType;
 	}
 	@Override
 	public String toString() {
-		return "Shop [number=" + number + ", ownerId=" + ownerId + ", shopName=" + shopName + ", businessNumber="
-				+ businessNumber + ", address=" + address + ", address1=" + address1 + ", address2=" + address2
-				+ ", address3=" + address3 + ", phone=" + phone + ", ownerName=" + ownerName + ", openTime=" + openTime
-				+ ", closeTime=" + closeTime + ", introduce=" + introduce + ", origin=" + origin + ", type=" + type
-				+ "]";
+		return "Shop [shopNumber=" + shopNumber + ", memberId=" + memberId + ", shopName=" + shopName
+				+ ", shopBusinessNumber=" + shopBusinessNumber + ", shopAddress=" + shopAddress + ", shopAddress1="
+				+ shopAddress1 + ", shopAddress2=" + shopAddress2 + ", shopAddress3=" + shopAddress3 + ", shopPhone="
+				+ shopPhone + ", shopOwner=" + shopOwner + ", shopOpenTime=" + shopOpenTime + ", shopCloseTime="
+				+ shopCloseTime + ", shopIntroduce=" + shopIntroduce + ", shopOrigin=" + shopOrigin + ", shopType="
+				+ shopType + "]";
 	}
+	
+	
 }

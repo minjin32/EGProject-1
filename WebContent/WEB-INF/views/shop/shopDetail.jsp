@@ -14,14 +14,19 @@
 	<!-- Bootstrap & css end -->
 	<style>
 	#cart {
+		background-color: #af8d2f;
 		position: fixed;
-		top : 80%;
-		left: 87%;
-		z-inde : 1;
+		bottom: 20%;
+		right: 10%;
+		z-inde: 1;
+		position: fixed;
 	}
 	
 	.menubox {
 		height: 200px;
+		padding-left: 20px;
+		padding-bottom: 20px;
+		color: white;
 	}
 	
 	.review {
@@ -33,6 +38,81 @@
 		max-height: 640px;
 	}
 	
+	.header {
+	font-size: 25px;
+}
+
+.menu {
+	border: 3px solid #e4e0d7;
+	width: 90%;
+	align-content: center;
+	margin: 10px;
+}
+
+.menu-div {
+	width: 70px;
+	height: 30px;
+	border: 3px solid #e4e0d7;
+	text-align: center;
+	position: relative;
+	left: 200px;
+	bottom: 10px;
+}
+
+.oder-button {
+	Position: absolute;
+	right: 20px;
+	bottom: 20px;
+}
+
+.btn {
+	width: 100px;
+	height: 50px;
+}
+
+.price {
+	Position: relative;
+	left: 240px;
+	bottom: 10px;
+}
+
+/* success 스타일 */
+.success-box {
+	height: 200px;
+	padding-bottom: 20px;
+	color: #f7f5ed;
+	
+}
+.success-boxmenu {
+	border: 5px solid #e4e0d7;
+	color: #e4e0d7;
+ 	width: 90%; 
+	padding-top: 20%;
+	padding-bottom: 20%;
+	margin-top: 30px;
+	margin-left: 18px;
+}
+
+.success-div {
+	text-align: center;
+}
+
+.oder-button {
+	Position: relative;
+	left: 35%;
+	top: 20px;
+}
+
+.btn {
+	width: 30%;
+	height: 50px;
+}
+
+.price {
+	Position: relative;
+	left: 240px;
+	bottom: 10px;
+}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -301,7 +381,7 @@
 	</div>
 	<!-- 장바구니 start -->
 		<div class="d-flex flex-row-reverse bd-highlight" id="cart">
-			<a href="./cart.jsp" onclick="window.open(this.href,'_self', 'width=600px,height=800px);">
+			<a href="#" onclick="window.open(this.href,'_self', 'width=600px,height=800px);">
 			<img src="/files/images/carts.png" style="width: 80px;">
 			</a>
 		</div>
