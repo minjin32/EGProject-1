@@ -1,7 +1,10 @@
+<%@page import="shop.model.vo.Shop"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String shopSearchKeyword = (String)request.getAttribute("shopSearchKeyword");
+	ArrayList<Shop> shopList = (ArrayList<Shop>)request.getAttribute("shopList");
 %>
 <!DOCTYPE html>
 <html>
@@ -61,164 +64,34 @@
 				  <option value="6">종로1가동</option>
 				  <option value="7">이화동</option>
 				</select>
-				<input type="submit" class="btn btn-primary col ms-2" value="검색" href="#">
+				<input type="submit" id="searchButton" class="btn btn-primary col ms-2" value="검색" href="#">
 			</form>
 		</div>
 		
 		<br><br>
 		
 		<div class="shop-search-result">
-			<div class="row">
-				<div class="col-lg">
+			<div class="row" id="shopList">
+				<% for (Shop shop : shopList) { %>
+				<div class="col-lg-6">
 					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-					<a href="/shop/detail" style="text-decoration: none;">
-						<div class="row g-4" >
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
+						<a href="/shop/detail?shopNumber=<%= shop.getShopNumber() %>" style="text-decoration: none;">
+							<div class="row g-4">
+								<div class="col-md-3">
+									<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
+								</div>
+								<div class="col-md-9">
+									<h5 class="card-title" style="color: #af8d2f"><%= shop.getShopName() %></h5>
+									<p class="card-text"><%= shop.getShopIntroduce() %></p>
+									<p class="card-text">
+										<small class="text-muted">영업시간: 11:00 ~ 20:00</small>
+									</p>
+								</div>
 							</div>
-							<div class="col-md-9" >
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
 						</a>
 					</div>
 				</div>
-				<div class="col-lg">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg">
-					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
-						<div class="row g-4">
-							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
-							</div>
-							<div class="col-md-9">
-								<h5 class="card-title" style="color: #af8d2f">짬뽕지존</h5>
-						        <p class="card-text">짬뽕이 비싸지만 맛있어요.</p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
-							</div>
-						</div>
-					</div>
-				</div>
+				<% } %>
 			</div>
 		</div>
 		

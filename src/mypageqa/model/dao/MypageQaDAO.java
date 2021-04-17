@@ -16,7 +16,7 @@ public class MypageQaDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<MypageQaData> mqList = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QANO DESC) AS NUM, QANO, QATITLE, CONTENT, MBID, QADATETIME FROM QNA) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QA_NO DESC) AS NUM, QA_NO, QA_TITLE, QA_CONTENT, MB_ID, QA_DATETIME FROM QNA) WHERE NUM BETWEEN ? AND ?";
 
 		int recordCountPerPage = 5;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
@@ -30,11 +30,11 @@ public class MypageQaDAO {
 			mqList = new ArrayList<MypageQaData>();
 			while (rset.next()) {
 				MypageQaData mypageQaData = new MypageQaData();
-				mypageQaData.setQaNo(rset.getInt("QANO"));
-				mypageQaData.setQaTitle(rset.getString("QATITLE"));
-				mypageQaData.setQaContent(rset.getString("QACONTENT"));
-				mypageQaData.setMbId(rset.getString("MBID"));
-				mypageQaData.setQaDateTime(rset.getDate("QADATETIME"));
+				mypageQaData.setQaNo(rset.getInt("QA_NO"));
+				mypageQaData.setQaTitle(rset.getString("QA_TITLE"));
+				mypageQaData.setQaContent(rset.getString("QA_CONTENT"));
+				mypageQaData.setMbId(rset.getString("MB_ID"));
+				mypageQaData.setQaDateTime(rset.getDate("QA_DATETIME"));
 				mqList.add(mypageQaData);
 			}
 		} catch (SQLException e) {

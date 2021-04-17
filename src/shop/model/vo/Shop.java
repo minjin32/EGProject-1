@@ -6,7 +6,7 @@ public class Shop {
 	private int shopNumber;
 	private String memberId;
 	private String shopName;
-	private int shopBusinessNumber;
+	private String shopBusinessNumber;
 	private String shopAddress;
 	private String shopAddress1;
 	private String shopAddress2;
@@ -37,10 +37,10 @@ public class Shop {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-	public int getShopBusinessNumber() {
+	public String getShopBusinessNumber() {
 		return shopBusinessNumber;
 	}
-	public void setShopBusinessNumber(int shopBusinessNumber) {
+	public void setShopBusinessNumber(String shopBusinessNumber) {
 		this.shopBusinessNumber = shopBusinessNumber;
 	}
 	public String getShopAddress() {

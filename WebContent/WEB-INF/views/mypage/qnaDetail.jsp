@@ -1,5 +1,9 @@
+<%@page import="mypageqa.model.vo.MypageQaData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	MypageQaData qa = (MypageQaData)request.getAttribute("mypageQaData");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,11 +36,11 @@
 							<div class="row">
 								<div class="col">
 									<b>작성자 </b>
-									<span>김길동</span>
+									<span><%= qa.getMbId() %></span>
 								</div>
 								<div class="col gap-2 d-md-flex justify-content-md-end">
 									<b>작성일시  </b>
-									<span>2021-04-16</span>
+									<span><%= qa.getQaDateTime() %></span>
 								</div>
 							</div>
 						</div>
@@ -45,9 +49,7 @@
 						</div>
 						<div class="mb-3">
 							<p class="form-control">
-								사업자 등록을 요청합니다.<br>
-								사업자번호는 --- 입니다.<br>
-								사업자등록증 사진을 첨부합니다.
+								<%= qa.getQaContent() %>
 							</p>
 						</div>
 						<div class="mb-3">

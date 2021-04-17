@@ -1,5 +1,9 @@
+<%@page import="shop.model.vo.Shop"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% 
+	Shop shop = (Shop)request.getAttribute("shop");
+%>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -127,7 +131,7 @@
 	<div class="container" style="margin-top: 40px">
 		<div class="col-lg-6 ps-5">
 			<div class="row">
-				<h1>매장명</h1>
+				<h1><%= shop.getShopName() %></h1>
 			</div>
 		</div>
 		<br>
@@ -154,15 +158,15 @@
 				<div class="row">
 					<h5>매장정보</h5>
 					<p class="ps-5 lh-1">전화번호 : 000-0000-0000</p>
-					<p class="ps-5 lh-1">주소 : 서울특별시 종로구</p>
-					<p class="ps-5 lh-1">대표자명 : 김길동</p>
-					<p class="ps-5 lh-1">사업자등록번호 : 000-00-00000</p>
+					<p class="ps-5 lh-1">주소 : <%= shop.getShopAddress1() + " " + shop.getShopAddress2() + " " + shop.getShopAddress3() %></p>
+					<p class="ps-5 lh-1">대표자명 : <%= shop.getShopOwner() %></p>
+					<p class="ps-5 lh-1">사업자등록번호 : <%= shop.getShopBusinessNumber() %></p>
 				</div>
 			</div>
 			<div class="col-lg-6 ps-5">
 				<div class="row">
 					<h5>매장소개</h5>
-					<p class="ps-5 lh-1">안녕하세요. 맛집입니다.</p>
+					<p class="ps-5 lh-1"><%= shop.getShopIntroduce() %></p>
 				</div>
 			</div>
 			<div class="col-lg-6 ps-5">
@@ -174,7 +178,7 @@
 			<div class="col-lg-6 ps-5">
 				<div class="row">
 					<h5>원산지 정보</h5>
-					<p class="ps-5 lh-1">사장님: 국내산, 쌀: 국내산, 돼지고기: 스페인산</p>
+					<p class="ps-5 lh-1"><%= shop.getShopOrigin() %></p>
 				</div>
 			</div>
 		</div>

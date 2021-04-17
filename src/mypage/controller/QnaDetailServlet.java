@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.vo.Member;
 import mypageqa.model.service.MypageQaService;
 import mypageqa.model.vo.MypageQaData;
 
@@ -21,8 +22,9 @@ public class QnaDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int qaNo = Integer.parseInt(request.getParameter("QaNo"));
+		int qaNo = Integer.parseInt(request.getParameter("qaNumber"));
 		MypageQaData mypageQaData = new MypageQaService().printOne(qaNo);
+		
 		if (mypageQaData != null) {
 			request.setAttribute("mypageQaData", mypageQaData);
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/qnaDetail.jsp");

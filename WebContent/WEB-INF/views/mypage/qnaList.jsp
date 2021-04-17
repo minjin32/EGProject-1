@@ -1,5 +1,10 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="mypageqa.model.vo.MypageQaData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	ArrayList<MypageQaData> mqList = (ArrayList<MypageQaData>)request.getAttribute("mqList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,42 +46,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">6</th>
-							<td>이효정</td>
-							<td class="td-title">한 번도 못했던 말 울면서 할 줄은 나 몰랐던 말</td>
-							<td>2021-04-16</td>
+						<% for (MypageQaData qa : mqList) { %>
+						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail?qaNumber=<%= qa.getQaNo() %>';">
+							<th scope="row"><%= qa.getQaNo() %></th>
+							<td><%= qa.getMbId() %></td>
+							<td class="td-title"><%= qa.getQaTitle() %></td>
+							<td><%= qa.getQaDateTime() %></td>
 						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">5</th>
-							<td>박은영</td>
-							<td class="td-title">오늘 했던 모든 말 저 하늘 위로</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">4</th>
-							<td>김나혜</td>
-							<td class="td-title">무슨 말을 하는지</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">3</th>
-							<td>김민진</td>
-							<td class="td-title">내게 왜 이러는지</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">2</th>
-							<td>오우철</td>
-							<td class="td-title">흐르지 못하게 또 활짝 웃어</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">1</th>
-							<td>김동현</td>
-							<td class="td-title">눈물이 차올라서 고갤들어</td>
-							<td>2021-04-16</td>
-						</tr>
+						<% } %>
 					</tbody>
 				</table>
 				<div class="row">

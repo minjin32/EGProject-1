@@ -35,7 +35,6 @@ public class ShopService {
 			conn = factory.createConnection();
 			shop = new ShopDAO().seletOneByShopNo(conn, shopNo);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(conn);
@@ -139,6 +138,27 @@ public class ShopService {
 		}
 		
 		return pd;
+	}
+
+	public ArrayList<Shop> selectAll() { // 테스트용 selectAll by DH
+		Connection conn = null;
+		ArrayList<Shop> list = null;
+		
+		try {
+			conn = factory.createConnection();
+			list = new ShopDAO().selectAll(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+						
+		return list;
+	}
+
+	public Shop selectShopByNumber(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
