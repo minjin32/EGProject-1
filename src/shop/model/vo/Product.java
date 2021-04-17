@@ -8,6 +8,7 @@ public class Product {
 	private int prPrice;
 	private String prStatus;
 	private int prPlug;
+	
 	public int getPrNo() {
 		return prNo;
 	}

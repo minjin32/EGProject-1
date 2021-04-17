@@ -43,6 +43,7 @@ public class ShopService {
 		return shop;
 	}
 	
+	
 	// shop 업데이트(수정,삭제)
 	public int modifyShop(Shop shop) {
 		int result = 0;

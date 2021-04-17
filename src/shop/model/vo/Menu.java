@@ -9,6 +9,7 @@ public class Menu {
 	private int bowlSize;
 	private String menuPlug;
 	
+	
 	public int getMenuNo() {
 		return menuNo;
 	}

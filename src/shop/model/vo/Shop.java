@@ -18,6 +18,7 @@ public class Shop {
 	private String shopIntroduce;
 	private String shopOrigin;
 	private int shopType;
+	
 	public int getShopNumber() {
 		return shopNumber;
 	}

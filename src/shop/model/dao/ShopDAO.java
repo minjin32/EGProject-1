@@ -177,6 +177,7 @@ public class ShopDAO {
 		return list;
 	}
 
+	
 	public ArrayList<Product> selectProductList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
