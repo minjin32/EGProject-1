@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style>
-<<<<<<< HEAD
    header{
       position:sticky;
       z-index: 9999;
@@ -21,7 +20,6 @@
       font-weight: bold;
    }
    
-=======
 	header{
 		position:sticky;
 		z-index: 9999;
@@ -44,7 +42,6 @@
 		font-weight: bold;
 	}
 	
->>>>>>> refs/remotes/origin/0414_pm10_minjin
 </style>
 
 <header>
@@ -55,11 +52,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-<<<<<<< HEAD
+
        <!-- nav 왼쪽 -->
-=======
     	<!-- nav 왼쪽 -->
->>>>>>> refs/remotes/origin/0414_pm10_minjin
       <ul class="navbar-nav me-auto mb-2 mb-lg-0"  id="navi">
         <li class="nav-item"  id="navi">
           <a class="nav-link active" href="/introduce">소개</a>
@@ -78,7 +73,6 @@
       <!-- nav 왼쪽 끝 -->
       <!-- nav 오른쪽 -->
       <ul class="navbar-nav mr-auto mb-2 mb-lg-0"  id="navi">
-<<<<<<< HEAD
          <% if (session.getAttribute("userId") != null) { %>
           <li class="nav-item">
              <a class="nav-link active" href="#">마이페이지</a>
@@ -88,7 +82,6 @@
              <a class="nav-link active" href="#">로그인</a>
           </li>
        <% } %>
-=======
       	<% if (session.getAttribute("userId") != null) { %>
 	    	<li class="nav-item">
 	    		<a class="nav-link active" href="#">마이페이지</a>
@@ -98,15 +91,11 @@
 	    		<a class="nav-link active" href="#">로그인</a>
 	    	</li>
     	<% } %>
->>>>>>> refs/remotes/origin/0414_pm10_minjin
       </ul>
       <!-- nav 오른쪽 끝 -->
     </div>
   </div>
 </nav>
 
-<<<<<<< HEAD
 </header>
-=======
 </header>
->>>>>>> refs/remotes/origin/0414_pm10_minjin
