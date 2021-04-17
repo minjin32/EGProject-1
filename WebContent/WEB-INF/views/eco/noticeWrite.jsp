@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QNA문의 상세</title>
+<title>공지사항 작성 - EGProject</title>
 <!-- Bootstrap & css-->
 <link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css"
 	rel="stylesheet">

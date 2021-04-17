@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%
-		pageContext.forward("/introduce");
+		pageContext.forward("/home");
 	%>
 </body>
 </html>

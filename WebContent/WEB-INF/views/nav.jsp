@@ -24,7 +24,7 @@
 <header>
 	<nav class="navbar navbar-expand-lg bg-primary" style="background-color:white !important;">
 	  <div class="container-fluid">
-	    <a class="navbar-brand" href="/introduce" style="color: #333;">EGProject</a>
+	    <a class="navbar-brand" href="/home" style="color: #333;">EGProject</a>
 	    <div class="collapse navbar-collapse">
 	       <!-- nav 왼쪽 -->
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0"  id="navi">

@@ -4,134 +4,99 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>소개 - EGProject</title>
-<!-- Bootstrap & css-->
-<link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-	crossorigin="anonymous"></script>
-<!-- <link href="./css/egproject.css" rel="stylesheet"> -->
-<!-- Bootstrap & css end -->
+	<title>소개 - EGProject</title>
+	<!-- Bootstrap & css-->
+	<link href="./bootstrap/bootstrap.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+	<!-- <link href="./css/egproject.css" rel="stylesheet"> -->
+	<!-- Bootstrap & css end -->
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/nav.jsp"%>
-
-	<div id="carouselExampleIndicators" class="carousel slide"
-		data-bs-ride="carousel">
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleIndicators"
-				data-bs-slide-to="0" class="active" aria-current="true"
-				aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleIndicators"
-				data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleIndicators"
-				data-bs-slide-to="2" aria-label="Slide 3"></button>
+	<%@ include file="/WEB-INF/views/nav.jsp" %>
+	
+	<div class="content">
+		<div>
+			<img src="<%=request.getContextPath()%>/files/images/main1.jpg" style="max-height:800px" class="d-block w-100" alt="...">	
 		</div>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="<%=request.getContextPath()%>/files/images/main1.jpg"
-					class="d-block w-100" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="<%=request.getContextPath()%>/files/images/main22.jpg"
-					class="d-block w-100" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="<%=request.getContextPath()%>/files/images/main3.jpg"
-					class="d-block w-100" alt="...">
-			</div>
-		</div>
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
-		</button>
 	</div>
 	<br>
 	<div class="container-lg">
-		<div class="row row-cols-1 row-cols-lg-2 g-4">
-			<div class="col">
-				<img class="rounded"
-					src="<%=request.getContextPath()%>/files/images/mid2.jpg"
-					alt="메인 이미지" width="100%">
-			</div>
-			<div class="col">
-				<img class="rounded"
-					src="<%=request.getContextPath()%>/files/images/mid1.jpg"
-					alt="메인 이미지" width="100%">
-			</div>
-			<div class="col intro-img-grid g-0">
-				<div class="row" align="center">
-					<h2>이미지 리뷰</h2>
-				</div>
-				<div class="row">
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food1.png"
-							class=" d-bloc0k w-100">
-					</div>
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food2.png"
-							class=" d-block w-100">
-					</div>
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food3.png"
-							class=" d-block w-100">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food4.png"
-							class=" d-block w-100">
-					</div>
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food5.png"
-							class=" d-block w-100">
-					</div>
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food6.png"
-							class=" d-block w-100">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food7.png"
-							class=" d-block w-100">
-					</div>
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food8.png"
-							class=" d-block w-100">
-					</div>
-					<div class="col">
-						<img
-							src="<%=request.getContextPath()%>/files/images/food9.png"
-							class=" d-block w-100">
-					</div>
+		<!--
+		<div class="card-group">
+			<div class="card" style="border:none;">
+				<div class="card-body">
+					<h5 class="card-title">1번 소제목 입니다.</h5>
+					<p class="card-text">
+						1번 세부내용 입니다. 1번 세부내용 입니다. 1번 세부내용 입니다. 1번 세부내용 입니다. 1번 세부내용 입니다. 1번 세부내용 입니다. 1번 세부내용 입니다. 1번 세부내용 입니다. 1번 세부내용 입니다. 1번 세부내용 입니다. 
+					</p>
 				</div>
 			</div>
-			<div class="col">
-				<img class="rounded"
-					src="<%=request.getContextPath()%>/files/images/mid3-001.jpg"
-					alt="메인 이미지" width="100%">
+			<div class="card" style="border:none;">
+				<div class="card-body">
+					<h5 class="card-title">2번 소제목 입니다.</h5>
+					<p class="card-text">
+						2번 세부내용 입니다. 2번 세부내용 입니다. 2번 세부내용 입니다. 2번 세부내용 입니다. 2번 세부내용 입니다. 2번 세부내용 입니다. 2번 세부내용 입니다. 2번 세부내용 입니다. 2번 세부내용 입니다. 2번 세부내용 입니다. 
+					</p>
+				</div>
+			</div>
+			<div class="card" style="border:none;">
+				<div class="card-body">
+					<h5 class="card-title">3번 소제목 입니다.</h5>
+					<p class="card-text">
+						3번 세부내용 입니다. 3번 세부내용 입니다. 3번 세부내용 입니다. 3번 세부내용 입니다. 3번 세부내용 입니다. 3번 세부내용 입니다. 3번 세부내용 입니다. 3번 세부내용 입니다. 3번 세부내용 입니다. 3번 세부내용 입니다. 
+					</p>
+				</div>
 			</div>
 		</div>
+		 -->
+		<div class="row row-cols-1 row-cols-md-3">
+			<div class="col" style="padding: 60px;">
+				<h5>변화를 추구합니다.</h5>
+				<p>EG project는 제로 웨이스트(Zero-waste) 
+				원칙에 초점을 맞춰 일상 생활 속에서 무분별하게 사용되는 일회용품을 줄이기 위해 많은 노력을 하고 있습니다. 쓰레기를 최소화하고
+				제품의 closed-loop 순환을 위해 일회용품의 사용을 줄이고,가치있는 소비를 위해 일회용품을 줄이기 위해 노력하는 음식점과 제로웨이스트 상품을 판매하는 스토어를 소개하고, 용기를 가져가 음식을 포장할 수 있도록 예약하는 서비스를 제공합니다.
+				지속 가능한 미래를 만들기 위해 EG project는 새로운 변화를 추구하기 위헤 노력하고 있습니다.</p>
+			</div>
+			<div class="col" style="padding: 60px;">
+				<h5>자연스럽게 연결됩니다.</h5>
+				<p>제로 웨이스트를 추구하는 사람들이 모여 같은 방향으로 나아가기 위해 노력합니다.
+					생활 속에서 같은 방향을 나아가는 사람들을 함께하기 위해 접근성을 극대화하하여 모두가 참여할 수 있는 환경 운동을 만들기 위해 노력하고 있습니다.
+					일회용품 사용을 줄이고 배출량을 줄여가는 하나의 목적을 위한 진정한 제로웨이스트를 추구하고 있습니다.
+				
+				</p>
+			</div>
+			<div class="col" style="padding: 60px;">
+				<h5>생활 속에 스며듭니다.</h5>
+				<p>제로웨이스트는 어렵지 않습니다. 대단하고 거창한 것만이 환경운동이 아닌 일상 속에서 작은 나의 행동이 환경운동이 될 수 있습니다.
+					제로 웨이스트 음식점에서 일회용품 사용을 줄이고,제로 웨이스트 스토어에서 환경 오염을 줄이는 물건을 구매하는 것도
+					환경을운동이 될 수 있습니다. 환경을 위한 작은 소비가 우리 일상 속에 스며들도록 다양한 노력을 하고 있습니다.</p>
+			</div>
+		</div>
+		<div class="row row-cols-1 row-cols-md-2">
+			<div class="col" style="padding:60px;">
+				<img src="<%=request.getContextPath()%>/files/images/wireframe.jpg" class="d-block w-100" style="max-height: 400px" alt="...">
+			</div>
+			<div class="col" style="padding:60px;">
+				<div class="row align-items-center" style="padding:40px;">
+					<h3>운영시간</h3>
+					<br>
+					<p>
+						설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다.
+					</p>
+				</div>
+				<div class="row align-items-center" style="padding:40px;">
+					<h3>운영시간</h3>
+					<br>
+					<p>
+						설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다.
+					</p>
+				</div>
+			</div>
+		</div>
+		
 	</div>
-
-	<br>
-	<%@ include file="/WEB-INF/views/footer.jsp"%>
+	
+	
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

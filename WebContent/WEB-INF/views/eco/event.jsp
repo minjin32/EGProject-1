@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>에코마당 - EGProject</title>
+<title>이벤트 - EGProject</title>
 <!-- Bootstrap & css-->
 <link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css" rel="stylesheet">
 <script

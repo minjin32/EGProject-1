@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QNA문의 상세</title>
+<title>에코게시판 - EGProject</title>
 <!-- Bootstrap & css-->
 <link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css"
 	rel="stylesheet">
@@ -26,7 +26,7 @@
 			</div>
 			<div class="col-lg-9 p-5">
 				<div>
-					<h2 class="pb-2">자유게시판</h2>
+					<h2 class="pb-2">에코게시판</h2>
 					<form class="p-4"
 						style="border: 1px solid #789F6F; border-radius: 5px;">
 						<div class="mb-3">
