@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Infomodify
  */
-@WebServlet("/infomodify")
+@WebServlet("/mypage/modify")
 public class Infomodify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
