@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Infomodify
  */
-@WebServlet("/infomodify")
-public class Infomodify extends HttpServlet {
+@WebServlet("/mypage/modify")
+public class ModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Infomodify() {
+    public ModifyServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/infomodify.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/modify.jsp");
 				view.forward(request, response);
 	}
 
