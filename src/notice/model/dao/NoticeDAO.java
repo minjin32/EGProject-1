@@ -88,7 +88,7 @@ public class NoticeDAO {
 		}
 		return result;
 	}
-
+	
 	// 셀렉트 one by no_no(pk) 하나 가져오는거 -> 사진 -> db쿼리가 notice_image 테이블이랑 join이 이루어져야해!
 	// 조인문이 조금 힘들면 일단은 notice테이블에서 no_no로 가져오는것만 해도 99%완성
 	public Notice selectOneByNo(Connection conn, int noticeNo) {

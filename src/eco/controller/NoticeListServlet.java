@@ -26,7 +26,7 @@ public class NoticeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 			HttpSession session = request.getSession();
-			//if (session != null && (session.getAttribute("userId")) != null) {
+			if (session != null && (session.getAttribute("userId")) != null) {
 				int currentPage = 0;
 				if (request.getParameter("currentPage") == null) {
 					currentPage = 1;
@@ -42,17 +42,13 @@ public class NoticeListServlet extends HttpServlet {
 					RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeList.jsp");
 					view.forward(request, response);
 				} else {
-					System.out.println("난 첫번째 이프얌");
 				}
-			//} else {
-			//	System.out.println("난 두번째 이프얌");
-			//}
-			System.out.println("난 세번째 이프얌");
+			} else {
+			}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }
