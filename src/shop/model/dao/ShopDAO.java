@@ -36,9 +36,10 @@ public class ShopDAO {
 				while (rset.next()) {
 					Shop shop = new Shop();
 					shop.setShopName(rset.getString("sh_name"));
-					shop.setShopBusinessNumber(rset.getInt("sh_business_no"));
+					shop.setShopBusinessNumber(rset.getString("sh_business_no"));
 				}
 			}
+			System.out.println("리스트 : " + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +62,7 @@ public class ShopDAO {
 				shop.setShopNumber(rset.getInt("SH_NO"));
 				shop.setMemberId(rset.getString("MB_ID"));
 				shop.setShopName(rset.getString("SH_NAME"));
-				shop.setShopBusinessNumber(rset.getInt("SH_BUSINESS_NO"));
+				shop.setShopBusinessNumber(rset.getString("SH_BUSINESS_NO"));
 				shop.setShopAddress1(rset.getString("SH_ADDRESS1"));
 				shop.setShopAddress2(rset.getString("SH_ADDRESS2"));
 				shop.setShopAddress3(rset.getString("SH_ADDRESS3"));
@@ -92,7 +93,7 @@ public class ShopDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, shop.getShopName());
-			pstmt.setInt(2, shop.getShopBusinessNumber());
+			pstmt.setString(2, shop.getShopBusinessNumber());
 			pstmt.setString(3, shop.getShopAddress1());
 			pstmt.setString(4, shop.getShopAddress2());
 			pstmt.setString(5, shop.getShopAddress3());
@@ -124,7 +125,7 @@ public class ShopDAO {
 			pstmt.setInt(1, shop.getShopNumber());
 			pstmt.setString(2, shop.getMemberId());
 			pstmt.setString(3, shop.getShopName());
-			pstmt.setInt(4, shop.getShopBusinessNumber());
+			pstmt.setString(4, shop.getShopBusinessNumber());
 			pstmt.setString(5, shop.getShopAddress1());
 			pstmt.setString(6, shop.getShopAddress2());
 			pstmt.setString(7, shop.getShopAddress3());
