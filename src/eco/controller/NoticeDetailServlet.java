@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
-@WebServlet("/notice/detail")
+@WebServlet("/eco/notice/detail")
 public class NoticeDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -11,6 +11,73 @@ import common.JDBCTemplate;
 import member.model.vo.Member;
 
 public class MemberDAO {
+	
+	// 암호화 없음 start
+	public int register(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "INSERT INTO MEMBER KEYS (MB_ID, MB_NO, MB_PASSWORD, MB_NAME, MB_EMAIL, MB_PHONE, MB_STATUS) VALUES (?, USERNO_SEQ.NEXTVAL, ?, ?, ?, ?, 'Y')";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getMbId());
+			pstmt.setString(2, member.getMbPassword());
+			pstmt.setString(3, member.getMbName());
+			pstmt.setString(4, member.getMbEmail());
+			pstmt.setString(5, member.getMbPhone());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public Member select(Connection conn, String memberId, String memberPw) {
+//		PreparedStatement pstmt = null;
+//		String sql = "SELECT * FROM MEMBER WHERE MB_ID = ? AND MB_PASSWORD = ?";
+		Statement stmt = null;
+		String sql = "SELECT * FROM MEMBER WHERE MB_ID = '" + memberId + "' " + "AND MB_PASSWORD = '" + memberPw + "'"; 
+		ResultSet rset = null;
+		Member member = null;
+		try {
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, memberId);
+//			pstmt.setString(2, memberPw);
+//			rset = pstmt.executeQuery();
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			if (rset.next()) {
+				member = new Member();
+				member.setMbId(rset.getString("MB_ID"));
+				member.setMbNo(rset.getInt("MB_NO"));
+				member.setMbPassword(rset.getString("MB_PASSWORD"));
+				member.setMbName(rset.getString("MB_NAME"));
+				member.setMbNickname(rset.getString("MB_NICKNAME"));
+				member.setMbEmail(rset.getString("MB_EMAIL"));
+				member.setMbPhone(rset.getString("MB_PHONE"));
+				member.setMbAddress1(rset.getString("MB_ADDRESS1"));
+				member.setMbAddress2(rset.getString("MB_ADDRESS2"));
+				member.setMbAddress3(rset.getString("MB_ADDRESS3"));
+//				member.setMbType(rset.getString("MB_TYPE").charAt(0));
+				member.setShOwner(rset.getString("SH_OWNER"));
+				member.setShBusinessno(rset.getString("SH_BUSINESS_NO"));
+				member.setShEcopoint(rset.getInt("SH_ECOPOINT"));
+				member.setMbJoindate(rset.getDate("MB_JOINDATE"));
+				member.setMbStatus(rset.getString("MB_STATUS"));
+				member.setGender(rset.getString("MB_GENDER"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+//			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(stmt);
+		}
+		return member;
+	}
+	// 암호화 없음 end
 
 	public Member selectOneMember(Connection conn, String userId, String userPwd) {
 //		Statement stmt = null;
@@ -60,7 +127,7 @@ public class MemberDAO {
 	public int insertMember(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO MEMBER VALUES(?,USERNO_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,SYSDATE,?)";
+		String query = "INSERT INTO MEMBER VALUES(?,USERNO_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,SYSDATE,?,'M')";
 		String hashPwd = PasswordUtil.getHashedPassword(member.getMbId(), member.getMbPassword());
 		try {
 			pstmt = conn.prepareStatement(query);

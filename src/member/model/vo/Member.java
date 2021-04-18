@@ -20,6 +20,7 @@ public class Member {
 	private int shEcopoint;
 	private Date mbJoindate;
 	private String mbStatus;
+	private String gender;
 	
 	public String getMbId() {
 		return mbId;
@@ -117,12 +118,19 @@ public class Member {
 	public void setMbStatus(String mbStatus) {
 		this.mbStatus = mbStatus;
 	}
-	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	@Override
 	public String toString() {
 		return "Member [mbId=" + mbId + ", mbNo=" + mbNo + ", mbPassword=" + mbPassword + ", mbName=" + mbName
-				+ ", mbNickname=" + mbNickname + ", mbEmail=" + mbEmail + ", mbPhone=" + mbPhone + ", mbAddress1=" + mbAddress1 + ", mbAddress2=" + mbAddress2 + ", mbAddress3=" + mbAddress3
-				+ ", mbType=" + mbType + ", shOwner=" + shOwner + ", shBusinessno=" + shBusinessno + ", shEcopoint="
-				+ shEcopoint + ", mbJoindate=" + mbJoindate + ", mbStatus=" + mbStatus + "]";
+				+ ", mbNickname=" + mbNickname + ", mbEmail=" + mbEmail + ", mbPhone=" + mbPhone + ", mbAddress1="
+				+ mbAddress1 + ", mbAddress2=" + mbAddress2 + ", mbAddress3=" + mbAddress3 + ", mbType=" + mbType
+				+ ", shOwner=" + shOwner + ", shBusinessno=" + shBusinessno + ", shEcopoint=" + shEcopoint
+				+ ", mbJoindate=" + mbJoindate + ", mbStatus=" + mbStatus + ", gender=" + gender + "]";
 	}
+	
 }

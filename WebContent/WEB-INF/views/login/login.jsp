@@ -24,36 +24,36 @@
 		
 		<div class="d-flex justify-content-center" style="margin-top: 150px">
 		
-		<form style= "width:400px;">
+		<form style= "width:400px;" action="/member/login" method="POST">
 			<div class="row"  >
 					<!-- Email input --> 
 					<h2 align="center" style="font-family:serif; font-weight:bold; color: #0e2c01; margin-bottom : 10%;">LOGIN</h2>
 					<hr>
 					<div class="form-outline mb-4" style="margin-top: 10%;" >
-						<input type="email" id="form2Example1" class="form-control" placeholder="아이디를 입력하세요."/> 
+						<input type="text" id="memberId" name="memberId" class="form-control" placeholder="아이디를 입력하세요."/> 
 					</div>
 			
 					<!-- Password input -->
 					<div class="form-outline mb-4">
-						<input type="password" id="form2Example2" class="form-control" placeholder="비밀번호를 입력하세요."/>
+						<input type="password" id="memberPw" name="memberPw" class="form-control" placeholder="비밀번호를 입력하세요."/>
 					</div>
 
 					<!-- 2 column grid layout for inline styling -->
 					<div class="row mb-4" >
 						<div class="col d-flex justify-content-center" >
-							<a href="#!" style="text-decoration: none; font-size: 14px;">ID / Pwd 찾기</a>
+							<a href="#!" style="text-decoration: none; font-size: 14px;">ID / PW 찾기</a>
 						</div>
 					</div>
 
 					<!-- Submit button -->
 					<div align="center">
-					<button type="submit" class="btn btn-primary btn-block mb-4" style="width: 100%; height: 60px;" >
-					<a href="/introduce" style="text-decoration: none; ">로그인</a> </button>
+					<button type="submit" class="btn btn-primary btn-block mb-4" style="color: white; width: 100%; height: 60px;">로그인</button>
+					<!-- <a href="/introduce" style="text-decoration: none; ">로그인</a> </button> -->
 					</div>
 					<!-- Register buttons -->
 					<div class="text-center">
 						<p>
-							회원이 아니신가요? <a href="/login/join">회원가입</a>
+							회원이 아니신가요? <a href="/member/join">회원가입</a>
 						</p>
 					</div>
 				</div>

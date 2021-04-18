@@ -17,28 +17,20 @@ public class NoticeService {
 		factory = JDBCTemplate.getConnection();
 	}
 
-	// ¼¿·ºÆ® ¿Ã (¸®½ºÆ® ) ÀüÃ¼ ³»¿ª °¡Á®¿À±â ¸Þ¼Òµå
+	// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Æ® ) ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public NoticePageData printAllList(int currentPage) {
-		System.out.println("===============================printAllList");
 		Connection conn = null;
-		ArrayList<Notice> nList = null;
-		String pageNavi = null;
 		NoticePageData pd = new NoticePageData();
 		
 		try {
-			System.out.println("===============================printAllList2 starts");
 			conn = factory.createConnection();
 			pd.setNoticeList(new NoticeDAO().selectAllList(conn, currentPage));
 			pd.setPageNavi(new NoticeDAO().getPageNavi(conn, currentPage));
-			System.out.println("===============================printAllList2 end ");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("===============================e");
 		} finally {
-			System.out.println("===============================f");
 			JDBCTemplate.close(conn);
 		}
-		System.out.println("===============================printAllList4");
 		return pd;
 	}
 
@@ -64,8 +56,8 @@ public class NoticeService {
 		return result;
 	}
 	
-		// ¼¿·ºÆ® one by no_no(pk) ÇÏ³ª °¡Á®¿À´Â°Å -> »çÁø -> dbÄõ¸®°¡ notice_image Å×ÀÌºíÀÌ¶û joinÀÌ ÀÌ·ç¾îÁ®¾ßÇØ!
-		// Á¶ÀÎ¹®ÀÌ Á¶±Ý Èûµé¸é ÀÏ´ÜÀº noticeÅ×ÀÌºí¿¡¼­ no_no·Î °¡Á®¿À´Â°Í¸¸ ÇØµµ 99%¿Ï¼º
+		// ï¿½ï¿½ï¿½ï¿½Æ® one by no_no(pk) ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½ -> ï¿½ï¿½ï¿½ï¿½ -> dbï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ notice_image ï¿½ï¿½ï¿½Ìºï¿½ï¿½Ì¶ï¿½ joinï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
+		// ï¿½ï¿½ï¿½Î¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ noticeï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ no_noï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°Í¸ï¿½ ï¿½Øµï¿½ 99%ï¿½Ï¼ï¿½
 	public Notice printOnebyNo(int noticeNo) {
 		Connection conn = null;
 		Notice notice = null;
@@ -102,7 +94,7 @@ public class NoticeService {
 		return result;
 	}
 	
-	// ÀÌ°Å ¾²´Â°Ô °ú¿¬ ¸Â³ª
+	// ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Â³ï¿½
 	public NoticePageData printSearchList(String search, int currentPage) {
 		Connection conn = null;
 		NoticePageData pd = new NoticePageData();

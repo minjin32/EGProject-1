@@ -21,7 +21,7 @@ public class MyinfoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view= request.getRequestDispatcher("WEB-INF/views/mypage/info.jsp");
+		RequestDispatcher view= request.getRequestDispatcher("/WEB-INF/views/mypage/info.jsp");
 		view.forward(request, response);
 	}
 

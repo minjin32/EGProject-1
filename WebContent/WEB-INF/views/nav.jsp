@@ -45,21 +45,27 @@
 	      <!-- nav 왼쪽 끝 -->
 	      <!-- nav 오른쪽 -->
 	      <ul class="navbar-nav mr-auto mb-2 mb-lg-0"  id="navi">
-	         <% if (session.getAttribute("userId") != null) { %>
+	         <% if (session.getAttribute("memberId") != null) { %>
 	          <li class="nav-item">
-	             <a class="nav-link active" href="#">마이페이지</a>
+	             <a class="nav-link active" href="/mypage">마이페이지</a>
 	          </li>
 	          <% } else { %>
 	          <li class="nav-item">
-	             <a class="nav-link active" href="#">로그인</a>
+	             <a class="nav-link active" href="/member/login">로그인</a>
 	          </li>
-	          <li class="nav-item"><!-- 마이페이지 테스트용 start -->
-	             <a class="nav-link active" href="/mypage">마이페이지테스트버튼</a>
-	          </li><!-- 마이페이지 테스트용 end -->
-	          <li class="nav-item"><!-- 사업자페이지 테스트용 start -->
-	             <a class="nav-link active" href="/shop/manage">사업자페이지테스트용</a>
-	          </li><!-- 사업자페이지 테스트용 end -->
-	       <% } %>
+	          <% } %>
+	          <li class="nav-item">
+	             <a class="nav-link active" href="/test/login">로그인(테스트)</a>
+	          </li>
+	          <li class="nav-item">
+	             <a class="nav-link active" href="/mypage">마이페이지(테스트)</a>
+	          </li>
+	          <li class="nav-item">
+	             <a class="nav-link active" href="/shop/manage">사업자페이지(테스트)</a>
+	          </li>
+	          <li class="nav-item">
+	             <a class="nav-link active" href="/member/logout">로그아웃(테스트)</a>
+	          </li>
 	      </ul>
 	      <!-- nav 오른쪽 끝 -->
 	    </div>

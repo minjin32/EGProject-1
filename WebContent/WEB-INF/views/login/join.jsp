@@ -209,10 +209,10 @@ select {
 
 
         <!-- wrapper -->
-        <div id="wrapper" class="containe">
+        <div id="wrapper" class="container">
 
             <!-- content-->
-            <div id="content">
+            <form id="content" action="/member/join" method="POST">
             <hr>
 
                 <!-- ID -->
@@ -221,7 +221,7 @@ select {
                         <label for="id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" id="id" class="int" maxlength="20">
+                        <input type="text" id="id" name="memberId" class="int" maxlength="20">
                         <span class="step_url"></span>
                     </span>
                     <span class="error_next_box"></span>
@@ -231,7 +231,7 @@ select {
                 <div>
                     <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                     <span class="box int_pass">
-                        <input type="text" id="pswd1" class="int" maxlength="20">
+                        <input type="text" id="pswd1" name="memberPw" class="int" maxlength="20">
                         <span id="alertTxt">사용불가</span>
                     </span>
                     <span class="error_next_box"></span>
@@ -250,7 +250,7 @@ select {
                 <div>
                     <h3 class="join_title"><label for="name">이름</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="name" class="int" maxlength="20">
+                        <input type="text" id="name" name="memberName" class="int" maxlength="20">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -316,7 +316,7 @@ select {
                 <div>
                     <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(선택)</span></label></h3>
                     <span class="box int_email">
-                        <input type="text" id="email" class="int" maxlength="100" placeholder="선택입력">
+                        <input type="text" id="email" name="memberEmail" class="int" maxlength="100" placeholder="선택입력">
                     </span>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
                 </div>
@@ -325,7 +325,7 @@ select {
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력">
+                        <input type="tel" id="mobile" name="memberPhone" class="int" maxlength="16" placeholder="전화번호 입력">
                     </span>
                     <span class="error_next_box"></span>    
                 </div>
@@ -333,14 +333,12 @@ select {
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-                    <button type="button" id="btnJoin" class="btn btn-success">
-                        <span><a href="/login/login" style="text-decoration: none;">가입하기</a></span>
-                    </button>
+                	<button type="submit" id="btnJoin" class="btn btn-success" style="text-decoration: none;">가입하기</button>
                 </div>
 
                 
 
-            </div> 
+            </form> 
             <!-- content-->
 
         </div> 

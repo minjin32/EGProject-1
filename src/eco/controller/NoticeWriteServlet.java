@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
-@WebServlet("/notice/write")
+@WebServlet("/eco/notice/write")
 public class NoticeWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -52,19 +52,16 @@
 					<thead>
 						<tr>
 							<th scope="col">번호</th>
-							<th scope="col">작성자</th>
 							<th scope="col">제목</th>
 							<th scope="col">작성일</th>
 						</tr>
 					</thead>
 					<tbody>
 						<% for(Notice notice : nList) { %>
-						<tr style="cursor: pointer;" onclick="window.location='/notice/detail';">
-							<th scope="row"></th>
-							<td class="td-title"><%= notice.getNoticeNo() %></td>
-							<td scope="row"><%= notice.getUserId() %></td>
-							<td scope="row"><a href="/notice/detail?noticeNum=<%= notice.getNoticeNo()%>"><%= notice.getSubject() %></a></td>
-							<td scope="row"><%= notice.getRegDate() %></td>
+						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail?noticeNo=<%= notice.getNoticeNo() %>';">
+							<th scope="row"><%= notice.getNoticeNo() %></th>
+							<td class="td-title"><%= notice.getSubject() %></td>
+							<td><%= notice.getRegDate() %></td>
 						</tr>
 						<% } %>
 					</tbody>
