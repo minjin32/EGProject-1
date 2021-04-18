@@ -125,6 +125,7 @@ public class ShopService {
 		return list;
 	}
 	
+	
 	public ShopPageData selectListByAddress(String add1, String add2, String add3, int targetPage) {
 		Connection conn = null;
 		ShopPageData pd = null;
@@ -132,6 +133,8 @@ public class ShopService {
 		try {
 			conn = factory.createConnection();
 			pd.setShopList(new ShopDAO().selectListByAddress(conn, add1, add2, add3, targetPage));
+			System.out.println("넘어가는 것 : " + pd);
+			System.out.println("넘어가는 콘프 : " + conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

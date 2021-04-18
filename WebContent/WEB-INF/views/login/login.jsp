@@ -53,7 +53,7 @@
 					<!-- Register buttons -->
 					<div class="text-center">
 						<p>
-							회원이 아니신가요? <a href="/login/join">회원가입</a>
+							회원이 아니신가요? <a href="/member/join">회원가입</a>
 						</p>
 					</div>
 				</div>
