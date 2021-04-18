@@ -22,7 +22,7 @@
 	      <li style="list-style:none; font-size:30px;"><a href="/eco/board/list">에코마당</a></li>
 	      <li class="list-group-item"><a href="/eco/board/list" style="text-decoration : none">에코게시판</a></li>
 	      <li class="list-group-item"><a href="/eco/event" style="text-decoration : none">이벤트</a></li>
-	      <li class="list-group-item"><a href="/eco/notice/list" style="text-decoration : none">공지사항</a></li>
+	      <li class="list-group-item"><a href="/notice/list" style="text-decoration : none">공지사항</a></li>
 	   </ul>
 	</div>
 </div>

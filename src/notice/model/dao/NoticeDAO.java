@@ -36,8 +36,8 @@ public class NoticeDAO {
 		ResultSet rset = null;
 		ArrayList<Notice> nList = null;
 		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY NO_NO DESC)"
-				+ " AS NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME,NO_STATUS FROM NOTICE)"
-				+ "WHERE NO_NO BETWEEN ? AND ?";
+				+ " AS NUM, NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME,NO_STATUS FROM NOTICE)"
+				+ "WHERE NUM BETWEEN ? AND ?";
 		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
 		int end = currentPage * recordCountPerPage;
@@ -188,7 +188,7 @@ public class NoticeDAO {
 	public ArrayList<Notice> selectSearchList(Connection conn, String search, int currentPage){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY NO_NO DESC) AS NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME, NO_STATUS FROM NOTICE WHERE NO_TITLE LIKE ?)WHERE NO_NO BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY NO_NO DESC) AS NUM, NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME, NO_STATUS FROM NOTICE WHERE NO_TITLE LIKE ?)WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Notice> nList = null;
 		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage -1);

@@ -1,5 +1,11 @@
+<%@page import="notice.model.vo.Notice"%>
+<%@page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
+	String pageNavi = (String)request.getAttribute("pageNavi");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,41 +52,21 @@
 					<thead>
 						<tr>
 							<th scope="col">번호</th>
+							<th scope="col">작성자</th>
 							<th scope="col">제목</th>
 							<th scope="col">작성일</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail';">
-							<th scope="row">6</th>
-							<td class="td-title">한 번도 못했던 공지사항 울면서 할 줄은 나 몰랐던 공지사항</td>
-							<td>2021-04-16</td>
+						<% for(Notice notice : nList) { %>
+						<tr style="cursor: pointer;" onclick="window.location='/notice/detail';">
+							<th scope="row"></th>
+							<td class="td-title"><%= notice.getNoticeNo() %></td>
+							<td scope="row"><%= notice.getUserId() %></td>
+							<td scope="row"><a href="/notice/detail?noticeNum=<%= notice.getNoticeNo()%>"><%= notice.getSubject() %></a></td>
+							<td scope="row"><%= notice.getRegDate() %></td>
 						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail';">
-							<th scope="row">5</th>
-							<td class="td-title">오늘 했던 모든 말 저 하늘 위로</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail';">
-							<th scope="row">4</th>
-							<td class="td-title">무슨 말을 하는지 공지</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail';">
-							<th scope="row">3</th>
-							<td class="td-title">내게 왜 이러는지 공지사항</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail';">
-							<th scope="row">2</th>
-							<td class="td-title">흐르지 못하게 또 활짝 웃어 공지사항 리스트</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail';">
-							<th scope="row">1</th>
-							<td class="td-title">눈물이 차올라서 고갤들어 공지사항 리스트</td>
-							<td>2021-04-16</td>
-						</tr>
+						<% } %>
 					</tbody>
 				</table>
 				<div class="row">

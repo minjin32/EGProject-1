@@ -19,20 +19,26 @@ public class NoticeService {
 
 	// 셀렉트 올 (리스트 ) 전체 내역 가져오기 메소드
 	public NoticePageData printAllList(int currentPage) {
+		System.out.println("===============================printAllList");
 		Connection conn = null;
 		ArrayList<Notice> nList = null;
 		String pageNavi = null;
 		NoticePageData pd = new NoticePageData();
 		
 		try {
+			System.out.println("===============================printAllList2 starts");
 			conn = factory.createConnection();
 			pd.setNoticeList(new NoticeDAO().selectAllList(conn, currentPage));
 			pd.setPageNavi(new NoticeDAO().getPageNavi(conn, currentPage));
+			System.out.println("===============================printAllList2 end ");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("===============================e");
 		} finally {
+			System.out.println("===============================f");
 			JDBCTemplate.close(conn);
 		}
+		System.out.println("===============================printAllList4");
 		return pd;
 	}
 

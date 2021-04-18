@@ -86,7 +86,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Board> nList = null;
-		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY BO_NO DESC) AS BO_NO, MB_ID, BO_TITLE, BO_CONTENT, BO_DATETIME, FI_DIR FROM BOARD) WHERE BO_NO BETWEEN ? AND ?";
+		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY BO_NO DESC) AS NUM, BO_NO, MB_ID, BO_TITLE, BO_CONTENT, BO_DATETIME, FI_DIR FROM BOARD) WHERE NUM BETWEEN ? AND ?";
 		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
 		int end = currentPage * recordCountPerPage;
@@ -182,7 +182,7 @@ public class BoardDAO {
 	public ArrayList<Board> selectSearchList(Connection conn, String search, int currentPage){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY BO_NO DESC) AS BO_NO, MB_ID, BO_TITLE, BO_CONTENT, BO_DATETIME, FI_DIR FROM BOARD WHERE BO_TITLE LIKE ?)WHERE BO_NO BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY BO_NO DESC) AS NUM, BO_NO, MB_ID, BO_TITLE, BO_CONTENT, BO_DATETIME, FI_DIR FROM BOARD WHERE BO_TITLE LIKE ?)WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Board> nList = null;
 		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage -1);
