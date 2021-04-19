@@ -27,7 +27,7 @@ public class NoticeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 			HttpSession session = request.getSession();
-			if (session != null && (session.getAttribute("memberId")) != null) {
+			//if (session != null && (session.getAttribute("memberId")) != null) {
 				int currentPage = 0;
 				if (request.getParameter("currentPage") == null) {
 					currentPage = 1;
@@ -53,17 +53,17 @@ public class NoticeListServlet extends HttpServlet {
 					out.flush();
 					out.close();
 				}
-			} else {
-				response.setContentType("text/html; charset=utf-8");
-				PrintWriter out = response.getWriter();
-				String msg = "로그인을 해주세요."; // 오류 메세지
-				out.println("<script>");
-				out.println("alert('" + msg + "');");
-				out.println("history.back();");
-				out.println("</script>");
-				out.flush();
-				out.close();
-			}
+//			} else {
+//				response.setContentType("text/html; charset=utf-8");
+//				PrintWriter out = response.getWriter();
+//				String msg = "로그인을 해주세요."; // 오류 메세지
+//				out.println("<script>");
+//				out.println("alert('" + msg + "');");
+//				out.println("history.back();");
+//				out.println("</script>");
+//				out.flush();
+//				out.close();
+//			}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

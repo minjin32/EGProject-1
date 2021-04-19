@@ -1,6 +1,7 @@
 package eco.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,14 +22,24 @@ public class NoticeDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNum"));
+		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		Notice notice = new NoticeService().printOnebyNo(noticeNo);
+		System.out.println(noticeNo);
+		
 		if(notice != null) {
 			request.setAttribute("notice", notice);
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeDetail.jsp");
 			view.forward(request, response);
 		}else {
-			
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "표시할 내용이 없습니다."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
 		}
 	}
 	

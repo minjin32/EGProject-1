@@ -70,6 +70,7 @@ public class NoticeService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
+		System.out.println(notice+"난서비스얌");
 		return notice;
 	}
 	
@@ -95,14 +96,14 @@ public class NoticeService {
 	}
 	
 	// �̰� ���°� ���� �³�
-	public NoticePageData printSearchList(String search, int currentPage) {
+	public NoticePageData printSearchList(String searchKeword, String searchOption,int currentPage) {
 		Connection conn = null;
 		NoticePageData pd = new NoticePageData();
 		
 		try {
 			conn = factory.createConnection();
-			pd.setNoticeList(new NoticeDAO().selectSearchList(conn, search, currentPage));
-			pd.setPageNavi(new NoticeDAO().getsearchPageNavi(conn, search, currentPage));
+			pd.setNoticeList(new NoticeDAO().selectSearchList(conn, searchKeword, searchOption, currentPage));
+			pd.setPageNavi(new NoticeDAO().getsearchPageNavi(conn, searchKeword, searchOption, currentPage));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 

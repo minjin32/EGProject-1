@@ -1,5 +1,9 @@
+<%@ page import="notice.model.vo.Notice" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% 
+	Notice notice = (Notice)request.getAttribute("notice");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,27 +36,24 @@
 						<div class="mb-3">
 							<div class="row">
 								<div class="col">
-									<b>작성자 </b> <span>김길동</span>
+									<b>작성자 </b> <span><%= notice.getUserId() %></span>
 								</div>
 								<div class="col gap-2 d-md-flex justify-content-md-end">
-									<b>작성일시 </b> <span>2021-04-16</span>
+									<b>작성일시 </b> <span><%= notice.getRegDate() %></span>
 								</div>
 							</div>
 						</div>
 						<div class="mb-3">
-							<p class="form-control">떠나는 그대여 울지 말아요 슬퍼 말아요.</p>
+							<p class="form-control"><%= notice.getSubject() %></p>
 						</div>
 						<div class="mb-3">
 							<img class="img-fluid rounded mx-auto d-block"
-								src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg"
+								src="<%=request.getContextPath()%>/upload/<%= notice.getImage_name() %>";
 								style="max-width: 100%;" alt="첨부이미지">
 						</div>
 						<div class="mb-3">
 							<p class="form-control">
-								공지사항 세부내용 입니다.<br> 내 사랑 그대가 날 떠나 행복할 수 있다면<br>
-								내가 단념할게요. 마음 편히 가시도록<br> 내 사랑 그대가 날 떠나 행복할 수 있다면<br>
-								내가 단념할게요. 마음 편히 가시도록<br> 내 사랑 그대가 날 떠나 행복할 수 있다면<br>
-								내가 단념할게요. 마음 편히 가시도록<br> 내 사랑 그대가 날 떠나 행복할 수 있다면<br>
+								<%= notice.getContents() %>
 							</p>
 						</div>
 						<div class="gap-2 d-md-flex justify-content-md-end">
