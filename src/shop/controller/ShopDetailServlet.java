@@ -53,12 +53,12 @@ public class ShopDetailServlet extends HttpServlet {
             out.println("</script>");
             out.flush();
             out.close();
+		} else {
+			request.setAttribute("shop", shop);
+			request.setAttribute("menuList", menuList);
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/shop/shopDetail.jsp");
+			view.forward(request, response);
 		}
-		
-		request.setAttribute("shop", shop);
-		request.setAttribute("menuList", menuList);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/shop/shopDetail.jsp");
-		view.forward(request, response);
 	}
 
 	/**

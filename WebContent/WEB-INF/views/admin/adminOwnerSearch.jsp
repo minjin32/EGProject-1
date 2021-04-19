@@ -56,7 +56,7 @@
 					</thead>
 					<tbody>
 						<%
-							for (Member member : mList) {
+							for (Member m : mList) {
 						%>
 						<tr style="cursor: pointer;">
 							<th scope="row"><%=member.getMbNo()%></th>

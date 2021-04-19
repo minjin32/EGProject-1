@@ -18,23 +18,39 @@ public class MemberService {
       factory = JDBCTemplate.getConnection();
    }
 
-	// JoinViewServlet.java
-	// 아이디,패스워드에 맞는 정보 취득
-	// Servlet → Member member = new MemberService().selectOneMember(userId,
-	// userPwd);
-	public Member selectOneMember(String userId, String userPwd) {
-		Member member = null;
-		Connection conn = null;
-		try {
-			conn = factory.createConnection();
-			member = new MemberDAO().selectOneMember(conn, userId, userPwd);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return member;
-	}
+   // JoinViewServlet.java
+   // 아이디,패스워드에 맞는 정보 취득
+   // Servlet → Member member = new MemberService().selectOneMember(userId,
+   // userPwd);
+   // 로그인
+   public Member selectOneMember(String userId, String userPwd) {
+      Member member = null;
+      Connection conn = null;
+      try {
+         conn = factory.createConnection();
+         member = new MemberDAO().selectOneMember(conn, userId, userPwd);
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         JDBCTemplate.close(conn);
+      }
+      return member;
+   }
+   
+   // 회원정보
+   public Member selectOneById(String userId) {
+      Member member = null;
+      Connection conn = null;
+      try {
+         conn = factory.createConnection();
+         member = new MemberDAO().selectOneById(conn, userId);
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         JDBCTemplate.close(conn);
+      }
+      return member;
+   }
 
 	// JoinViewServlet.java
 	// 유저 등록

@@ -124,6 +124,44 @@ public class MemberDAO {
 		return member;
 	}
 
+	public Member selectOneById(Connection conn, String userId) {
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String query = "SELECT * FROM MEMBER WHERE MB_ID = ?";
+	      Member member = null;
+
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setString(1, userId);
+	         rset = pstmt.executeQuery();
+	         if (rset.next()) {
+	            member = new Member();
+	            member.setMbId(rset.getString("MB_ID"));
+	            member.setMbNo(rset.getInt("MB_NO"));
+	            member.setMbPassword(rset.getString("MB_PASSWORD"));
+	            member.setMbName(rset.getString("MB_NAME"));
+	            member.setMbNickname(rset.getString("MB_NICKNAME"));
+	            member.setMbEmail(rset.getString("MB_EMAIL"));
+	            member.setMbPhone(rset.getString("MB_PHONE"));
+	            member.setMbAddress1(rset.getString("MB_ADDRESS1"));
+	            member.setMbAddress2(rset.getString("MB_ADDRESS2"));
+	            member.setMbAddress3(rset.getString("MB_ADDRESS3"));
+	            member.setMbType(rset.getString("MB_TYPE").charAt(0));
+	            member.setShOwner(rset.getString("SH_OWNER"));
+	            member.setShBusinessno(rset.getString("SH_BUSINESS_NO"));
+	            member.setShEcopoint(rset.getInt("SH_ECOPOINT"));
+	            member.setMbJoindate(rset.getDate("MB_JOINDATE"));
+	            member.setGender(rset.getString("MB_GENDER"));
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(rset);
+	         JDBCTemplate.close(pstmt);
+	      }
+	      return member;
+	   }
+	
 	public int insertMember(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
 		int result = 0;

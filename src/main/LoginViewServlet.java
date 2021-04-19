@@ -40,7 +40,6 @@ public class LoginViewServlet extends HttpServlet {
 		if(member != null) {
 			// session은 request와는 다르게 유저가 접속할 때 생성되어 유지되는 객체
 			HttpSession session = request.getSession();
-			session.setAttribute("member", member);
 			session.setAttribute("memberId", member.getMbId());
 			response.sendRedirect("/index.jsp");
 		} else {
