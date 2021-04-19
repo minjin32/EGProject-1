@@ -92,21 +92,21 @@ public class MypageQaService {
 		return result;
 
 	}
-//
-//	public PageData printSearchList(String search, int currentPage) {
-//		Connection conn = null;
-//		PageData pd = new PageData();
-//		try {
-//			conn = factory.createConnection();
-//			pd.setMypageQaList(new MypageQaDAO().selectSearchList(conn, search, currentPage));
-//			pd.setPageNavi(new MypageQaDAO().getSearchPageNavi(conn, search, currentPage));
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(conn);
-//		}
-//		return pd;
-//	}
-//
+
+	public PageData printSearchList(String search, int currentPage) {
+		Connection conn = null;
+		PageData pd = new PageData();
+		try {
+			conn = factory.createConnection();
+			pd.setMypageQaList(new MypageQaDAO().selectSearchList(conn, search, currentPage));
+			pd.setPageNavi(new MypageQaDAO().getSearchPageNavi(conn, search, currentPage));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return pd;
+	}
+
 }
