@@ -64,6 +64,9 @@ public class MypageQaDAO {
 				mypageQaData.setQaTitle(rset.getString("QA_TITLE"));
 				mypageQaData.setQaContent(rset.getString("QA_CONTENT"));
 				mypageQaData.setQaDateTime(rset.getDate("QA_DATETIME"));
+				mypageQaData.setImage_name(rset.getString("IMAGE_NAME"));
+				mypageQaData.setImage_path(rset.getString("IMAGE_PATH"));
+				mypageQaData.setImage_size(rset.getLong("IMAGE_SIZE"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -75,16 +78,48 @@ public class MypageQaDAO {
 		return mypageQaData;
 	}
 
+//	관리자 코멘트
+//	public MypageQaData selectOneByco(Connection conn, int qaNo) {
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		MypageQaData mypageQaData = null;
+//		String query = "SELECT * FROM QNACO WHERE QA_NO = ?";
+//
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setInt(1, qaNo);
+//			rset = pstmt.executeQuery();
+//			if (rset.next()) {
+//				mypageQaData = new MypageQaData();
+//				mypageQaData.setQaNo(rset.getInt("QA_NO"));
+//				mypageQaData.setMbId(rset.getString("MB_ID"));
+//				mypageQaData.setQaTitle(rset.getString("QA_TITLE"));
+//				mypageQaData.setQaContent(rset.getString("QA_CONTENT"));
+//				mypageQaData.setQaDateTime(rset.getDate("QA_DATETIME"));
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(pstmt);
+//			JDBCTemplate.close(rset);
+//		}
+//		return mypageQaData;
+//	}
+	
 	public int insertMypageQaData(Connection conn, MypageQaData mypageQaData) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO QNA VALUES(MYPAGEQADATA_SEQ.NEXTVAL,?,?,?,SYSDATE)";
+		String query = "INSERT INTO QNA VALUES(MYPAGEQADATA_SEQ.NEXTVAL,?,?,?,SYSDATE,?,?,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, mypageQaData.getMbId());
 			pstmt.setString(2, mypageQaData.getQaTitle());
 			pstmt.setString(3, mypageQaData.getQaContent());
+			pstmt.setString(4, mypageQaData.getImage_name());
+			pstmt.setString(5, mypageQaData.getImage_path());
+			pstmt.setLong(6, mypageQaData.getImage_size());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -92,7 +127,7 @@ public class MypageQaDAO {
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
-
+		System.out.println("난 다오야" + result);
 		return result;
 	}
 
@@ -146,14 +181,15 @@ public class MypageQaDAO {
 			needNext = false;
 		}
 		StringBuilder sb = new StringBuilder();
+		sb.append("<ul class='pagination'><li class='page-item'>");
 		if (needPrev) {
-			sb.append("<a href='/mypage/qna/list?currentPage=" + (startNavi - 1) + "'> < </a>");
+			sb.append("<a class='page-link' href='/mypage/qna/list?currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span></a></li>");
 		}
 		for (int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='/mypage/qna/list?currentPage=" + i + "'>" + i + " </a>");
+			sb.append("<li class='page-item'><a class='page-link' href='/mypage/qna/list?currentPage=" + i + "'>" + i + " </a></li>");
 		}
 		if (needNext) {
-			sb.append("<a href='/mypage/qna/list?currentPage=" + (endNavi + 1) + "'> > </a>");
+			sb.append("<li class='page-item'><a class='page-link' href='/mypage/qna/list?currentPage=" + (endNavi + 1) + "' aria-label='Next'> <span aria-hidden='true'>&raquo;</span></a></li>");
 		}
 		return sb.toString();
 	}
@@ -185,10 +221,10 @@ public class MypageQaDAO {
 		ResultSet rset = null;
 		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QA_NO DESC) AS NUM, QA_NO, MB_ID, QA_TITLE, QA_CONTENT, QA_DATETIME FROM QNA WHERE QA_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<MypageQaData> mqList = null;
-		int recordCountPerPage = 5;
+		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
 		int end = currentPage * recordCountPerPage;
-
+		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%" + search + "%");
@@ -199,9 +235,9 @@ public class MypageQaDAO {
 			while (rset.next()) {
 				MypageQaData mypageQaData = new MypageQaData();
 				mypageQaData.setQaNo(rset.getInt("QA_NO"));
+				mypageQaData.setMbId(rset.getString("MB_ID"));
 				mypageQaData.setQaTitle(rset.getString("QA_TITLE"));
 				mypageQaData.setQaContent(rset.getString("QA_CONTENT"));
-				mypageQaData.setMbId(rset.getString("MB_ID"));
 				mypageQaData.setQaDateTime(rset.getDate("QA_DATETIME"));
 				mqList.add(mypageQaData);
 			}
@@ -212,12 +248,13 @@ public class MypageQaDAO {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
+		System.out.println(mqList);
 		return mqList;
 	}
 
 	public String getSearchPageNavi(Connection conn, String search, int currentPage) {
-		int recordCountPerPage = 5;
-		int naviCountPerPage = 5;
+		int recordCountPerPage = 10;
+		int naviCountPerPage = 10;
 		int recordTotalCount = searchTotalCount(conn, search);
 		int pageTotalCount = 0;
 		if (recordTotalCount % recordCountPerPage > 0) {
@@ -243,6 +280,20 @@ public class MypageQaDAO {
 		if (endNavi == pageTotalCount) {
 			needNext = false;
 		}
+		
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("<ul class='pagination'><li class='page-item'>");
+//		if (needPrev) {
+//			sb.append("<a class='page-link' href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + (startNavi - 1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span></a></li>");
+//		}
+//		for (int i = startNavi; i <= endNavi; i++) {
+//			sb.append("<li class='page-item'><a class='page-link' href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + i + "'>" + i + "</a></li>");
+//		}
+//		if (needNext) {
+//			sb.append("<li class='page-item'><a class='page-link' href='/mypage/qna/listsearchKeyword=" + search + "&currentPage=" + (endNavi + 1) + "' aria-label='Next'> <span aria-hidden='true'>&raquo;</span></a></li>");
+//		}
+//		return sb.toString();
+
 		StringBuilder sb = new StringBuilder();
 		if (needPrev) {
 			sb.append("<a href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + (startNavi - 1)
@@ -257,6 +308,8 @@ public class MypageQaDAO {
 		}
 		return sb.toString();
 	}
+	
+	
 
 	private int searchTotalCount(Connection conn, String search) {
 		PreparedStatement pstmt = null;

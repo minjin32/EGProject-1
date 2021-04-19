@@ -22,7 +22,7 @@ public class QnaListServlet extends HttpServlet {
 	public QnaListServlet() {
 		super();
 	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -34,15 +34,15 @@ public class QnaListServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		PageData pageData =  new MypageQaService().printAllList(currentPage);
+		PageData pageData = new MypageQaService().printAllList(currentPage);
 		ArrayList<MypageQaData> mqList = pageData.getQaList();
 		String PageNavi = pageData.getPageNavi();
-		if(!mqList.isEmpty()) {
+		if (!mqList.isEmpty()) {
 			request.setAttribute("mqList", mqList);
 			request.setAttribute("pageNavi", PageNavi);
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/qnaList.jsp");
 			view.forward(request, response);
-		}else {
+		} else {
 			RequestDispatcher view = request.getRequestDispatcher("#");
 			view.forward(request, response);
 		}

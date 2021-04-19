@@ -38,10 +38,11 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 					<h1>QnA</h1>
 				</div>
 				<form action="/mypage/qna/search" method="get">
-					<button type="submit" class="btn btn-primary mx-1" style="float: right;">검색</button> </a> 
+					<button type="submit" class="btn btn-primary mx-1"
+						style="float: right;">검색</button>
 					<input type="text" name="searchKeyword" class="form-control mx-1"
-								style="float: right; width: 200px;" placeholder="검색어"> 
-					<select  class="form-select mx-1" style="float: right; max-width: 100px;"
+						style="float: right; width: 200px;" placeholder="검색어"> <select
+						class="form-select mx-1" style="float: right; max-width: 100px;"
 						aria-label="Default select example">
 						<option selected>--</option>
 						<option value="1">제목</option>
@@ -59,7 +60,7 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 						</tr>
 					</thead>
 					<tbody>
-						<%	if(mqList != null){
+						<% if(mqList != null){
 							for (MypageQaData mypageQaData : mqList) {
 						%>
 						<tr style="cursor: pointer;"
@@ -78,15 +79,6 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 				<div class="row">
 					<div class="mx-auto" style="width: 300px;">
 						<%= pageNavi %>
-						<!-- <ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
-						</ul> -->
 					</div>
 				</div>
 				<div>
