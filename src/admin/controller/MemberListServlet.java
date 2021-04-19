@@ -33,47 +33,56 @@ public class MemberListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// HttpSession session = request.getSession(); // 로그인한 사용자니까 세션에서 정보 가져오기
-		// if(session != null && (session.getAttribute("userId")) != null) {
-		// 유저 타입
+//		
+//		  RequestDispatcher view =
+//		  request.getRequestDispatcher("/WEB-INF/views/admin/adminMemberList.jsp");
+//		  view.forward(request, response);
+		 
+		
+		 HttpSession session = request.getSession(); // 로그인한 사용자니까 세션에서 정보 가져오기
+		 if(session != null && (session.getAttribute("userId")) != null) {
+			 
+		 }
 		int currentPage = 0;
 		if (request.getParameter("currentPage") == null) {
 			currentPage = 1;
 		} else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		String usertype = request.getParameter("usertype");
-		String search = request.getParameter("searchKeyword");
 		
-		if(search == null) {
+//		String usertype = request.getParameter("usertype");
+		// 회원
+		String usertype = "0";
+//		String search = request.getParameter("searchKeyword");
+		
+//		if(search == null) {
 			MemberPageData pageData = new MemberService().selectMemberList(usertype, currentPage);
-			ArrayList<Member> nList = pageData.getMemberList();
+			ArrayList<Member> mList = pageData.getMemberList();
 			String pageNavi = pageData.getPageNavi();
-			if (!nList.isEmpty()) {
-				request.setAttribute("nList", nList);
+			if (!mList.isEmpty()) {
+				request.setAttribute("mList", mList);
 				request.setAttribute("pageNavi", pageNavi);
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/memberList.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/adminMemberList.jsp");
 				view.forward(request, response);
-			} else {
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/memberList.jsp");
-				view.forward(request, response);
-			}
-		} else {
-			MemberPageData pageData = new MemberService().selectByIdList(usertype, search, currentPage);
-			ArrayList<Member> nList = pageData.getMemberList();
-			String pageNavi = pageData.getPageNavi();
-			if (!nList.isEmpty()) {
-				request.setAttribute("nList", nList);
-				request.setAttribute("pageNavi", pageNavi);
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/memberList.jsp");
-				view.forward(request, response);
-			} else {
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/memberList.jsp");
-				view.forward(request, response);
-			}
-		}
-		
-
+			} 
+//			else {
+//				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/adminMemberList.jsp");
+//				view.forward(request, response);
+//			}
+//		} else {
+//			MemberPageData pageData = new MemberService().selectByIdList(usertype, search, currentPage);
+//			ArrayList<Member> nList = pageData.getMemberList();
+//			String pageNavi = pageData.getPageNavi();
+//			if (!nList.isEmpty()) {
+//				request.setAttribute("nList", nList);
+//				request.setAttribute("pageNavi", pageNavi);
+//				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/adminMemberList.jsp");
+//				view.forward(request, response);
+//			} else {
+//				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/adminMemberList.jsp");
+//				view.forward(request, response);
+//			}
+//		}
 	}
 
 	/**

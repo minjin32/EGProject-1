@@ -1,7 +1,6 @@
 package admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,22 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.model.service.MemberService;
-import member.model.vo.Member;
-import mypageqa.model.vo.PageData;
-import notice.model.service.NoticeService;
-
 /**
- * Servlet implementation class AdminServlet
+ * Servlet implementation class QnAListServlet
  */
-@WebServlet("/admin")
-public class AdminServlet extends HttpServlet {
+@WebServlet("/admin/qna")
+public class QnAListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminServlet() {
+    public QnAListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +28,9 @@ public class AdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp");
-		view.forward(request, response);
+		  RequestDispatcher view =
+		  request.getRequestDispatcher("/WEB-INF/views/admin/adminQnAList.jsp");
+		  view.forward(request, response);
 	}
 
 	/**

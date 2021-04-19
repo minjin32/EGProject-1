@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
-import mypageqa.model.vo.PageData;
-import notice.model.service.NoticeService;
+import member.model.vo.MemberPageData;
+import notice.model.vo.Notice;
 
 /**
- * Servlet implementation class AdminServlet
+ * Servlet implementation class AdminMemberSearchServlet
  */
-@WebServlet("/admin")
-public class AdminServlet extends HttpServlet {
+@WebServlet("/admin/owner/search")
+public class OwnerSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminServlet() {
+    public OwnerSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +34,25 @@ public class AdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp");
+		request.setCharacterEncoding("UTF-8");
+		
+		String usertype = "1";
+		int currentPage = 0;
+		if(request.getParameter("currentPage") == null) {
+			currentPage = 1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		// 검색어가 keyword에 담김
+		String keyword = request.getParameter("searchKeyword");
+		MemberPageData pd = new MemberService().selectSearchList(usertype, keyword, currentPage);
+		
+		//MemberPageData pd = new MemberService().selectMemberList(usertype, currentPage); // 이름은 대충 적은것. id로 찾기.
+		
+		System.out.println(pd);
+		// jsp에 출력할 회원리스트를 저장
+		request.setAttribute("pd", pd);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/adminOwnerSearch.jsp");
 		view.forward(request, response);
 	}
 

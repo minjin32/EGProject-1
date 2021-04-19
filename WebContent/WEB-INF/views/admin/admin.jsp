@@ -1,3 +1,6 @@
+<%@page import="admin.model.service.AdminService"%>
+<%@page import="member.model.service.MemberService"%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,27 +22,54 @@
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 
 	<!-- 메뉴 바 -->
-	<div class="container" style="margin-top: 40px">
-		<div class="row g-4">
-			<div class="col-md-3">
-				<ul class="me-2"
-					style="border-right: 1px solid #D1E9CA; list-style: none">
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link active" href="/admin">관리자 홈</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">회원 관리</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">사업자 관리</a></li>
-					<li class="nav-item"
-						style="height: 50px; width: 80%; background-color: #D1E9CA; text-align: center; vertical-align: middle; margin-bottom: 10px"><a
-						class="nav-link" href="#">Q&A 문의</a></li>
-					<div style="width: 30%; height: 500px"></div>
-				</ul>
+	<div class="container-lg">
+		<div class="row">
+			<div class="col-lg-3 p-3" align="center">
+				<%@ include file="/WEB-INF/views/admin/subnav.jsp"%>
 			</div>
 
+			<div class="col-lg-9 p-4">
+				<div class="row">
+					<div class="list-group list-group-horizontal">
+						<img src="/files/images/user.png" class="img-thumbnail" style="border-color: white; height: 50px; width: 50px; margin-bottom: 10px; margin-right: 10px" alt="사용자 아이콘" />
+						<h3 class="pt-2">관리자님 안녕하세요!</h3>
+					</div>
+				</div>
+				<div class="row p-4" style="border: 4px solid #0e2c01; border-radius: 24px;">
+					<div class="row">
+						<div class="col-3" align="center">
+							<h3>사업자 등록 인증 요청</h3>
+						</div>
+						<div class="col-3" align="center">
+							<h3>Q&A문의</h3>
+						</div>
+						<div class="col-3" align="center">
+							<h3>누적 방문자 수</h3>
+						</div>
+						<div class="col-3" align="center">
+							<h3>신규 가입</h3>
+						</div>
+					</div>
+					<div class="row pt-4">
+						<div class="col-3" align="center">
+							<h2>8</h2>
+						</div>
+						<div class="col-3" align="center">
+							<h2><% AdminService admin = new AdminService();
+									int qCount = admin.selectQnACount();%>
+									<%= qCount %></h2>
+						</div>
+						<div class="col-3" align="center">
+							<h2>254,571</h2>
+						</div>
+						<div class="col-3" align="center">
+							<h2><% MemberService service = new MemberService(); 
+								int count= service.selectMemberList();%>
+								<%= count %></h2>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- 			<div class="col-md-9"> -->
 			<!-- 				<div class="row"> -->
 			<!-- 					<div class="card border-success mb-3" -->
@@ -74,58 +104,6 @@
 			<!-- 					</div> -->
 			<!-- 				</div> -->
 			<!-- 			</div> -->
-
-
-			<div class="col-md-9">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card mb-3 p-4"
-							style="border: 3px solid #D1E9CA; height: 200px; width: 100%; border-radius: 30px; vertical-align: center">
-							<div class="list-group-item"
-								style="width: 100%; height: 100px; margin-top: 40px; text-align: center; border-color: white">
-								사업자 등록 인증 요청
-								<h1 class="display-6" style="margin-top: 15px">8</h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="card mb-3 p-4"
-							style="border: 3px solid #D1E9CA; height: 200px; width: 100%; border-radius: 30px; vertical-align: center">
-							<div class="list-group-item"
-								style="width: 100%; height: 100px; margin-top: 40px; text-align: center; border-color: white">
-								1:1 문의
-								<h1 class="display-6" style="margin-top: 15px">16</h1>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-9">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card mb-3 p-4"
-							style="border: 3px solid #D1E9CA; height: 200px; width: 100%; border-radius: 30px; vertical-align: center">
-							<div class="list-group-item"
-								style="width: 100%; height: 100px; margin-top: 40px; text-align: center; border-color: white">
-								누적 방문자 수
-								<h1 class="display-6" style="margin-top: 15px">12K</h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="card mb-3 p-4"
-							style="border: 3px solid #D1E9CA; height: 200px; width: 100%; border-radius: 30px; vertical-align: center">
-							<div class="list-group-item"
-								style="width: 100%; height: 100px; margin-top: 40px; text-align: center; border-color: white">
-								신규 가입
-								<h1 class="display-6" style="margin-top: 15px">250</h1>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
 
 		</div>
 	</div>
