@@ -117,7 +117,6 @@ public class ShopService {
 			conn = factory.createConnection();
 			list = new ShopDAO().selectProductList(conn);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(conn);
@@ -126,17 +125,14 @@ public class ShopService {
 	}
 	
 	
-	public ShopPageData selectListByAddress(String add1, String add2, String add3, int targetPage) {
+	public ShopPageData selectListByAddress(String add1, String add2, String add3, int page) {
 		Connection conn = null;
-		ShopPageData pd = null;
+		ShopPageData pd = new ShopPageData();
 		
 		try {
 			conn = factory.createConnection();
-			ArrayList<Shop> sList = new ShopDAO().selectListByAddress(conn, add1, add2, add3, targetPage);
-			if (sList != null) {
-				pd = new ShopPageData();
-				pd.setShopList(sList);
-			}
+			pd.setShopList(new ShopDAO().selectListByAddress(conn, add1, add2, add3, page));
+			pd.setPageNavi(new ShopDAO().getPageNavi(conn, add1, add2, add3, page));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

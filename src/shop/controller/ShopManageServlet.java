@@ -1,6 +1,7 @@
 package shop.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import orderlist.model.service.OrderListService;
+import orderlist.model.vo.OrderList;
 
 @WebServlet("/shop/manage")
 public class ShopManageServlet extends HttpServlet {
@@ -18,6 +22,8 @@ public class ShopManageServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		ArrayList<OrderList> orderList = new OrderListService().
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/shop/shopManage.jsp");
 		view.forward(request, response);
 	}

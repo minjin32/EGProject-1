@@ -1,5 +1,12 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="orderlist.model.vo.OrderList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+	ArrayList<OrderList> orderList = (ArrayList<OrderList>) request.getAttribute("orderList");
+	SimpleDateFormat dateFormat = new SimpleDateFormat("MM-DD hh:mm");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,21 +62,6 @@
 				}
 			}
 		};
-		
-		// 메뉴 탭 토글 (추천메뉴 <-> 전체메뉴)
-		var menuTabs = document.getElementsByClassName("toggle-menu-tab");
-		var menuViews = document.getElementsByClassName("toggle-menu-view");
-		for (var i = 0; i < menuTabs.length; i ++) {
-			menuTabs[i].addEventListener("click", toggleMenuTabs);
-		}
-		function toggleMenuTabs() {
-			for (var i = 0; i < menuViews.length; i ++) {
-				menuViews[i].style.display = "none";
-				if (menuTabs[i] == this) {
-					menuViews[i].style.display = "";
-				}
-			}
-		} 
 	});
 </script>
 </head>
@@ -243,68 +235,10 @@
 			
 			<!-- 메뉴 탭 start -->
 			<div class="d-flex ">
-				<div class="px-4 d-flex justify-content-start toggle-menu-tab"><a href="#">추천메뉴</a></div>
 				<div class="px-4 d-flex justify-content-start toggle-menu-tab"><a href="#">전체메뉴</a></div>
 			</div>
 			<hr>
 			<!-- 메뉴 탭 end -->
-			
-			
-			<div class="toggle-menu-view"><!-- 추천메뉴 영역 start -->
-				<div class="row">
-					<div class="col-lg">
-						<div class="card m-4">
-							<div class="row p-4">
-								<div class="col-9">
-									<h5>추천메뉴세트</h5>
-									<p>30,000원</p>
-									<a href="#">장바구니 담기</a>
-								</div>
-								<div class="col-3">
-									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg">
-						<div class="card m-4">
-							<div class="row p-4">
-								<div class="col-9">
-									<h5>추천메뉴세트</h5>
-									<p>30,000원</p>
-									<a href="#">장바구니 담기</a>
-								</div>
-								<div class="col-3">
-									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg">
-						<div class="card m-4 box-menu">
-							<div class="row p-4">
-								<div class="col-9">
-									<h5>추천메뉴세트</h5>
-									<p>30,000원</p>
-									<a href="#">장바구니 담기</a>
-								</div>
-								<div class="col-3">
-									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg">
-						<div class="card m-4 box-menu">
-							<div class="row p-4">
-								<img class="rounded mx-auto d-block" style="width: 25%;" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴추가">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><!-- 추천메뉴 영역 end -->
 			<div class="toggle-menu-view" style="display: none;"><!-- 전체메뉴 영역 start -->
 				<div class="row">
 					<div class="col-lg">
@@ -422,6 +356,25 @@
 			<div class="col-lg-9 pt-4">
 				<div class="tab-content" id="nav-tabContent">
 			    	<div class="tab-pane fade show active" id="list-order-waiting" role="tabpanel" aria-labelledby="list-order-home-list">
+			    		<% /*for (OrderList order : orderList) { %>
+						<div class="row"><!-- 주문내역 시작 -->
+							<div class="col-3 d-flex justify-content-center align-items-center">
+								<h1><%= dateFormat.format(order.getOrderDateTime()) %></h1>
+							</div>
+							<div class="col-6">
+								<h5><%= order.getMemberId() %></h5>
+								<p><%= order.getOrderMenu() %></p>
+								<h5>[요청사항]</h5>
+								<p><%= order.getOrderMessage() %></p>
+								<h5>[연락처]</h5>
+								<p><%= order.getPhone() %></p>
+							</div>
+							<div class="col-3">
+								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
+							</div>
+						</div><!-- 주문내역 끝 -->
+						<hr>
+						<% } */%>
 						<div class="row"><!-- 주문내역 시작 -->
 							<div class="col-3 d-flex justify-content-center align-items-center">
 								<h1>00 : 00</h1>

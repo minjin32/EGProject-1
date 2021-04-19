@@ -29,7 +29,7 @@ public class OrderListDAO {
 				oList.setOrderPrice(rset.getInt("OR_PRICE"));
 				oList.setOrderStatus(rset.getInt("OR_STATUS"));
 				oList.setShopName(rset.getString("SH_NAME"));
-				oList.setShopDateTime(rset.getDate("SH_DATETIME"));
+				oList.setOrderDateTime(rset.getDate("SH_DATETIME"));
 				oList.setOrderReject(rset.getString("OR_REJECT"));
 				oList.setShopRuntime(rset.getString("SH_RUNTIME"));
 				
@@ -64,7 +64,7 @@ public class OrderListDAO {
 				oList.setOrderPrice(rset.getInt("OR_PRICE"));
 				oList.setOrderStatus(rset.getInt("OR_STATUS"));
 				oList.setShopName(rset.getString("SH_NAME"));
-				oList.setShopDateTime(rset.getDate("SH_DATETIME"));
+				oList.setOrderDateTime(rset.getDate("SH_DATETIME"));
 				oList.setOrderReject(rset.getString("OR_REJECT"));
 				oList.setShopRuntime(rset.getString("SH_RUNTIME"));
 			}

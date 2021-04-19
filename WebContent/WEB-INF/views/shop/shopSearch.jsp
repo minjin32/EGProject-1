@@ -3,6 +3,10 @@
 <%@page import="shop.model.vo.ShopPageData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Shop> shopList = (ArrayList<Shop>) request.getAttribute("shopList");
+	String pageNav = (String) request.getAttribute("pageNav");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +91,41 @@
 				<input type="submit" id="searchButton" class="btn btn-primary col ms-2" value="검색">
 			</form>
 		</div>
+		
+		<br><br>
+		
+		<div class="shop-search-result">
+			<div class="row">
+				<% for (Shop shop : shopList) { %>
+				<div class="col-lg-6">
+					<div class="card mb-3 p-4" style="background-color: #e4e0d7">
+					<a href="/shop/detail?shopNumber=<%= shop.getShopNumber() %>" style="text-decoration: none;">
+						<div class="row g-4" >
+							<div class="col-md-3">
+								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
+							</div>
+							<div class="col-md-9" >
+								<h5 class="card-title" style="color: #af8d2f"><%= shop.getShopName() %></h5>
+						        <p class="card-text"><%= shop.getShopIntroduce() %></p>
+						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
+							</div>
+						</div>
+						</a>
+					</div>
+				</div>
+				<% } %>
+			</div>
+		</div>
+		
 		<br>
+		<div class="row">
+			<div class="mx-auto" style="width: 300px;">
+				<ul class="pagination">
+					<%= pageNav %>
+				</ul>
+			</div>
+		</div>
+		
 	</div>
 	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>

@@ -10,9 +10,12 @@ public class OrderList {
 	private int orderPrice;
 	private int orderStatus;
 	private String shopName;
-	private Date shopDateTime;
+	private Date orderDateTime;
 	private String orderReject;
 	private String shopRuntime;
+	private String orderMenu;
+	private String orderMessage;
+	private String phone;
 	
 	private void orderList() {
 		
@@ -66,12 +69,12 @@ public class OrderList {
 		this.shopName = shopName;
 	}
 
-	public Date getShopDateTime() {
-		return shopDateTime;
+	public Date getOrderDateTime() {
+		return orderDateTime;
 	}
 
-	public void setShopDateTime(Date shopDateTime) {
-		this.shopDateTime = shopDateTime;
+	public void setOrderDateTime(Date shopDateTime) {
+		this.orderDateTime = shopDateTime;
 	}
 
 	public String getOrderReject() {
@@ -90,13 +93,35 @@ public class OrderList {
 		this.shopRuntime = shopRuntime;
 	}
 
+	public String getOrderMenu() {
+		return orderMenu;
+	}
+
+	public void setOrderMenu(String orderMenu) {
+		this.orderMenu = orderMenu;
+	}
+
+	public String getOrderMessage() {
+		return orderMessage;
+	}
+
+	public void setOrderMessage(String orderMessage) {
+		this.orderMessage = orderMessage;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderList [orderNo=" + orderNo + ", shopNo=" + shopNo + ", memberId=" + memberId + ", orderPrice="
-				+ orderPrice + ", orderStatus=" + orderStatus + ", shopName=" + shopName + ", shopDateTime="
-				+ shopDateTime + ", orderReject=" + orderReject + ", shopRuntime=" + shopRuntime + "]";
+				+ orderPrice + ", orderStatus=" + orderStatus + ", shopName=" + shopName + ", orderDateTime="
+				+ orderDateTime + ", orderReject=" + orderReject + ", shopRuntime=" + shopRuntime + ", orderMenu="
+				+ orderMenu + ", orderMessage=" + orderMessage + ", phone=" + phone + "]";
 	}
-
-	
-	
 }

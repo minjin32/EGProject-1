@@ -1,4 +1,11 @@
+<%@page import="menu.model.vo.MenuVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="shop.model.vo.Shop"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	Shop shop = (Shop) request.getAttribute("shop");
+	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>) request.getAttribute("menuList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,20 +121,19 @@
 	bottom: 10px;
 }
 	</style>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#cart').click(function() {
-				$('#popup').hide();
-			});
-		});
-	</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	
+});
+</script>
 </head>
 <body style="background-color: #f7f5ed">
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 	<div class="container" style="margin-top: 40px">
 		<div class="col-lg-6 ps-5">
 			<div class="row">
-				<h1>매장명</h1>
+				<h1><%= shop.getShopName() %></h1>
 			</div>
 		</div>
 		<br>
@@ -153,16 +159,16 @@
 			<div class="col-lg-6 ps-5">
 				<div class="row">
 					<h5>매장정보</h5>
-					<p class="ps-5 lh-1">전화번호 : 000-0000-0000</p>
-					<p class="ps-5 lh-1">주소 : 서울특별시 종로구</p>
-					<p class="ps-5 lh-1">대표자명 : 김길동</p>
-					<p class="ps-5 lh-1">사업자등록번호 : 000-00-00000</p>
+					<p class="ps-5 lh-1">전화번호 : <%= shop.getShopPhone() %></p>
+					<p class="ps-5 lh-1">주소 : <%= shop.getShopAddress1() + " " + shop.getShopAddress2() + " " + shop.getShopAddress3() %></p>
+					<p class="ps-5 lh-1">대표자명 : <%= shop.getShopOwner() %></p>
+					<p class="ps-5 lh-1">사업자등록번호 : <%= shop.getShopBusinessNumber() %></p>
 				</div>
 			</div>
 			<div class="col-lg-6 ps-5">
 				<div class="row">
 					<h5>매장소개</h5>
-					<p class="ps-5 lh-1">안녕하세요. 맛집입니다.</p>
+					<p class="ps-5 lh-1"><%= shop.getShopIntroduce() %></p>
 				</div>
 			</div>
 			<div class="col-lg-6 ps-5">
@@ -174,7 +180,7 @@
 			<div class="col-lg-6 ps-5">
 				<div class="row">
 					<h5>원산지 정보</h5>
-					<p class="ps-5 lh-1">사장님: 국내산, 쌀: 국내산, 돼지고기: 스페인산</p>
+					<p class="ps-5 lh-1"><%= shop.getShopOrigin() %></p>
 				</div>
 			</div>
 		</div>
@@ -185,19 +191,20 @@
 		<div class="row">
 			<div class="col">
 				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link active"	data-toggle="tab" href="#recMenu">추천메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menuAll">전체메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#review-area">리뷰</a></li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane fade show active" id="recMenu">
+					<div class="tab-pane fade show active" id="menuAll">
 						<div class="row">
-							<div class="col-lg">
+							<% for (MenuVO menu : menuList) { %>
+							<div class="col-lg-6">
 								<div class="card m-4">
 									<div class="row p-4">
 										<div class="col-9">
-											<h5>싱글세트</h5>
-											<p>14,000원</p>
+											<h5><%= menu.getName() %></h5>
+											<p><%= menu.getPrice() %>원</p>
+											<p><%= menu.getBowlSize() %>cm</p>
 											<a href="#">장바구니 담기</a>
 										</div>
 										<div class="col-3">
@@ -208,58 +215,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg">
-								<div class="card m-4">
-									<div class="row p-4">
-										<div class="col-9">
-											<h5>싱글세트</h5>
-											<p>14,000원</p>
-											<a href="#">장바구니 담기</a>
-										</div>
-										<div class="col-3">
-											<img class="w-100"
-												src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
-												alt="메뉴 이미지">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="menuAll">
-						<div class="row">
-							<div class="col-lg">
-								<div class="card m-4">
-									<div class="row p-4">
-										<div class="col-9">
-											<h5>싱글세트</h5>
-											<p>14,000원</p>
-											<a href="#">장바구니 담기</a>
-										</div>
-										<div class="col-3">
-											<img class="w-100"
-												src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
-												alt="메뉴 이미지">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg">
-								<div class="card m-4">
-									<div class="row p-4">
-										<div class="col-9">
-											<h5>싱글세트</h5>
-											<p>14,000원</p>
-											<a href="#">장바구니 담기</a>
-										</div>
-										<div class="col-3">
-											<img class="w-100"
-												src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
-												alt="메뉴 이미지">
-										</div>
-									</div>
-								</div>
-							</div>
+							<% } %>
 						</div>
 					</div>
 					<div id="review-area" class="container tab-pane fade mt-2">

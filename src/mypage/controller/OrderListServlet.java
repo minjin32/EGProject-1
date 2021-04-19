@@ -34,7 +34,7 @@ public class OrderListServlet extends HttpServlet {
 			
 			if (orderlist != null) {
 				request.setAttribute("orderlist", orderlist);
-				request.getRequestDispatcher("/WEB-INF/views/mypage/orderlist.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/mypage/orderList.jsp").forward(request, response);
 			} else {
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out = response.getWriter();

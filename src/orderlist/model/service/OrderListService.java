@@ -14,6 +14,22 @@ public class OrderListService {
 	public OrderListService() {
 		factory = JDBCTemplate.getConnection();
 	} 	
+	
+	public OrderList selectAll(int orderNo) {
+		Connection conn = null;
+		OrderList oList = null;
+		try {
+			conn = factory.createConnection();
+			oList = new OrderListDAO().selectByOrderList(conn, orderNo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+
+		}
+		return oList;
+	}
 
 	public OrderList selectByOrderList(int orderNo) {
 		Connection conn = null;
