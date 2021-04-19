@@ -15,13 +15,16 @@ public class NoticeDAO {
 	public int insertNotice(Connection conn, Notice notice) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL, ?, ?, ?, SYSDATE,1)";
-		
+		String query = "INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, ?, ?, ?, SYSDATE, ?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, notice.getUserId());
 			pstmt.setString(2, notice.getSubject());
 			pstmt.setString(3, notice.getContents());
+			pstmt.setInt(4, notice.getNo_status());
+			pstmt.setString(5, notice.getImage_name());
+			pstmt.setString(6, notice.getImage_path());
+			pstmt.setLong(7, notice.getImage_size());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -35,9 +38,7 @@ public class NoticeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Notice> nList = null;
-		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY NO_NO DESC)"
-				+ " AS NUM, NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME,NO_STATUS FROM NOTICE)"
-				+ "WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY NO_NO DESC) AS NUM, NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME, NO_STATUS, IMAGE_NAME, IMAGE_PATH, IMAGE_SIZE FROM NOTICE) WHERE NUM BETWEEN ? AND ?";
 		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
 		int end = currentPage * recordCountPerPage;
@@ -55,6 +56,9 @@ public class NoticeDAO {
 				notice.setSubject(rset.getString("NO_TITLE"));
 				notice.setContents(rset.getString("NO_CONTENT"));
 				notice.setNo_status(rset.getInt("NO_STATUS"));
+				notice.setImage_name(rset.getString("IMAGE_NAME"));
+				notice.setImage_path(rset.getString("IMAGE_PATH"));
+				notice.setImage_size(rset.getLong("IMAGE_SIZE"));
 				nList.add(notice);
 			}
 		} catch (SQLException e) {
@@ -89,14 +93,13 @@ public class NoticeDAO {
 		return result;
 	}
 	
-	// ¼¿·ºÆ® one by no_no(pk) ÇÏ³ª °¡Á®¿À´Â°Å -> »çÁø -> dbÄõ¸®°¡ notice_image Å×ÀÌºíÀÌ¶û joinÀÌ ÀÌ·ç¾îÁ®¾ßÇØ!
-	// Á¶ÀÎ¹®ÀÌ Á¶±Ý Èûµé¸é ÀÏ´ÜÀº noticeÅ×ÀÌºí¿¡¼­ no_no·Î °¡Á®¿À´Â°Í¸¸ ÇØµµ 99%¿Ï¼º
+	// ï¿½ï¿½ï¿½ï¿½Æ® one by no_no(pk) ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½ -> ï¿½ï¿½ï¿½ï¿½ -> dbï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ notice_image ï¿½ï¿½ï¿½Ìºï¿½ï¿½Ì¶ï¿½ joinï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
+	// ï¿½ï¿½ï¿½Î¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ noticeï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ no_noï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°Í¸ï¿½ ï¿½Øµï¿½ 99%ï¿½Ï¼ï¿½
 	public Notice selectOneByNo(Connection conn, int noticeNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Notice notice = null;
-		String query = "SELECT * FROM NOTICE INNER JOIN BOARD_IMAGE ON NO_NO = BO_NO WHERE NO_NO = ?";
-//		String query = "SELECT * FROM NOTICE WHERE NO_NO = ?";
+		String query = "SELECT * FROM NOTICE WHERE NO_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -110,6 +113,9 @@ public class NoticeDAO {
 				notice.setContents(rset.getString("NO_CONTENT"));
 				notice.setRegDate(rset.getDate("NO_DATETIME"));
 				notice.setNo_status(rset.getInt("NO_STATUS"));
+				notice.setImage_name(rset.getString("IMAGE_NAME"));
+				notice.setImage_path(rset.getString("IMAGE_PATH"));
+				notice.setImage_size(rset.getLong("IMAGE_SIZE"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -185,10 +191,17 @@ public class NoticeDAO {
 		return sb.toString();
 	}
 
-	public ArrayList<Notice> selectSearchList(Connection conn, String search, int currentPage){
+	public ArrayList<Notice> selectSearchList(Connection conn, String searchKeword, String searchOption, int currentPage){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY NO_NO DESC) AS NUM, NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME, NO_STATUS FROM NOTICE WHERE NO_TITLE LIKE ?)WHERE NUM BETWEEN ? AND ?";
+		String query ="";
+		if(searchOption.equals("subject")) {
+			query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY NO_NO DESC) AS NUM, NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME, NO_STATUS, IMAGE_NAME, IMAGE_PATH, IMAGE_SIZE FROM NOTICE WHERE NO_TITLE LIKE ?)WHERE NUM BETWEEN ? AND ?";
+			
+		}
+		if(searchOption.equals("content")) {
+			query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY NO_NO DESC) AS NUM, NO_NO, MB_ID, NO_TITLE, NO_CONTENT, NO_DATETIME, NO_STATUS, IMAGE_NAME, IMAGE_PATH, IMAGE_SIZE FROM NOTICE WHERE NO_CONTENT LIKE ?)WHERE NUM BETWEEN ? AND ?";
+		}
 		ArrayList<Notice> nList = null;
 		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage -1);
@@ -196,7 +209,7 @@ public class NoticeDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "%" + search + "%");
+			pstmt.setString(1, "%" + searchKeword + "%");
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);
 			rset = pstmt.executeQuery();
@@ -208,6 +221,7 @@ public class NoticeDAO {
 				notice.setSubject(rset.getString("NO_TITLE"));
 				notice.setContents(rset.getString("NO_CONTENT"));
 				notice.setNo_status(rset.getInt("NO_STATUS"));
+				nList.add(notice);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -215,13 +229,14 @@ public class NoticeDAO {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
+		System.out.println("ë‚œ ë‹¤ì˜¤ì–Œ" + nList);
 		return nList;
 	}
 
-	public String getsearchPageNavi(Connection conn, String search, int currentPage) {
+	public String getsearchPageNavi(Connection conn, String searchKeword, String searchOption, int currentPage) {
 		int recordCountPerPage = 10;
 		int naviCountPerPage = 10;
-		int recordTotalCount = searchTotalCount(conn, search);
+		int recordTotalCount = searchTotalCount(conn, searchKeword, searchOption);
 		int pageTotalCount = 0;
 		
 		if(recordTotalCount % recordCountPerPage > 0) {
@@ -249,26 +264,33 @@ public class NoticeDAO {
 		}
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) {
-			sb.append("<a href='/notice/search?searchKeyword="+search+"&currentPage="+(startNavi-1)+"'> ÀÌÀü </a>");
+			sb.append("<a href='/notice/search?searchKeyword="+searchKeword+"&currentPage="+(startNavi-1)+"'> ï¿½ï¿½ï¿½ï¿½ </a>");
 		}
 		for(int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='/notice/search?searchKeyword="+search+"&currentPage="+i+"'>" + i + " </a>");
+			sb.append("<a href='/notice/search?searchKeyword="+searchKeword+"&currentPage="+i+"'>" + i + " </a>");
 		}
 		if(needNext) {
-			sb.append("<a href='/notice/search?searchKeyword="+search+"&currentPage="+(endNavi+1)+"'> ´ÙÀ½ </a>");
+			sb.append("<a href='/notice/search?searchKeyword="+searchKeword+"&currentPage="+(endNavi+1)+"'> ï¿½ï¿½ï¿½ï¿½ </a>");
 		}
 		return sb.toString();
 	}
 
-	private int searchTotalCount(Connection conn, String search) {
+	private int searchTotalCount(Connection conn, String searchKeword, String searchOption) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM NOTICE WHERE SUBJECT LIKE ?";
+		String query ="";
+		if(searchOption.equals("subject")) {	
+			query = "SELECT COUNT(*) AS TOTALCOUNT FROM NOTICE WHERE NO_TITLE LIKE ?";
+		}
+		if(searchOption.equals("content")) {
+			query = "SELECT COUNT(*) AS TOTALCOUNT FROM NOTICE WHERE NO_CONTENT LIKE ?";
+		}
 		int recordTotalCount = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "%" + search + "%");
+			pstmt.setString(1, "%" + searchKeword + "%");
+			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				recordTotalCount = rset.getInt("TOTALCOUNT");
 			}

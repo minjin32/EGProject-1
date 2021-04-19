@@ -1,6 +1,7 @@
 package notice.model.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Notice {
 	
@@ -10,77 +11,88 @@ public class Notice {
 	private String contents;
 	private Date regDate;
 	private int no_status;
-	// 멤버변수에서 접근제한자가 private인 이유? -> 캡슐화!
+	private String image_name;
+	private String image_path;
+	private long image_size;
 	
 	
-	public Notice() {}
-	// 생성자, 객체를 생성하면서 멤버변수를 초기화한다
-
-
-	// 게터, 세터
 	public int getNoticeNo() {
 		return noticeNo;
 	}
-
 
 	public void setNoticeNo(int noticeNo) {
 		this.noticeNo = noticeNo;
 	}
 
-
 	public String getSubject() {
 		return subject;
 	}
-
 
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
 
-
 	public String getUserId() {
 		return userId;
 	}
-
 
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
-
 	public String getContents() {
 		return contents;
 	}
-
 
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
 
-
 	public Date getRegDate() {
 		return regDate;
 	}
-
 
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 
-
 	public int getNo_status() {
 		return no_status;
 	}
-
 
 	public void setNo_status(int no_status) {
 		this.no_status = no_status;
 	}
 
-	// toString
+	public String getImage_name() {
+		return image_name;
+	}
+
+	public void setImage_name(String image_name) {
+		this.image_name = image_name;
+	}
+
+	public String getImage_path() {
+		return image_path;
+	}
+
+	public void setImage_path(String image_path) {
+		this.image_path = image_path;
+	}
+
+	public long getImage_size() {
+		return image_size;
+	}
+
+	public void setImage_size(long image_size) {
+		this.image_size = image_size;
+	}
+
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", subject=" + subject + ", userId=" + userId + ", contents=" + contents
-				+ ", regDate=" + regDate + ", no_status=" + no_status + "]";
+				+ ", regDate=" + regDate + ", no_status=" + no_status + ", image_name=" + image_name + ", image_path="
+				+ image_path + ", image_size=" + image_size + "]";
 	}
+
 }

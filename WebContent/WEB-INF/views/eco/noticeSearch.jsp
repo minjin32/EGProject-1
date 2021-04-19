@@ -40,7 +40,7 @@
 					<h1>공지사항</h1>
 				</div>
 				<div>
-					<form action="/eco/notice/search" method="get"><button type="submit" class="btn btn-primary mx-1" style="float: right;">검색</button>
+					<form href="/eco/notice/search" method="get"><button type="submit" class="btn btn-primary mx-1" style="float: right;">검색</button>
 					<input type="text" class="form-control mx-1" style="float: right; width:200px;" placeholder="검색어" name="search-keyword"> 
 					<select class="form-select mx-1" style="float: right; max-width: 100px;" aria-label="Default select example" name="search-option">
 						<option selected>--</option>
