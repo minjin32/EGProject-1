@@ -60,10 +60,10 @@
 							for (Member m : mList) {
 						%>
 						<tr style="cursor: pointer;">
-							<th scope="row"><%=member.getMbNo()%></th>
-							<td><%=member.getMbId()%></td>
-							<td class="td-title"><%=member.getMbNickname()%></td>
-							<td><%=member.getMbJoindate()%></td>
+							<th scope="row"><%=m.getMbNo()%></th>
+							<td><%=m.getMbId()%></td>
+							<td class="td-title"><%=m.getMbNickname()%></td>
+							<td><%=m.getMbJoindate()%></td>
 						</tr>
 						<%
 							}

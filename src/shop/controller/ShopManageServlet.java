@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.service.MemberService;
 import member.model.vo.Member;
 import orderlist.model.service.OrderListService;
 import orderlist.model.vo.OrderList;
+import shop.model.service.ShopService;
+import shop.model.vo.Shop;
 
 @WebServlet("/shop/manage")
 public class ShopManageServlet extends HttpServlet {
@@ -24,10 +27,49 @@ public class ShopManageServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int shopNumber = 1;
+		String memberId = null;
 		
+		// 로그인 여부 확인
+		if (request.getParameter("memberId") != null) {
+			memberId = request.getParameter("memberId");
+			
+			// 비회원일 경우 오류메세지 출력, 뒤로가기
+		} else {
+			response.setContentType("text/html; charset=utf-8");
+            PrintWriter out = response.getWriter();
+            String msg = "로그인을 해주세요."; // 오류 메세지 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            out.println("<script>");
+            out.println("alert('" + msg + "');");
+            out.println("history.back();");
+            out.println("</script>");
+            out.flush();
+            out.close();
+            return;
+		}
+		
+		
+//		// ID로 member를 가져와서 사업자 여부 확인
+//		Member member = new MemberService().selectOneById(memberId);
+//		char memberType = member.getMbType();
+//		
+//		// 사업자가 아닌 경우 오류 메세지 출력, 뒤로가기
+//		if (memberType != '1') { 
+//			response.setContentType("text/html; charset=utf-8");
+//            PrintWriter out = response.getWriter();
+//            String msg = "사업자 회원이 아닙니다."; // 오류 메세지 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//            out.println("<script>");
+//            out.println("alert('" + msg + "');");
+//            out.println("history.back();");
+//            out.println("</script>");
+//            out.flush();
+//            out.close();
+//            return;
+//		}
+//		
+//		// ID로 가게 가져오기
+//		Shop shop = null;
 //		if (request.getParameter("shopNumber") != null) {
-//			shopNumber = Integer.parseInt(request.getParameter("shopNumber"));
+//			
 //		} else {
 //			response.setContentType("text/html; charset=utf-8");
 //            PrintWriter out = response.getWriter();
@@ -39,7 +81,9 @@ public class ShopManageServlet extends HttpServlet {
 //            out.flush();
 //            out.close();
 //		}
-		ArrayList<OrderList> orderList = new OrderListService().selectListByShopNumber(shopNumber);
+		
+		// 사업자 ID로 주문내역을 가져오기
+		ArrayList<OrderList> orderList = new OrderListService().selectListByOwnerID(memberId);
 		
 		request.setAttribute("orderList", orderList);
 		System.out.println(orderList.toString());

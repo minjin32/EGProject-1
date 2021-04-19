@@ -146,7 +146,7 @@ public class MemberDAO {
 	            member.setMbAddress1(rset.getString("MB_ADDRESS1"));
 	            member.setMbAddress2(rset.getString("MB_ADDRESS2"));
 	            member.setMbAddress3(rset.getString("MB_ADDRESS3"));
-	            member.setMbType(rset.getString("MB_TYPE").charAt(0));
+//	            member.setMbType(rset.getString("MB_TYPE").charAt(0));
 	            member.setShOwner(rset.getString("SH_OWNER"));
 	            member.setShBusinessno(rset.getString("SH_BUSINESS_NO"));
 	            member.setShEcopoint(rset.getInt("SH_ECOPOINT"));

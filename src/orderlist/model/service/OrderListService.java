@@ -143,4 +143,20 @@ public class OrderListService {
 		return list;
 	}
 
+	public ArrayList<OrderList> selectListByOwnerID(String memberId) {
+		ArrayList<OrderList> list = null;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			list = new OrderListDAO().selectListByOwnerId(conn, memberId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return list;
+	}
+
 }
