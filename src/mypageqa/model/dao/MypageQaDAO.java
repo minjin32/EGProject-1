@@ -14,37 +14,37 @@ public class MypageQaDAO {
 
 	public ArrayList<MypageQaData> selectAllList(Connection conn, int currentPage) {
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<MypageQaData> mqList = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QANO DESC) AS NUM, QANO, QATITLE, CONTENT, MBID, QADATETIME FROM QNA) WHERE NUM BETWEEN ? AND ?";
+	      ResultSet rset = null;
+	      ArrayList<MypageQaData> mqList = null;
+	      String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QA_NO DESC) AS NUM, QA_NO, QA_TITLE, QA_CONTENT, MB_ID, QA_DATETIME FROM QNA) WHERE NUM BETWEEN ? AND ?";
 
-		int recordCountPerPage = 5;
-		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
-		int end = currentPage * recordCountPerPage;
+	      int recordCountPerPage = 5;
+	      int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
+	      int end = currentPage * recordCountPerPage;
 
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			rset = pstmt.executeQuery();
-			mqList = new ArrayList<MypageQaData>();
-			while (rset.next()) {
-				MypageQaData mypageQaData = new MypageQaData();
-				mypageQaData.setQaNo(rset.getInt("QANO"));
-				mypageQaData.setQaTitle(rset.getString("QATITLE"));
-				mypageQaData.setQaContent(rset.getString("QACONTENT"));
-				mypageQaData.setMbId(rset.getString("MBID"));
-				mypageQaData.setQaDateTime(rset.getDate("QADATETIME"));
-				mqList.add(mypageQaData);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return mqList;
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, start);
+	         pstmt.setInt(2, end);
+	         rset = pstmt.executeQuery();
+	         mqList = new ArrayList<MypageQaData>();
+	         while (rset.next()) {
+	            MypageQaData mypageQaData = new MypageQaData();
+	            mypageQaData.setQaNo(rset.getInt("QA_NO"));
+	            mypageQaData.setQaTitle(rset.getString("QA_TITLE"));
+	            mypageQaData.setQaContent(rset.getString("QA_CONTENT"));
+	            mypageQaData.setMbId(rset.getString("MB_ID"));
+	            mypageQaData.setQaDateTime(rset.getDate("QA_DATETIME"));
+	            mqList.add(mypageQaData);
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(rset);
+	         JDBCTemplate.close(pstmt);
+	      }
+	      return mqList;
 	}
 
 	public MypageQaData selectOne(Connection conn, int qaNo) {
@@ -180,104 +180,104 @@ public class MypageQaDAO {
 	}
 
 		
-//	public ArrayList<MypageQaData> selectSearchList(Connection conn, String search, int currentPage) {
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QA_NO DESC) AS NUM, QA_NO, QA_TITLE, QA_CONTENT, MB_ID, QA_DATETIME FROM QNA WHERE QA_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
-//		ArrayList<MypageQaData> mqList = null;
-//		int recordCountPerPage = 5;
-//		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
-//		int end = currentPage * recordCountPerPage;
-//
-//		try {
-//			pstmt = conn.prepareStatement(query);
-//			pstmt.setString(1, "%" + search + "%");
-//			pstmt.setInt(2, start);
-//			pstmt.setInt(3, end);
-//			rset = pstmt.executeQuery();
-//			mqList = new ArrayList<MypageQaData>();
-//			while (rset.next()) {
-//				MypageQaData mypageQaData = new MypageQaData();
-//				mypageQaData.setQaNo(rset.getInt("QA_NO"));
-//				mypageQaData.setQaTitle(rset.getString("QA_TITLE"));
-//				mypageQaData.setQaContent(rset.getString("QA_CONTENT"));
-//				mypageQaData.setMbId(rset.getString("MB_ID"));
-//				mypageQaData.setQaDateTime(rset.getDate("QA_DATETIME"));
-//				mqList.add(mypageQaData);
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(pstmt);
-//			JDBCTemplate.close(rset);
-//		}
-//		return mqList;
-//	}
-//
-//	public String getSearchPageNavi(Connection conn, String search, int currentPage) {
-//		int recordCountPerPage = 5;
-//		int naviCountPerPage = 5;
-//		int recordTotalCount = searchTotalCount(conn, search);
-//		int pageTotalCount = 0;
-//		if (recordTotalCount % recordCountPerPage > 0) {
-//			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
-//		} else {
-//			pageTotalCount = recordTotalCount / recordCountPerPage;
-//		}
-//		if (currentPage < 1) {
-//			currentPage = 1;
-//		} else if (currentPage > pageTotalCount) {
-//			currentPage = pageTotalCount;
-//		}
-//		int startNavi = ((currentPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
-//		int endNavi = startNavi + naviCountPerPage - 1;
-//		if (endNavi > pageTotalCount) {
-//			endNavi = pageTotalCount;
-//		}
-//		boolean needPrev = true;
-//		boolean needNext = true;
-//		if (startNavi == 1) {
-//			needPrev = false;
-//		}
-//		if (endNavi == pageTotalCount) {
-//			needNext = false;
-//		}
-//		StringBuilder sb = new StringBuilder();
-//		if (needPrev) {
-//			sb.append("<a href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + (startNavi - 1)
-//					+ "'> 이전 </a>");
-//		}
-//		for (int i = startNavi; i <= endNavi; i++) {
-//			sb.append("<a href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + i + "'>" + i + "</a>");
-//		}
-//		if (needNext) {
-//			sb.append("<a href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + (endNavi + 1)
-//					+ "'> 다음 </a>");
-//		}
-//		return sb.toString();
-//	}
-//
-//	private int searchTotalCount(Connection conn, String search) {
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM QNA WHERE QA_TITLE LIKE ?";
-//		int recordTotalCount = 0;
-//
-//		try {
-//			pstmt = conn.prepareStatement(query);
-//			pstmt.setString(1, "%" + search + "%");
-//			rset = pstmt.executeQuery();
-//			if (rset.next()) {
-//				recordTotalCount = rset.getInt("TOTALCOUNT");
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(rset);
-//			JDBCTemplate.close(pstmt);
-//		}
-//		return recordTotalCount;
-//	}
+	public ArrayList<MypageQaData> selectSearchList(Connection conn, String search, int currentPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QA_NO DESC) AS NUM, QA_NO, QA_TITLE, QA_CONTENT, MB_ID, QA_DATETIME FROM QNA WHERE QA_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
+		ArrayList<MypageQaData> mqList = null;
+		int recordCountPerPage = 5;
+		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
+		int end = currentPage * recordCountPerPage;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + search + "%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			mqList = new ArrayList<MypageQaData>();
+			while (rset.next()) {
+				MypageQaData mypageQaData = new MypageQaData();
+				mypageQaData.setQaNo(rset.getInt("QA_NO"));
+				mypageQaData.setQaTitle(rset.getString("QA_TITLE"));
+				mypageQaData.setQaContent(rset.getString("QA_CONTENT"));
+				mypageQaData.setMbId(rset.getString("MB_ID"));
+				mypageQaData.setQaDateTime(rset.getDate("QA_DATETIME"));
+				mqList.add(mypageQaData);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return mqList;
+	}
+
+	public String getSearchPageNavi(Connection conn, String search, int currentPage) {
+		int recordCountPerPage = 5;
+		int naviCountPerPage = 5;
+		int recordTotalCount = searchTotalCount(conn, search);
+		int pageTotalCount = 0;
+		if (recordTotalCount % recordCountPerPage > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		} else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		if (currentPage < 1) {
+			currentPage = 1;
+		} else if (currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		int startNavi = ((currentPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+		if (endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		boolean needPrev = true;
+		boolean needNext = true;
+		if (startNavi == 1) {
+			needPrev = false;
+		}
+		if (endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		StringBuilder sb = new StringBuilder();
+		if (needPrev) {
+			sb.append("<a href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + (startNavi - 1)
+					+ "'> 이전 </a>");
+		}
+		for (int i = startNavi; i <= endNavi; i++) {
+			sb.append("<a href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + i + "'>" + i + "</a>");
+		}
+		if (needNext) {
+			sb.append("<a href='/mypage/qna/list?searchKeyword=" + search + "&currentPage=" + (endNavi + 1)
+					+ "'> 다음 </a>");
+		}
+		return sb.toString();
+	}
+
+	private int searchTotalCount(Connection conn, String search) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM QNA WHERE QA_TITLE LIKE ?";
+		int recordTotalCount = 0;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + search + "%");
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				recordTotalCount = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return recordTotalCount;
+	}
 
 }
