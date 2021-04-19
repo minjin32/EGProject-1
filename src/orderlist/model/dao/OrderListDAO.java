@@ -194,8 +194,7 @@ public class OrderListDAO {
 		ArrayList<OrderList> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = "select * from (select m.mb_id, s.sh_no from member m join shop s on m.mb_id = s.mb_id where m.mb_id = ?) s join menuorder o on s.sh_no = o.sh_no;";
-		
+		String sql = "select * from (select m.mb_id, s.sh_no from member m join shop s on m.mb_id = s.mb_id where m.mb_id = ?) s join menuorder o on s.sh_no = o.sh_no";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);

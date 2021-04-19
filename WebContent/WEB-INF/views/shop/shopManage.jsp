@@ -242,13 +242,13 @@
 			<!-- 메뉴 탭 end -->
 			<div class="toggle-menu-view"><!-- 전체메뉴 영역 start -->
 				<div class="row">
+					<% for (OrderList order : orderList) { %>
 					<div class="col-lg-6">
 						<div class="card m-4">
 							<div class="row p-4">
 								<div class="col-9">
-									<h5>전체메뉴세트</h5>
-									<p>14,000원</p>
-									<p>25x25cm</p>
+									<h5><%= order.getOrderMenu() %></h5>
+									<p><%= order.getOrderPrice() %>원</p>
 								</div>
 								<div class="col-3">
 									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
@@ -256,12 +256,12 @@
 							</div>
 						</div>
 					</div>
+					<% } %>
 					<div class="col-lg-6">
 						<div class="card m-4">
 							<div class="row p-4">
 								<div class="col-9">
 									<h5>전체메뉴세트</h5>
-									<p>14,000원</p>
 									<p>14,000원</p>
 								</div>
 								<div class="col-3">

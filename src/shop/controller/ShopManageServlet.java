@@ -30,8 +30,8 @@ public class ShopManageServlet extends HttpServlet {
 		String memberId = null;
 		
 		// 로그인 여부 확인
-		if (request.getParameter("memberId") != null) {
-			memberId = request.getParameter("memberId");
+		if (request.getSession().getAttribute("memberId") != null) {
+			memberId = (String) request.getSession().getAttribute("memberId");
 			
 			// 비회원일 경우 오류메세지 출력, 뒤로가기
 		} else {
@@ -86,7 +86,6 @@ public class ShopManageServlet extends HttpServlet {
 		ArrayList<OrderList> orderList = new OrderListService().selectListByOwnerID(memberId);
 		
 		request.setAttribute("orderList", orderList);
-		System.out.println(orderList.toString());
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/shop/shopManage.jsp");
 		view.forward(request, response);
 	}
