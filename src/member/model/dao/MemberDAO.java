@@ -1,6 +1,7 @@
 package member.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -225,7 +226,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Member> memberlist = null;		
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY MB_NO DESC) AS MB_NO ,MB_ID ,MB_PASSWORD ,MB_NAME ,MB_NICKNAME ,MB_EMAIL ,MB_PHONE ,MB_ADDRESS1 ,MB_ADDRESS2 ,MB_ADDRESS3 ,MB_TYPE ,SH_OWNER ,SH_BUSINESS_NO ,SH_ECOPOINT ,MB_JOINDATE ,MB_STATUS FROM MEMBER WHERE MB_TYPE = ? AND MB_STATUS = 'Y') WHERE MB_NO BETWEEN ? AND ? ";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY MB_NO DESC) AS MB_NO ,MB_ID ,MB_PASSWORD ,MB_NAME ,MB_NICKNAME ,MB_EMAIL ,MB_PHONE ,MB_ADDRESS1 ,MB_ADDRESS2 ,MB_ADDRESS3 ,MB_TYPE ,SH_OWNER ,SH_BUSINESS_NO ,SH_ECOPOINT ,MB_JOINDATE ,MB_STATUS FROM MEMBER WHERE MB_TYPE = ? AND MB_STATUS = 'Y') WHERE MB_NO BETWEEN ? AND ?";
 		int recordCountPerPage = 10;
 		int start = currentPage*recordCountPerPage - (recordCountPerPage - 1);
 		int end = currentPage*recordCountPerPage;
@@ -310,7 +311,7 @@ public class MemberDAO {
 		return sb.toString();
 	}
 	
-	private int totalCount(Connection conn, String usertype) {
+	public int totalCount(Connection conn, String usertype) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM MEMBER WHERE MB_TYPE LIKE ? AND MB_STATUS = 'Y'";
@@ -377,6 +378,7 @@ public class MemberDAO {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
+		System.out.println("난다오얌"+memberlist);
 		return memberlist;
 	}
 
@@ -386,6 +388,7 @@ public class MemberDAO {
 		int recordTotalCount = searchTotalCount(conn,usertype, search); // 전체 게시물의 갯수
 		// 123개의 게시물을 10개씩 보여준다라고 했을 때 페이지 갯수는 13개
 		int pageTotalCount = 0; // 페이지의 갯수
+		System.out.println("다오지롱" + usertype);
 		if(recordTotalCount % recordCountPerPage > 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
@@ -448,4 +451,81 @@ public class MemberDAO {
 		
 		return recordTotalCount;
 	}
+
+	public ArrayList<Member> selectSearchList(Connection conn, String usertype, String keyword, int currentPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY MB_NO DESC) AS NUM, MB_ID, MB_NO, MB_PASSWORD, MB_NAME, MB_NICKNAME, MB_EMAIL, MB_PHONE, MB_ADDRESS1, MB_ADDRESS2, MB_ADDRESS3, MB_TYPE, SH_OWNER, SH_BUSINESS_NO, SH_ECOPOINT, MB_JOINDATE, MB_STATUS FROM MEMBER WHERE MB_ID LIKE ? AND MB_TYPE= ?)WHERE NUM BETWEEN ? AND ?";
+		ArrayList<Member> mList = null;
+		int recordCountPerPage = 10;
+		int start = currentPage*recordCountPerPage - (recordCountPerPage -1);
+		int end = currentPage*recordCountPerPage;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setString(2, usertype);
+			pstmt.setInt(3, start);
+			pstmt.setInt(4, end);
+			rset = pstmt.executeQuery();
+			mList = new ArrayList<Member>();
+			while(rset.next()) {
+				Member member = new Member();
+				member.setMbId(rset.getString("MB_ID"));
+				member.setMbNo(rset.getInt("MB_NO"));
+				member.setMbPassword(rset.getString("MB_PASSWORD"));
+				member.setMbName(rset.getString("MB_NAME"));
+				member.setMbNickname(rset.getString("MB_NICKNAME"));
+				member.setMbEmail(rset.getString("MB_EMAIL"));
+				member.setMbPhone(rset.getString("MB_PHONE"));
+				member.setMbAddress1(rset.getString("MB_ADDRESS1"));
+				member.setMbAddress2(rset.getString("MB_ADDRESS2"));
+				member.setMbAddress3(rset.getString("MB_ADDRESS3"));
+				//member.setMbType(rset.getString("MB_TYPE").charAt(0));
+				member.setShOwner(rset.getString("SH_OWNER"));
+				member.setShBusinessno(rset.getString("SH_BUSINESS_NO"));
+				member.setShEcopoint(rset.getInt("SH_ECOPOINT"));
+				member.setMbJoindate(rset.getDate("MB_JOINDATE"));
+				member.setMbStatus(rset.getString("MB_STATUS"));
+				mList.add(member);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return mList;
+	}
+	
+	public int selectAmountByEnrollMonth(Connection conn) {
+		int result = 0;
+		ArrayList<Member> memberList = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String query = "SELECT COUNT(*) as amount FROM MEMBER WHERE TO_CHAR(MB_JOINDATE, 'YYYY/MM') = TO_CHAR(sysdate, 'YYYY/MM')";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			System.out.println(pstmt + "짜잔");
+			rset = pstmt.executeQuery(query);
+			// result가 0 보다 크면 성공했다는 뜻. 성공했으니까 rset의 길이를 return
+			if (rset.next()) {
+				System.out.println("asdfadsf");
+				result = Integer.parseInt(rset.getString("amount"));
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return result;
+	}
+	
+	
 }

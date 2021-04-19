@@ -1,6 +1,7 @@
 package member.model.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -53,20 +54,6 @@ public class MemberService {
 		}
 		return member;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	// JoinViewServlet.java
 	// 아이디,패스워드에 맞는 정보 취득
@@ -179,6 +166,38 @@ public class MemberService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
+		System.out.println("난서비스얌"+pagedata);
 		return pagedata;
+	}
+
+	public MemberPageData selectSearchList(String usertype, String keyword, int currentPage) {
+		Connection conn = null;
+		MemberPageData pd = new MemberPageData();
+		System.out.println("서비스지롱" + usertype);
+		try {
+			conn = factory.createConnection();
+			pd.setMemberList(new MemberDAO().selectSearchList(conn, usertype, keyword, currentPage));
+			pd.setPageNavi(new MemberDAO().getSearchPageNavi(conn, usertype, keyword, currentPage));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return pd;
+	}
+	
+	public int selectMemberList() {
+		Connection conn = null;
+		int result = 0;
+
+		try {
+			conn = factory.createConnection();
+			result = new MemberDAO().selectAmountByEnrollMonth(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
 	}
 }
