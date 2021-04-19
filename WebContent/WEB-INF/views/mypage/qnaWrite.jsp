@@ -27,17 +27,17 @@
 			<div class="col-lg-9 p-5">
 				<div>
 					<h2 class="pb-2">QnA 작성</h2>
-					<form class="p-4"
+					<form action="/mypage/qna/write" method="post" enctype="multipart/form-data" class="p-4"
 						style="border: 1px solid #789F6F; border-radius: 5px;">
 						<div class="mb-3">
-							<input type="text" class="form-control" placeholder="제목을 입력하세요.">
+							<input type="text" name="qaTitle" class="form-control" placeholder="제목을 입력하세요.">
 						</div>
 						<div class="mb-3">
-							<textarea rows="12" class="form-control" placeholder="내용을 입력하세요."></textarea>
+							<textarea rows="12" name="qaContent" class="form-control" placeholder="내용을 입력하세요."></textarea>
 						</div>
 						<p style="margin-bottom: 0;">첨부파일</p>
 						<div class="mb-3">
-							<input class="form-control" type="file">
+							<input class="form-control" type="file" name="upFile">
 						</div>
 						<div class="gap-2 d-md-flex justify-content-md-end">
 							<a href="/mypage/qna/list"><button type="button" class="btn btn-primary">취소</button></a>

@@ -7,6 +7,7 @@ import common.JDBCTemplate;
 import mypageqa.model.dao.MypageQaDAO;
 import mypageqa.model.vo.MypageQaData;
 import mypageqa.model.vo.PageData;
+import notice.model.dao.NoticeDAO;
 
 public class MypageQaService {
 
@@ -33,13 +34,14 @@ public class MypageQaService {
 		return pd;
 	}
 
-	public MypageQaData printOne(int qnNo) {
+	public MypageQaData printOne(int qaNo) {
 		Connection conn = null;
 		MypageQaData mypageQaData = null;
 
 		try {
 			conn = factory.createConnection();
-			mypageQaData = new MypageQaDAO().selectOne(conn, qnNo);
+			mypageQaData = new MypageQaDAO().selectOne(conn, qaNo);
+//			qnaco = new MypageQaDAO().selectOneByco(conn, qaNo);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,8 +49,24 @@ public class MypageQaService {
 			JDBCTemplate.close(conn);
 		}
 		return mypageQaData;
-
 	}
+	
+//	관리자 코멘트
+//	public MypageQaData printOnebyco(int qaNo) {
+//		Connection conn = null;
+//		MypageQaData mypageQaData = null;
+//
+//		try {
+//			conn = factory.createConnection();
+//			mypageQaData = new MypageQaDAO().selectOneByco(conn, qaNo);
+//			qnaco = new MypageQaDAO().selectOneByco(conn, qaNo);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			JDBCTemplate.close(conn);
+//		}
+//		return mypageQaData;
+//	}
 
 	public int insertMypageQaData(MypageQaData mypageQaData) {
 		Connection conn = null;
@@ -68,6 +86,7 @@ public class MypageQaService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
+		System.out.println(result +"난서비스야");
 		return result;
 	}
 
@@ -106,6 +125,7 @@ public class MypageQaService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
+		System.out.println(pd);
 		return pd;
 	}
 

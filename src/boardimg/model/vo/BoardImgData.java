@@ -13,41 +13,87 @@ public class BoardImgData {
 	
 	public BoardImgData() {}
 
+
+
 	public String getImageNo() {
-		// TODO Auto-generated method stub
-		return null;
+		return imageNo;
 	}
+
+
+
+	public void setImageNo(String imageNo) {
+		this.imageNo = imageNo;
+	}
+
+
 
 	public String getBoNo() {
-		// TODO Auto-generated method stub
-		return null;
+		return boNo;
 	}
+
+
+
+	public void setBoNo(String boNo) {
+		this.boNo = boNo;
+	}
+
+
 
 	public String getImageName() {
-		// TODO Auto-generated method stub
-		return null;
+		return imageName;
 	}
+
+
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+
 
 	public String getImagePath() {
-		// TODO Auto-generated method stub
-		return null;
+		return imagePath;
 	}
+
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
 
 	public long getImageSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return imageSize;
 	}
 
-	public Timestamp getUploadTime() {
-		// TODO Auto-generated method stub
-		return null;
+
+
+	public void setImageSize(long imageSize) {
+		this.imageSize = imageSize;
 	}
+
+
+
+	public Timestamp getUploadTime() {
+		return uploadTime;
+	}
+
+
+
+	public void setUploadTime(Timestamp uploadTime) {
+		this.uploadTime = uploadTime;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "FileData [imageNo=" + imageNo + ", boNo=" + boNo + ", imageName=" + imageName + ", imagePath="
 				+ imagePath + ", imageSize=" + imageSize + ", uploadTime=" + uploadTime + "]";
 	}
+
+
 	
 }
 

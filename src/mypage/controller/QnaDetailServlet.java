@@ -21,7 +21,7 @@ public class QnaDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int qaNo = Integer.parseInt(request.getParameter("QaNo"));
+		int qaNo = Integer.parseInt(request.getParameter("qaNo"));
 		MypageQaData mypageQaData = new MypageQaService().printOne(qaNo);
 		if (mypageQaData != null) {
 			request.setAttribute("mypageQaData", mypageQaData);

@@ -9,6 +9,9 @@ public class MypageQaData {
 	private String qaTitle;
 	private String qaContent;
 	private Date qaDateTime;
+	private String image_name;
+	private String image_path;
+	private long image_size;
 
 	public MypageQaData() {
 	}
@@ -53,10 +56,35 @@ public class MypageQaData {
 		this.qaDateTime = qaDateTime;
 	}
 
+	public String getImage_name() {
+		return image_name;
+	}
+
+	public void setImage_name(String image_name) {
+		this.image_name = image_name;
+	}
+
+	public String getImage_path() {
+		return image_path;
+	}
+
+	public void setImage_path(String image_path) {
+		this.image_path = image_path;
+	}
+
+	public long getImage_size() {
+		return image_size;
+	}
+
+	public void setImage_size(long image_size) {
+		this.image_size = image_size;
+	}
+
 	@Override
 	public String toString() {
 		return "MypageQaData [qaNo=" + qaNo + ", mbId=" + mbId + ", qaTitle=" + qaTitle + ", qaContent=" + qaContent
-				+ ", qaDateTime=" + qaDateTime + "]";
+				+ ", qaDateTime=" + qaDateTime + ", image_name=" + image_name + ", image_path=" + image_path
+				+ ", image_size=" + image_size + "]";
 	}
 
 }

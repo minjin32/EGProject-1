@@ -1,5 +1,11 @@
+<%@page import="mypageqa.model.vo.MypageQaData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+	MypageQaData mypageQaData = (MypageQaData) request.getAttribute("mypageQaData");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,34 +32,39 @@
 			</div>
 			<div class="col-lg-9 p-5">
 				<div>
-					<h2 class="pb-2">QnA 내용</h2>
-					<form class="p-4" style="border: 1px solid #789F6F; border-radius: 5px;">
+					<h2 class="pb-2">
+					QnA
+					</h2>
+					<form class="p-4"
+						style="border: 1px solid #789F6F; border-radius: 5px;">
 						<div class="mb-3">
 							<div class="row">
 								<div class="col">
-									<b>작성자 </b>
-									<span>김길동</span>
+									<b>작성자 </b> <%=mypageQaData.getMbId()%>
 								</div>
 								<div class="col gap-2 d-md-flex justify-content-md-end">
-									<b>작성일시  </b>
-									<span>2021-04-16</span>
+									<b>작성일시 </b> <%=mypageQaData.getQaDateTime()%>
 								</div>
 							</div>
 						</div>
 						<div class="mb-3">
-							<input type="text" class="form-control" value="사업자 등록 요청합니다.">
+							제목 <input type="text" class="form-control" value="<%=mypageQaData.getQaTitle()%>">
 						</div>
 						<div class="mb-3">
-							<p class="form-control">
-								사업자 등록을 요청합니다.<br>
-								사업자번호는 --- 입니다.<br>
-								사업자등록증 사진을 첨부합니다.
+							내용 <p class="form-control">
+							<%=mypageQaData.getQaContent()%>
 							</p>
 						</div>
 						<div class="mb-3">
-							<a href="<%=request.getContextPath()%>/files/images/sample-normal.jpg" download>
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" style="max-width: 120px;" alt="첨부파일">
-							</a>
+						<img class="img-fluid rounded mx-auto d-block"
+								src="<%=request.getContextPath()%>/upload/<%= mypageQaData.getImage_name() %>"
+								style="max-width: 100%;" alt="첨부이미지">
+<!-- 							<a -->
+<%-- 								href="<%=request.getContextPath()%>" --%>
+<!-- 								download> <img -->
+<%-- 								src="<%=request.getContextPath()%>" --%>
+<!-- 								style="max-width: 120px;" alt="첨부파일"> -->
+<!-- 							</a> -->
 						</div>
 						<!-- TODO 작성자만 보여야 하는 버튼 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 						<!-- TODO 답변이 달리기 전에만 취소버튼이 나타남 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
@@ -63,18 +74,22 @@
 					</form>
 					<div class="row mt-4">
 						<div class="col-1">
-							<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" style="width: 100%;" alt="답변">
+							<img
+								src="<%=request.getContextPath()%>/files/images/reply.png"
+								style="width: 100%;" alt="답변">
 						</div>
 						<div class="col">
-							<form class="p-4" style="border: 1px solid #789F6F; border-radius: 5px;">
+							<form class="p-4"
+								style="border: 1px solid #789F6F; border-radius: 5px;">
 								<div class="mb-3">
-									<input type="text" class="form-control" value="RE: 사업자 등록 요청합니다.">
+									
+									<input type="text" class="form-control"
+										value= "RE:<%=mypageQaData.getQaTitle()%>">
 								</div>
 								<!-- TODO 관리자만 보여야 하는 버튼 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 								<div class="mb-3">
 									<p class="form-control">
-										요청이 확인되었습니다.<br>
-										이용 가능합니다.<br>
+										요청이 확인되었습니다.<br> 이용 가능합니다.<br>
 									</p>
 								</div>
 								<div class="gap-2 d-md-flex justify-content-md-end">
@@ -87,7 +102,7 @@
 				</div>
 			</div>
 		</div>
-	
+
 		<!-- 
 	 <div class="row">
 	     <div class="col-md-3 p-3" align="center">
