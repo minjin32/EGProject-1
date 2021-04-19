@@ -67,7 +67,6 @@ public class MemberDAO {
 				member.setShEcopoint(rset.getInt("SH_ECOPOINT"));
 				member.setMbJoindate(rset.getDate("MB_JOINDATE"));
 				member.setMbStatus(rset.getString("MB_STATUS"));
-				member.setGender(rset.getString("MB_GENDER"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

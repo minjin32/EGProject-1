@@ -14,46 +14,9 @@ public class MemberService {
 
 	private JDBCTemplate factory;
 
-	public MemberService() {
-		factory = JDBCTemplate.getConnection();
-	}
-	
-	public int register(Member member) {
-		int result = 0;
-		Connection conn = null;
-		
-		try {
-			conn = factory.createConnection();
-			result = new MemberDAO().register(conn, member);
-			
-			if (0 < result) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return result;
-	}
-	
-	
-	public Member select(String memberId, String memberPwd) {
-		Member member = null;
-		Connection conn = null;
-		
-		try {
-			conn = factory.createConnection();
-			member = new MemberDAO().select(conn, memberId, memberPwd);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return member;
-	}
+   public MemberService() {
+      factory = JDBCTemplate.getConnection();
+   }
 
 	// JoinViewServlet.java
 	// 아이디,패스워드에 맞는 정보 취득

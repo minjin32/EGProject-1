@@ -36,10 +36,11 @@ public class LoginViewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");
-		Member member = new MemberService().select(memberId, memberPw);
+		Member member = new MemberService().selectOneMember(memberId, memberPw);
 		if(member != null) {
 			// session은 request와는 다르게 유저가 접속할 때 생성되어 유지되는 객체
 			HttpSession session = request.getSession();
+			session.setAttribute("member", member);
 			session.setAttribute("memberId", member.getMbId());
 			response.sendRedirect("/index.jsp");
 		} else {
