@@ -22,8 +22,11 @@ public class ShopManageServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		ArrayList<OrderList> orderList = new OrderListService().
+		int shopNumber = Integer.parseInt(request.getParameter("shopNumber"));
+		ArrayList<OrderList> orderList = new OrderListService().selectListByShopNumber(shopNumber);
 		
+		request.setAttribute("orderList", orderList);
+		System.out.println(orderList.toString());
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/shop/shopManage.jsp");
 		view.forward(request, response);
 	}

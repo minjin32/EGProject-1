@@ -5,7 +5,8 @@
     pageEncoding="UTF-8"%>
 <% 
 	ArrayList<OrderList> orderList = (ArrayList<OrderList>) request.getAttribute("orderList");
-	SimpleDateFormat dateFormat = new SimpleDateFormat("MM-DD hh:mm");
+	SimpleDateFormat dateFormat = new SimpleDateFormat("MM월 dd일 ");
+	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
 %>
 <!DOCTYPE html>
 <html>
@@ -239,15 +240,15 @@
 			</div>
 			<hr>
 			<!-- 메뉴 탭 end -->
-			<div class="toggle-menu-view" style="display: none;"><!-- 전체메뉴 영역 start -->
+			<div class="toggle-menu-view"><!-- 전체메뉴 영역 start -->
 				<div class="row">
-					<div class="col-lg">
+					<div class="col-lg-6">
 						<div class="card m-4">
 							<div class="row p-4">
 								<div class="col-9">
 									<h5>전체메뉴세트</h5>
 									<p>14,000원</p>
-									<a href="#">장바구니 담기</a>
+									<p>25x25cm</p>
 								</div>
 								<div class="col-3">
 									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
@@ -255,29 +256,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg">
+					<div class="col-lg-6">
 						<div class="card m-4">
 							<div class="row p-4">
 								<div class="col-9">
 									<h5>전체메뉴세트</h5>
 									<p>14,000원</p>
-									<a href="#">장바구니 담기</a>
-								</div>
-								<div class="col-3">
-									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg">
-						<div class="card m-4 box-menu">
-							<div class="row p-4">
-								<div class="col-9">
-									<h5>전체메뉴세트</h5>
 									<p>14,000원</p>
-									<a href="#">장바구니 담기</a>
 								</div>
 								<div class="col-3">
 									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
@@ -285,7 +270,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg">
+					<div class="col-lg-6">
 						<div class="card m-4 box-menu">
 							<div class="row p-4">
 								<img class="rounded mx-auto d-block" style="width: 25%;" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴추가">
@@ -356,10 +341,15 @@
 			<div class="col-lg-9 pt-4">
 				<div class="tab-content" id="nav-tabContent">
 			    	<div class="tab-pane fade show active" id="list-order-waiting" role="tabpanel" aria-labelledby="list-order-home-list">
-			    		<% /*for (OrderList order : orderList) { %>
+			    		<% for (OrderList order : orderList) { %>
 						<div class="row"><!-- 주문내역 시작 -->
 							<div class="col-3 d-flex justify-content-center align-items-center">
-								<h1><%= dateFormat.format(order.getOrderDateTime()) %></h1>
+								<div class="row pe-1">
+									<h4><%= dateFormat.format(order.getOrderDateTime()) %></h4>
+								</div>
+								<div class="row">
+									<h4><%= timeFormat.format(order.getOrderDateTime()) %></h4>
+								</div>
 							</div>
 							<div class="col-6">
 								<h5><%= order.getMemberId() %></h5>
@@ -374,57 +364,7 @@
 							</div>
 						</div><!-- 주문내역 끝 -->
 						<hr>
-						<% } */%>
-						<div class="row"><!-- 주문내역 시작 -->
-							<div class="col-3 d-flex justify-content-center align-items-center">
-								<h1>00 : 00</h1>
-							</div>
-							<div class="col-6">
-								<h5>[메뉴 6개] 18,000원</h5>
-								<p>김치찌개 1개 / 된장찌개 2개 / 공기밥 x 3</p>
-								<h5>[요청사항]</h5>
-								<p>김치찌개 안 맵게 해주세요.</p>
-								<h5>[연락처]</h5>
-								<p>010-0000-0000</p>
-							</div>
-							<div class="col-3">
-								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
-							</div>
-						</div>
-						<hr>
-						<div class="row">
-							<div class="col-3 d-flex justify-content-center align-items-center">
-								<h1>00 : 00</h1>
-							</div>
-							<div class="col-6">
-								<h5>[메뉴 6개] 18,000원</h5>
-								<p>김치찌개 1개 / 된장찌개 2개 / 공기밥 x 3</p>
-								<h5>[요청사항]</h5>
-								<p>김치찌개 안 맵게 해주세요.</p>
-								<h5>[연락처]</h5>
-								<p>010-0000-0000</p>
-							</div>
-							<div class="col-3">
-								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
-							</div>
-						</div>
-						<hr>
-						<div class="row">
-							<div class="col-3 d-flex justify-content-center align-items-center">
-								<h1>00 : 00</h1>
-							</div>
-							<div class="col-6">
-								<h5>[메뉴 6개] 18,000원</h5>
-								<p>김치찌개 1개 / 된장찌개 2개 / 공기밥 x 3</p>
-								<h5>[요청사항]</h5>
-								<p>김치찌개 안 맵게 해주세요.</p>
-								<h5>[연락처]</h5>
-								<p>010-0000-0000</p>
-							</div>
-							<div class="col-3">
-								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
-							</div>
-						</div>
+						<% } %>
 					</div>
 			    	<div class="tab-pane fade" id="list-order-progressing" role="tabpanel" aria-labelledby="list-order-progressing-list">처리중</div>
 			    	<div class="tab-pane fade" id="list-order-completed" role="tabpanel" aria-labelledby="list-order-completed-list">완료</div>

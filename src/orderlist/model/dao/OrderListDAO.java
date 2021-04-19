@@ -11,6 +11,39 @@ import common.JDBCTemplate;
 import orderlist.model.vo.OrderList;
 
 public class OrderListDAO {
+	
+	public ArrayList<OrderList> selectListByShopNumber(Connection conn, int shopNumber) {
+		ArrayList<OrderList> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "SELECT * FROM MENUORDER WHERE SH_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, shopNumber);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<OrderList>();
+			while (rset.next()) {
+				OrderList order = new OrderList();
+				order.setOrderNo(rset.getInt("OR_NO"));
+				order.setShopNo(rset.getInt("SH_NO"));
+				order.setMemberId(rset.getString("MB_ID"));
+				order.setOrderPrice(rset.getInt("OR_PRICE"));
+				order.setOrderStatus(rset.getInt("OR_STATUS"));
+				order.setShopName(rset.getString("SH_NAME"));
+				order.setOrderDateTime(rset.getDate("SH_DATETIME"));
+				order.setOrderReject(rset.getString("OR_REJECT"));
+				order.setShopRuntime(rset.getString("SH_RUNTIME"));
+				order.setOrderMenu(rset.getString("OR_MENU"));
+				order.setPhone(rset.getString("OR_PHONE"));
+				order.setOrderMessage(rset.getString("OR_MESSAGE"));
+				list.add(order);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 
 	public OrderList selectByOrderList(Connection conn, int orderNo) {
 		PreparedStatement pstmt = null;

@@ -83,14 +83,17 @@ input {
 
 .box.int_id {
 	/* padding-right: 110px; */
+	
 }
 
 .box.int_pass {
 	/* padding-right: 40px; */
+	
 }
 
 .box.int_pass_check {
 	/* padding-right: 40px; */
+	
 }
 
 .pswdImg {
@@ -193,70 +196,31 @@ select {
 	</div>
 
 
-<<<<<<< HEAD
-        <!-- wrapper -->
-        <div id="wrapper" class="container">
-=======
 	<!-- wrapper -->
-	<div id="wrapper" class="containe">
->>>>>>> refs/remotes/origin/0418_kimnahye_and
-
-<<<<<<< HEAD
-            <!-- content-->
-            <form id="content" action="/member/join" method="POST">
-            <hr>
-=======
+	<div id="wrapper" class="container">
 		<!-- content-->
-		<div id="content">
+		<form id="content" action="/member/join" method="POST">
 			<hr>
->>>>>>> refs/remotes/origin/0418_kimnahye_and
-
-<<<<<<< HEAD
-                <!-- ID -->
-                <div>
-                    <h3 class="join_title">
-                        <label for="id">아이디</label>
-                    </h3>
-                    <span class="box int_id">
-                        <input type="text" id="id" name="memberId" class="int" maxlength="20">
-                        <span class="step_url"></span>
-                    </span>
-                    <span class="error_next_box"></span>
-                </div>
-=======
 			<!-- ID -->
 			<div>
 				<h3 class="join_title">
 					<label for="id">아이디</label>
 				</h3>
 				<span class="box int_id"> <input type="text" id="id"
-					class="int" maxlength="20">
+					name="memberId" class="int" maxlength="20"> <span
+					class="step_url"></span>
 				</span> <span class="error_next_box"></span>
 			</div>
->>>>>>> refs/remotes/origin/0418_kimnahye_and
-
-<<<<<<< HEAD
-                <!-- PW1 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
-                    <span class="box int_pass">
-                        <input type="text" id="pswd1" name="memberPw" class="int" maxlength="20">
-                        <span id="alertTxt">사용불가</span>
-                    </span>
-                    <span class="error_next_box"></span>
-                </div>
-=======
 			<!-- PW1 -->
 			<div>
 				<h3 class="join_title">
 					<label for="pswd1">비밀번호</label>
 				</h3>
 				<span class="box int_pass"> <input type="text" id="pswd1"
-					class="int" maxlength="20"> <span id="alertTxt">사용불가</span>
+					name="memberPw" class="int" maxlength="20"> <span
+					id="alertTxt">사용불가</span>
 				</span> <span class="error_next_box"></span>
 			</div>
->>>>>>> refs/remotes/origin/0418_kimnahye_and
-
 			<!-- PW2 -->
 			<div>
 				<h3 class="join_title">
@@ -266,28 +230,15 @@ select {
 					id="pswd2" class="int" maxlength="20">
 				</span> <span class="error_next_box"></span>
 			</div>
-
-<<<<<<< HEAD
-                <!-- NAME -->
-                <div>
-                    <h3 class="join_title"><label for="name">이름</label></h3>
-                    <span class="box int_name">
-                        <input type="text" id="name" name="memberName" class="int" maxlength="20">
-                    </span>
-                    <span class="error_next_box"></span>
-                </div>
-=======
 			<!-- NAME -->
 			<div>
 				<h3 class="join_title">
 					<label for="name">이름</label>
 				</h3>
 				<span class="box int_name"> <input type="text" id="name"
-					class="int" maxlength="20">
+					name="memberName" class="int" maxlength="20">
 				</span> <span class="error_next_box"></span>
 			</div>
->>>>>>> refs/remotes/origin/0418_kimnahye_and
-
 			<!-- 닉네임 -->
 			<div>
 				<h3 class="join_title">
@@ -321,87 +272,56 @@ select {
 					class="int" maxlength="100" placeholder="선택입력">
 				</span> <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
 			</div>
+			<!-- BIRTH_DD -->
+			<div id="bir_dd">
+				<span class="box"> <input type="text" id="dd" class="int"
+					maxlength="2" placeholder="일">
+				</span>
+			</div>
+			<span class="error_next_box"></span>
+			<!-- GENDER -->
+			<div>
+				<h3 class="join_title">
+					<label for="gender">성별</label>
+				</h3>
+				<span class="box gender_code"> <select id="gender"
+					class="sel">
+						<option>성별</option>
+						<option value="M">남자</option>
+						<option value="F">여자</option>
+				</select>
+				</span> <span class="error_next_box">필수 정보입니다.</span>
+			</div>
 
-<<<<<<< HEAD
-                        <!-- BIRTH_DD -->
-                        <div id="bir_dd">
-                            <span class="box">
-                                <input type="text" id="dd" class="int" maxlength="2" placeholder="일">
-                            </span>
-                        </div>
+			<!-- EMAIL -->
+			<div>
+				<h3 class="join_title">
+					<label for="email">본인확인 이메일<span class="optional">(선택)</span></label>
+				</h3>
+				<span class="box int_email"> <input type="text" id="email"
+					name="memberEmail" class="int" maxlength="100" placeholder="선택입력">
+				</span> <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
+			</div>
 
-                    </div>
-                    <span class="error_next_box"></span>    
-                </div>
-
-                <!-- GENDER -->
-                <div>
-                    <h3 class="join_title"><label for="gender">성별</label></h3>
-                    <span class="box gender_code">
-                        <select id="gender" class="sel">
-                            <option>성별</option>
-                            <option value="M">남자</option>
-                            <option value="F">여자</option>
-                        </select>                            
-                    </span>
-                    <span class="error_next_box">필수 정보입니다.</span>
-                </div>
-
-                <!-- EMAIL -->
-                <div>
-                    <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(선택)</span></label></h3>
-                    <span class="box int_email">
-                        <input type="text" id="email" name="memberEmail" class="int" maxlength="100" placeholder="선택입력">
-                    </span>
-                    <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
-                </div>
-
-                <!-- MOBILE -->
-                <div>
-                    <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
-                    <span class="box int_mobile">
-                        <input type="tel" id="mobile" name="memberPhone" class="int" maxlength="16" placeholder="전화번호 입력">
-                    </span>
-                    <span class="error_next_box"></span>    
-                </div>
-=======
 			<!-- MOBILE -->
 			<div>
 				<h3 class="join_title">
 					<label for="phoneNo">휴대전화</label>
 				</h3>
 				<span class="box int_mobile"> <input type="tel" id="mobile"
-					class="int" maxlength="16" placeholder="전화번호 입력">
+					name="memberPhone" class="int" maxlength="16" placeholder="전화번호 입력">
 				</span> <span class="error_next_box"></span>
 			</div>
->>>>>>> refs/remotes/origin/0418_kimnahye_and
-
-
-<<<<<<< HEAD
-                <!-- JOIN BTN-->
-                <div class="btn_area">
-                	<button type="submit" id="btnJoin" class="btn btn-success" style="text-decoration: none;">가입하기</button>
-                </div>
-=======
 			<!-- JOIN BTN-->
 			<div class="btn_area">
-				<button type="button" id="btnJoin" class="btn btn-success">
-					<span><a href="/member/login" style="text-decoration: none;">가입하기</a></span>
-				</button>
+				<button type="submit" id="btnJoin" class="btn btn-success"
+					style="text-decoration: none;">가입하기</button>
 			</div>
->>>>>>> refs/remotes/origin/0418_kimnahye_and
-
-
-<<<<<<< HEAD
-            </form> 
-            <!-- content-->
-=======
->>>>>>> refs/remotes/origin/0418_kimnahye_and
-
-		</div>
+		</form>
 		<!-- content-->
 
 	</div>
+	<!-- content-->
 
 	<!-- 아래 -->
 	<%@ include file="/WEB-INF/views/footer.jsp"%>

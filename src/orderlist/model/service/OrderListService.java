@@ -127,4 +127,20 @@ public class OrderListService {
 		return result;
 	}
 
+	public ArrayList<OrderList> selectListByShopNumber(int shopNumber) {
+		ArrayList<OrderList> list = null;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			list = new OrderListDAO().selectListByShopNumber(conn, shopNumber);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return list;
+	}
+
 }

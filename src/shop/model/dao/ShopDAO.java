@@ -36,26 +36,24 @@ public class ShopDAO {
 			pstmt.setInt(4, (start));
 			pstmt.setInt(5, (end));
 			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				list = new ArrayList<Shop>();
-				while (rset.next()) {
-					Shop shop = new Shop();
-					shop.setShopNumber(rset.getInt("SH_NO"));
-					shop.setMemberId(rset.getString("MB_ID"));
-					shop.setShopName(rset.getString("SH_NAME"));
-					shop.setShopBusinessNumber(rset.getString("SH_BUSINESS_NO"));
-					shop.setShopAddress1(rset.getString("SH_ADDRESS1"));
-					shop.setShopAddress2(rset.getString("SH_ADDRESS2"));
-					shop.setShopAddress3(rset.getString("SH_ADDRESS3"));
-					shop.setShopPhone(rset.getString("SH_PHONE"));
-					shop.setShopAddress(rset.getString("SH_ADDRESS"));
-					shop.setShopOwner(rset.getString("SH_OWNER"));
-					shop.setShopOpenTime(rset.getDate("SH_OPENTIME"));
-					shop.setShopCloseTime(rset.getDate("SH_CLOSETIME"));
-					shop.setShopIntroduce(rset.getString("SH_INTRODUCE"));
-					shop.setShopType(rset.getInt("SH_TYPE"));
-					list.add(shop);
-				}
+			list = new ArrayList<Shop>();
+			while (rset.next()) {
+				Shop shop = new Shop();
+				shop.setShopNumber(rset.getInt("SH_NO"));
+				shop.setMemberId(rset.getString("MB_ID"));
+				shop.setShopName(rset.getString("SH_NAME"));
+				shop.setShopBusinessNumber(rset.getString("SH_BUSINESS_NO"));
+				shop.setShopAddress1(rset.getString("SH_ADDRESS1"));
+				shop.setShopAddress2(rset.getString("SH_ADDRESS2"));
+				shop.setShopAddress3(rset.getString("SH_ADDRESS3"));
+				shop.setShopPhone(rset.getString("SH_PHONE"));
+				shop.setShopAddress(rset.getString("SH_ADDRESS"));
+				shop.setShopOwner(rset.getString("SH_OWNER"));
+				shop.setShopOpenTime(rset.getDate("SH_OPENTIME"));
+				shop.setShopCloseTime(rset.getDate("SH_CLOSETIME"));
+				shop.setShopIntroduce(rset.getString("SH_INTRODUCE"));
+				shop.setShopType(rset.getInt("SH_TYPE"));
+				list.add(shop);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
