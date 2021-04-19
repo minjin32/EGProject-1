@@ -183,7 +183,7 @@ public class MypageQaDAO {
 	public ArrayList<MypageQaData> selectSearchList(Connection conn, String search, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QA_NO DESC) AS NUM, QA_NO, QA_TITLE, QA_CONTENT, MB_ID, QA_DATETIME FROM QNA WHERE QA_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QA_NO DESC) AS NUM, QA_NO, MB_ID, QA_TITLE, QA_CONTENT, QA_DATETIME FROM QNA WHERE QA_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<MypageQaData> mqList = null;
 		int recordCountPerPage = 5;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
