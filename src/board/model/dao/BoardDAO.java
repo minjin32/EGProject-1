@@ -15,20 +15,24 @@ public class BoardDAO {
 	public int insertBoard(Connection conn, Board board) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, ?)";
+		String query = "INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?, SYSTIMESTAMP, ?, ?, ?, ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, board.getMemberId());
 			pstmt.setString(2, board.getBoardTitle());
 			pstmt.setString(3, board.getBoardContent());
-			pstmt.setString(4, board.getFileDir());
+			pstmt.setInt(4, board.getNoStatus());
+			pstmt.setString(5, board.getImageName());
+			pstmt.setString(6, board.getImagePath());
+			pstmt.setLong(7, board.getImageSize());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
+		System.out.println("ì•ˆë…• ë‚œ ë‹¤ì˜¤ì–Œ"+result);
 		return result;
 	}
 	
@@ -42,7 +46,7 @@ public class BoardDAO {
 			pstmt.setString(1, board.getMemberId());
 			pstmt.setString(2, board.getBoardTitle());
 			pstmt.setString(3, board.getBoardContent());
-			pstmt.setString(4, board.getFileDir());
+			pstmt.setString(4, board.getImagePath());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -70,8 +74,7 @@ public class BoardDAO {
 				board.setMemberId(rset.getString("MB_ID"));
 				board.setBoardTitle(rset.getString("BO_TITLE"));
 				board.setBoardContent(rset.getString("BO_CONTENT"));
-				board.setBoardDate(rset.getDate("BI_DATETIME"));
-				board.setFileDir(rset.getString("FI_DIR"));
+	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -103,8 +106,7 @@ public class BoardDAO {
 				board.setMemberId(rset.getString("MB_ID"));
 				board.setBoardTitle(rset.getString("BO_TITLE"));
 				board.setBoardContent(rset.getString("BO_CONTENT"));
-				board.setBoardDate(rset.getDate("BO_DATETIME"));
-				board.setFileDir(rset.getString("FI_DIR"));
+				
 				nList.add(board);
 			}
 		} catch (SQLException e) {
@@ -201,8 +203,7 @@ public class BoardDAO {
 				board.setMemberId(rset.getString("MB_ID"));
 				board.setBoardTitle(rset.getString("BO_TITLE"));
 				board.setBoardContent(rset.getString("BO_CONTENT"));
-				board.setBoardDate(rset.getDate("BO_DATETIME"));
-				board.setFileDir(rset.getString("FI_DIR"));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -244,13 +245,13 @@ public class BoardDAO {
 		}
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) {
-			sb.append("<a href='/notice/search?searchKeyword="+search+"&currentPage="+(startNavi-1)+"'> ÀÌÀü </a>");
+			sb.append("<a href='/notice/search?searchKeyword="+search+"&currentPage="+(startNavi-1)+"'> ï¿½ï¿½ï¿½ï¿½ </a>");
 		}
 		for(int i = startNavi; i <= endNavi; i++) {
 			sb.append("<a href='/notice/search?searchKeyword="+search+"&currentPage="+i+"'>" + i + " </a>");
 		}
 		if(needNext) {
-			sb.append("<a href='/notice/search?searchKeyword="+search+"&currentPage="+(endNavi+1)+"'> ´ÙÀ½ </a>");
+			sb.append("<a href='/notice/search?searchKeyword="+search+"&currentPage="+(endNavi+1)+"'> ï¿½ï¿½ï¿½ï¿½ </a>");
 		}
 		return sb.toString();
 	}

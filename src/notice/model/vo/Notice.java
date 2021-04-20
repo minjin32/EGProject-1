@@ -10,89 +10,74 @@ public class Notice {
 	private String userId;
 	private String contents;
 	private Date regDate;
-	private int no_status;
-	private String image_name;
-	private String image_path;
-	private long image_size;
+	private int noStatus;
+	private String imageName;
+	private String imagePath;
+	private long imageSize;
 	
+	public Notice() {};
 	
 	public int getNoticeNo() {
 		return noticeNo;
 	}
-
 	public void setNoticeNo(int noticeNo) {
 		this.noticeNo = noticeNo;
 	}
-
 	public String getSubject() {
 		return subject;
 	}
-
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-
 	public String getUserId() {
 		return userId;
 	}
-
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 	public String getContents() {
 		return contents;
 	}
-
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-
 	public Date getRegDate() {
 		return regDate;
 	}
-
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-
-	public int getNo_status() {
-		return no_status;
+	public int getNoStatus() {
+		return noStatus;
 	}
-
-	public void setNo_status(int no_status) {
-		this.no_status = no_status;
+	public void setNoStatus(int noStatus) {
+		this.noStatus = noStatus;
 	}
-
-	public String getImage_name() {
-		return image_name;
+	public String getImageName() {
+		return imageName;
 	}
-
-	public void setImage_name(String image_name) {
-		this.image_name = image_name;
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
-
-	public String getImage_path() {
-		return image_path;
+	public String getImagePath() {
+		return imagePath;
 	}
-
-	public void setImage_path(String image_path) {
-		this.image_path = image_path;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
-
-	public long getImage_size() {
-		return image_size;
+	public long getImageSize() {
+		return imageSize;
 	}
-
-	public void setImage_size(long image_size) {
-		this.image_size = image_size;
+	public void setImageSize(long imageSize) {
+		this.imageSize = imageSize;
 	}
-
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", subject=" + subject + ", userId=" + userId + ", contents=" + contents
-				+ ", regDate=" + regDate + ", no_status=" + no_status + ", image_name=" + image_name + ", image_path="
-				+ image_path + ", image_size=" + image_size + "]";
+				+ ", regDate=" + regDate + ", noStatus=" + noStatus + ", imageName=" + imageName + ", imagePath="
+				+ imagePath + ", imageSize=" + imageSize + "]";
 	}
+	
+	
 
 }
