@@ -41,22 +41,33 @@ a {
 				<!-- nav 오른쪽 -->
 				<ul class="navbar-nav mr-auto mb-2 mb-lg-0" id="navi">
 					<% if (session.getAttribute("memberId") != null) { %>
-					<li class="nav-item"><a class="nav-link active" href="/mypage">마이페이지</a>
-					</li>
+					<li class="nav-item"><a class="nav-link active"
+						href="/member/logout">로그아웃</a></li>
 					<% } else { %>
 					<li class="nav-item"><a class="nav-link active"
 						href="/member/login">로그인</a></li>
 					<% } %>
-					<li class="nav-item"><a class="nav-link active"
-						href="/test/login">로그인(테스트)</a></li>
-					<li class="nav-item"><a class="nav-link active" href="/mypage">마이페이지(테스트)</a>
+					<% 
+					if (session.getAttribute("memberType") != null) { 
+						char memberType = (char) session.getAttribute("memberType");
+						if (memberType == '0') {	
+					%>
+					<li class="nav-item"><a class="nav-link active" href="/mypage">마이페이지</a>
 					</li>
+					<%
+						} else if (memberType == '1') { 
+					%>
 					<li class="nav-item"><a class="nav-link active"
-						href="/shop/manage">사업자페이지(테스트)</a></li>
-					<% if (session.getAttribute("memberId") != null) { %>
-					<li class="nav-item"><a class="nav-link active"
-						href="/member/logout">로그아웃(테스트)</a></li>
-					<% } %>
+						href="/shop/manage">사업자페이지</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/mypage">마이페이지</a>
+					</li>
+					<%
+						} else if (memberType == '9') { %>
+					<li class="nav-item"><a class="nav-link active" href="/admin">관리자페이지</a></li>
+					<%									
+						}
+					} 
+					%>
 				</ul>
 				<!-- nav 오른쪽 끝 -->
 			</div>

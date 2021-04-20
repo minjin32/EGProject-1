@@ -1,3 +1,5 @@
+<%@page import="shop.model.vo.Shop"%>
+<%@page import="menu.model.vo.MenuVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="orderlist.model.vo.OrderList"%>
@@ -5,8 +7,26 @@
     pageEncoding="UTF-8"%>
 <% 
 	ArrayList<OrderList> orderList = (ArrayList<OrderList>) request.getAttribute("orderList");
+	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>) request.getAttribute("menuList");
+	Shop shop = (Shop) request.getAttribute("shop");
+	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("MM월 dd일 ");
 	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
+	
+	int waiting = 0;
+	int processing = 0;
+	int completed = 0;
+	
+	for (OrderList order : orderList) {
+		if (order.getOrderStatus() == 0) {
+			waiting ++;
+		} else if (processing == 1) {
+			processing ++;
+		} else if (completed == 2) {
+			completed ++;
+		}
+			
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -45,21 +65,34 @@
 		height:100%;
 	}
 	
+	.toggle-main-tab {
+		color:#black; height:100%;
+	}
+	.toggle-main-tab.active {
+		color:white; background-color:#0e2c01;
+	}
+	
 </style>
 <script>
 	window.addEventListener("DOMContentLoaded", function() {
 		
-		// 메인 탭 토글
+		// 토글 탭, 토글 뷰 가져오기
 		var mainTabs = document.getElementsByClassName("toggle-main-tab");
 		var mainViews = document.getElementsByClassName("toggle-main-view");
+		
+		// 토글에 기능 추가
 		for (var i = 0; i < mainTabs.length; i ++) {
 			mainTabs[i].addEventListener('click', toggleMainTabs);
 		}
+		
+		// 토글 func
 		function toggleMainTabs() {
 			for (var i = 0; i < mainViews.length; i ++) {
 				mainViews[i].style.display = "none";
+				mainTabs[i].classList.remove('active');
 				if (mainTabs[i] == this) {
 					mainViews[i].style.display = "";
+					mainTabs[i].classList.add('active');
 				}
 			}
 		};
@@ -68,7 +101,6 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/nav.jsp" %>
-	
 	<div class="modal fade" id="modal-accept" tabindex="-1"><!-- 주문 모달 start -->
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -178,10 +210,10 @@
 		<div class="container submn">
 			<ul class="nav tab-content">
 				<li class="nav-item">
-					<a class="nav-link toggle-main-tab" href="#" style="color:#f7f5ed; background-color:#0e2c01; height:100%">매장 관리</a>
+					<a class="nav-link toggle-main-tab active" href="#">주문 접수</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link toggle-main-tab" href="#" style="color:black;">주문 접수</a>
+					<a class="nav-link toggle-main-tab" href="#">매장 관리</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-bs-target="#modal-accept" data-bs-toggle="modal" style="color:black;">테스트(주문접수)</a>
@@ -194,93 +226,6 @@
 	</div>
 	
 	<div class="container-lg">
-		<div class="toggle-main-view" style="display: none;"><!-- 매장관리 start -->
-			<div class="row mt-4">
-				<div class="col-lg-6 ps-5">
-					<div class="row">
-						<h5>매장명</h5>
-						<p class="ps-5 lh-1">맛집</p>
-					</div>
-					<div class="row">
-						<h5>매장정보</h5>
-						<p class="ps-5 lh-1">전화번호 : 000-0000-0000</p>
-						<p class="ps-5 lh-1">주소 : 서울특별시 종로구</p>
-						<p class="ps-5 lh-1">대표자명 : 김길동</p>
-						<p class="ps-5 lh-1">사업자등록번호 : 000-00-00000</p>
-					</div>
-					<div class="row">
-						<h5>영업시간</h5>
-						<p class="ps-5 lh-1">월요일 ~ 금요일 9:00 ~ 21:00</p>
-					</div>
-					<div class="row">
-						<h5>매장소개</h5>
-						<p class="ps-5 lh-1">안녕하세요. 맛집입니다.</p>
-					</div>
-					<div class="row">
-						<h5>원산지 정보</h5>
-						<p class="ps-5 lh-1">사장님: 국내산, 쌀: 국내산, 돼지고기: 스페인산</p>
-					</div>
-				</div>
-				<div class="col-lg-6 pe-5">
-					<div class="row">
-						<h5>매장 메인사진</h5>
-					</div>
-					<div class="row pe-5">
-						<img class="ms-5 py-2" style="border-radius: 50px; max-height: 200px;" src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" alt="">
-						<img class="ms-5 py-2" style="border-radius: 50px; max-height: 200px;" src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" alt="">
-					</div>
-				</div>
-			</div>
-			
-			<br>
-			
-			<!-- 메뉴 탭 start -->
-			<div class="d-flex ">
-				<div class="px-4 d-flex justify-content-start toggle-menu-tab"><a href="#">전체메뉴</a></div>
-			</div>
-			<hr>
-			<!-- 메뉴 탭 end -->
-			<div class="toggle-menu-view"><!-- 전체메뉴 영역 start -->
-				<div class="row">
-					<% for (OrderList order : orderList) { %>
-					<div class="col-lg-6">
-						<div class="card m-4">
-							<div class="row p-4">
-								<div class="col-9">
-									<h5><%= order.getOrderMenu() %></h5>
-									<p><%= order.getOrderPrice() %>원</p>
-								</div>
-								<div class="col-3">
-									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
-								</div>
-							</div>
-						</div>
-					</div>
-					<% } %>
-					<div class="col-lg-6">
-						<div class="card m-4">
-							<div class="row p-4">
-								<div class="col-9">
-									<h5>전체메뉴세트</h5>
-									<p>14,000원</p>
-								</div>
-								<div class="col-3">
-									<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴 이미지">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="card m-4 box-menu">
-							<div class="row p-4">
-								<img class="rounded mx-auto d-block" style="width: 25%;" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴추가">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><!-- 전체메뉴 영역 end -->
-		</div><!-- 매장관리 end -->
-		
 		
 		<div class="row toggle-main-view"><!-- 주문접수 start -->
 		<div class="row d-lg-none d-block py-3"><!-- 모바일 탭 start -->
@@ -295,13 +240,13 @@
 			
 			<div class="col-lg-3 pt-4 d-none d-lg-block"><!-- PC 탭 start -->
 				<div class="list-group" id="list-tab" role="tablist">
-			    	<div class="list-group-item list-group-item-action active" id="list-order-waiting-list"data-bs-toggle="list" href="#list-order-waiting"  role="tab" aria-controls="order-waiting">
+			    	<div class="list-group-item list-group-item-action active" id="list-order-waiting-list" data-bs-toggle="list" href="#list-order-waiting"  role="tab" aria-controls="order-waiting">
 			    		<div class="row d-flex justify-content-center align-items-center" style="height: 100%;">
 			    			<div class="col-8">
 			    				<h3>접수대기</h3>
 			    			</div>
 			    			<div class="col-4">
-			    				<h1>3</h1>
+			    				<h1><%= waiting %></h1>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -311,7 +256,7 @@
 			    				<h3>처리중</h3>
 			    			</div>
 			    			<div class="col-4">
-			    				<h1>5</h1>
+			    				<h1><%= processing %></h1>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -321,7 +266,7 @@
 			    				<h3>완료</h3>
 			    			</div>
 			    			<div class="col-4">
-			    				<h1>20</h1>
+			    				<h1><%= completed %></h1>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -331,7 +276,7 @@
 			    				<h3>전체</h3>
 			    			</div>
 			    			<div class="col-4">
-			    				<h1>28</h1>
+			    				<h1><%= waiting + processing + completed %></h1>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -341,7 +286,103 @@
 			<div class="col-lg-9 pt-4">
 				<div class="tab-content" id="nav-tabContent">
 			    	<div class="tab-pane fade show active" id="list-order-waiting" role="tabpanel" aria-labelledby="list-order-home-list">
-			    		<% for (OrderList order : orderList) { %>
+			    		<% 
+			    		for (OrderList order : orderList) { 
+			    			if (order.getOrderStatus() == 0) {		
+			    		%>
+						<div class="row"><!-- 주문내역 시작 -->
+							<div class="col-3 d-flex justify-content-center align-items-center">
+								<div class="row pe-1">
+									<h4><%= dateFormat.format(order.getOrderDateTime()) %></h4>
+								</div>
+								<div class="row">
+									<h4><%= timeFormat.format(order.getOrderDateTime()) %></h4>
+								</div>
+							</div>
+							<div class="col-6">
+								<h5><%= order.getMemberId() %></h5>
+								<p><%= order.getOrderMenu() %></p>
+								<h5>[요청사항]</h5>
+								<p><%= order.getOrderMessage() %></p>
+								<h5>[연락처]</h5>
+								<p><%= order.getPhone() %></p>
+							</div>
+							<div class="col-3">
+								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
+							</div>
+						</div><!-- 주문내역 끝 -->
+						<hr>
+						<% 
+			    			}
+						} 
+						%>
+					</div>
+			    	<div class="tab-pane fade" id="list-order-progressing" role="tabpanel" aria-labelledby="list-order-progressing-list">
+			    		<% 
+			    		for (OrderList order : orderList) { 
+			    			if (order.getOrderStatus() == 1) {		
+			    		%>
+						<div class="row"><!-- 주문내역 시작 -->
+							<div class="col-3 d-flex justify-content-center align-items-center">
+								<div class="row pe-1">
+									<h4><%= dateFormat.format(order.getOrderDateTime()) %></h4>
+								</div>
+								<div class="row">
+									<h4><%= timeFormat.format(order.getOrderDateTime()) %></h4>
+								</div>
+							</div>
+							<div class="col-6">
+								<h5><%= order.getMemberId() %></h5>
+								<p><%= order.getOrderMenu() %></p>
+								<h5>[요청사항]</h5>
+								<p><%= order.getOrderMessage() %></p>
+								<h5>[연락처]</h5>
+								<p><%= order.getPhone() %></p>
+							</div>
+							<div class="col-3">
+								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
+							</div>
+						</div><!-- 주문내역 끝 -->
+						<hr>
+						<% 
+			    			}
+						} 
+						%>
+			    	</div>
+			    	<div class="tab-pane fade" id="list-order-completed" role="tabpanel" aria-labelledby="list-order-completed-list">
+			    	<% 
+			    		for (OrderList order : orderList) { 
+			    			if (order.getOrderStatus() == 2) {		
+			    		%>
+						<div class="row"><!-- 주문내역 시작 -->
+							<div class="col-3 d-flex justify-content-center align-items-center">
+								<div class="row pe-1">
+									<h4><%= dateFormat.format(order.getOrderDateTime()) %></h4>
+								</div>
+								<div class="row">
+									<h4><%= timeFormat.format(order.getOrderDateTime()) %></h4>
+								</div>
+							</div>
+							<div class="col-6">
+								<h5><%= order.getMemberId() %></h5>
+								<p><%= order.getOrderMenu() %></p>
+								<h5>[요청사항]</h5>
+								<p><%= order.getOrderMessage() %></p>
+								<h5>[연락처]</h5>
+								<p><%= order.getPhone() %></p>
+							</div>
+							<div class="col-3">
+								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
+							</div>
+						</div><!-- 주문내역 끝 -->
+						<hr>
+						<% 
+			    			}
+						} 
+						%>
+					</div>
+			    	<div class="tab-pane fade" id="list-order-all" role="tabpanel" aria-labelledby="list-order-all-list">
+						<% for (OrderList order : orderList) { %>
 						<div class="row"><!-- 주문내역 시작 -->
 							<div class="col-3 d-flex justify-content-center align-items-center">
 								<div class="row pe-1">
@@ -366,16 +407,89 @@
 						<hr>
 						<% } %>
 					</div>
-			    	<div class="tab-pane fade" id="list-order-progressing" role="tabpanel" aria-labelledby="list-order-progressing-list">처리중</div>
-			    	<div class="tab-pane fade" id="list-order-completed" role="tabpanel" aria-labelledby="list-order-completed-list">완료</div>
-			    	<div class="tab-pane fade" id="list-order-all" role="tabpanel" aria-labelledby="list-order-all-list">전체</div>
+			    	<!-- 
 			    	<div class="row mt-4">
 			    		<input type="button" class="btn btn-primary mx-auto" value="더 불러오기" style="width: 97.5%;">
 			    	</div>
-			    	
+			    	 -->
 			    </div>
 			</div>
 		</div><!-- 주문접수 end -->
+		
+		<div class="toggle-main-view" style="display: none;"><!-- 매장관리 start -->
+			<div class="row mt-4">
+				<div class="col-lg-6 ps-5">
+					<div class="row">
+						<h5>매장명</h5>
+						<p class="ps-5 lh-1"><%= shop.getShopName() %></p>
+					</div>
+					<div class="row">
+						<h5>매장정보</h5>
+						<p class="ps-5 lh-1">전화번호 : <%= shop.getShopPhone() %></p>
+						<p class="ps-5 lh-1">주소 : <%= shop.getShopAddress1() + " " + shop.getShopAddress2() + " " + shop.getShopAddress3() %></p>
+						<p class="ps-5 lh-1">대표자명 : <%= shop.getShopOwner() %></p>
+						<p class="ps-5 lh-1">사업자등록번호 : <%= shop.getShopBusinessNumber() %></p>
+					</div>
+					<div class="row">
+						<h5>영업시간</h5>
+						<p class="ps-5 lh-1"><%= timeFormat.format(shop.getShopOpenTime()) + " ~ " + timeFormat.format(shop.getShopCloseTime()) %></p>
+					</div>
+					<div class="row">
+						<h5>매장소개</h5>
+						<p class="ps-5 lh-1"><%= shop.getShopIntroduce() %></p>
+					</div>
+					<div class="row">
+						<h5>원산지 정보</h5>
+						<p class="ps-5 lh-1"><%= shop.getShopOrigin() %></p>
+					</div>
+				</div>
+				<div class="col-lg-6 pe-5">
+					<div class="row">
+						<h5>매장 메인사진</h5>
+					</div>
+					<div class="row pe-5">
+						<img class="ms-5 py-2" style="border-radius: 50px; max-height: 200px;" src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" alt="">
+						<img class="ms-5 py-2" style="border-radius: 50px; max-height: 200px;" src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" alt="">
+					</div>
+				</div>
+			</div>
+			
+			<br>
+			
+			<!-- 메뉴 탭 start -->
+			<div class="d-flex ">
+				<div class="px-4 d-flex justify-content-start toggle-menu-tab"><a href="#">전체메뉴</a></div>
+			</div>
+			<hr>
+			<!-- 메뉴 탭 end -->
+			<div class="toggle-menu-view"><!-- 전체메뉴 영역 start -->
+				<div class="row">
+					<% for (MenuVO menu : menuList) { %>
+					<div class="col-lg-6">
+						<div class="card m-4">
+							<div class="row p-4">
+								<div class="col-9">
+									<h5><%= menu.getName() %></h5>
+									<p><%= menu.getBowlSize() %>(cm)</p>
+									<p><%= menu.getPrice() %>원</p>
+								</div>
+								<div class="col-3">
+									<img class="w-100" src="<%=request.getContextPath()%>/files/images/<%= menu.getImagePath() %>" alt="메뉴 이미지">
+								</div>
+							</div>
+						</div>
+					</div>
+					<% } %>
+					<div class="col-lg-6">
+						<div class="card m-4 box-menu">
+							<div class="row p-4">
+								<img class="rounded mx-auto d-block" style="width: 25%;" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴추가">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- 전체메뉴 영역 end -->
+		</div><!-- 매장관리 end -->
 		
 	</div><!-- container -->
 	

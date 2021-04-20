@@ -167,7 +167,7 @@ public class ShopDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Menu> list = null;
-		String query = "SELECT * FROM SHOP JOIN MENU USING(SH_NO) WHERE SH_NO =?;";
+		String query = "SELECT * FROM SHOP JOIN MENU USING(SH_NO) WHERE SH_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -319,6 +319,43 @@ public class ShopDAO {
 		}
 		
 		return sb.toString();
+	}
+
+	public Shop seletOneByOwnerId(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM SHOP WHERE MB_ID = ?";
+		Shop shop = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				shop = new Shop();
+				shop.setShopNumber(rset.getInt("SH_NO"));
+				shop.setMemberId(rset.getString("MB_ID"));
+				shop.setShopName(rset.getString("SH_NAME"));
+				shop.setShopBusinessNumber(rset.getString("SH_BUSINESS_NO"));
+				shop.setShopAddress1(rset.getString("SH_ADDRESS1"));
+				shop.setShopAddress2(rset.getString("SH_ADDRESS2"));
+				shop.setShopAddress3(rset.getString("SH_ADDRESS3"));
+				shop.setShopPhone(rset.getString("SH_PHONE"));
+				shop.setShopAddress(rset.getString("SH_ADDRESS"));
+				shop.setShopOwner(rset.getString("SH_OWNER"));
+				shop.setShopOpenTime(rset.getDate("SH_OPENTIME"));
+				shop.setShopCloseTime(rset.getDate("SH_CLOSETIME"));
+				shop.setShopIntroduce(rset.getString("SH_INTRODUCE"));
+				shop.setShopOrigin(rset.getString("SH_ORIGIN"));
+				shop.setShopType(rset.getInt("SH_TYPE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return shop;
 	}
 
 }

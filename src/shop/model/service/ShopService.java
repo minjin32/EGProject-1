@@ -141,5 +141,20 @@ public class ShopService {
 		
 		return pd;
 	}
+
+	public Shop selectOneByOwnerId(String memberId) {
+		Shop shop = null;
+		Connection conn = null;
+		try {
+			conn = factory.createConnection();
+			shop = new ShopDAO().seletOneByOwnerId(conn, memberId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return shop;
+	}
 	
 }
