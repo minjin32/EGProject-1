@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import notice.model.vo.Notice;
+import notice.model.vo.NoticeComment;
 
 public class NoticeDAO {
 	
@@ -21,10 +22,10 @@ public class NoticeDAO {
 			pstmt.setString(1, notice.getUserId());
 			pstmt.setString(2, notice.getSubject());
 			pstmt.setString(3, notice.getContents());
-			pstmt.setInt(4, notice.getNo_status());
-			pstmt.setString(5, notice.getImage_name());
-			pstmt.setString(6, notice.getImage_path());
-			pstmt.setLong(7, notice.getImage_size());
+			pstmt.setInt(4, notice.getNoStatus());
+			pstmt.setString(5, notice.getImageName());
+			pstmt.setString(6, notice.getImagePath());
+			pstmt.setLong(7, notice.getImageSize());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,10 +56,10 @@ public class NoticeDAO {
 				notice.setUserId(rset.getString("MB_ID"));
 				notice.setSubject(rset.getString("NO_TITLE"));
 				notice.setContents(rset.getString("NO_CONTENT"));
-				notice.setNo_status(rset.getInt("NO_STATUS"));
-				notice.setImage_name(rset.getString("IMAGE_NAME"));
-				notice.setImage_path(rset.getString("IMAGE_PATH"));
-				notice.setImage_size(rset.getLong("IMAGE_SIZE"));
+				notice.setNoStatus(rset.getInt("NO_STATUS"));
+				notice.setImageName(rset.getString("IMAGE_NAME"));
+				notice.setImagePath(rset.getString("IMAGE_PATH"));
+				notice.setImageSize(rset.getLong("IMAGE_SIZE"));
 				nList.add(notice);
 			}
 		} catch (SQLException e) {
@@ -81,7 +82,7 @@ public class NoticeDAO {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, notice.getSubject());
 			pstmt.setString(2, notice.getContents());
-			pstmt.setInt(3, notice.getNo_status());
+			pstmt.setInt(3, notice.getNoStatus());
 			pstmt.setInt(4, notice.getNoticeNo());
 			
 			result = pstmt.executeUpdate();
@@ -112,10 +113,10 @@ public class NoticeDAO {
 				notice.setSubject(rset.getString("NO_TITLE"));
 				notice.setContents(rset.getString("NO_CONTENT"));
 				notice.setRegDate(rset.getDate("NO_DATETIME"));
-				notice.setNo_status(rset.getInt("NO_STATUS"));
-				notice.setImage_name(rset.getString("IMAGE_NAME"));
-				notice.setImage_path(rset.getString("IMAGE_PATH"));
-				notice.setImage_size(rset.getLong("IMAGE_SIZE"));
+				notice.setNoStatus(rset.getInt("NO_STATUS"));
+				notice.setImageName(rset.getString("IMAGE_NAME"));
+				notice.setImagePath(rset.getString("IMAGE_PATH"));
+				notice.setImageSize(rset.getLong("IMAGE_SIZE"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -220,7 +221,7 @@ public class NoticeDAO {
 				notice.setUserId(rset.getString("MB_ID"));
 				notice.setSubject(rset.getString("NO_TITLE"));
 				notice.setContents(rset.getString("NO_CONTENT"));
-				notice.setNo_status(rset.getInt("NO_STATUS"));
+				notice.setNoStatus(rset.getInt("NO_STATUS"));
 				nList.add(notice);
 			}
 		} catch (SQLException e) {
@@ -301,6 +302,32 @@ public class NoticeDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return recordTotalCount;
+	}
+	
+	public int deleteNotice(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM NOTICE WHERE NO_NO =?";
+		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	public int inserNoticeComment(Connection conn, NoticeComment noComment) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO NO_COMMENT(SEQ_BO_COMMENT.NEXTVAL,?,?,?,?,SYSDATE);";
+		
+		return 0;
 	}
 	
 }

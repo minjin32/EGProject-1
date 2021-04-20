@@ -60,15 +60,15 @@ public class NoticeWriteServlet extends HttpServlet {
 		Timestamp uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
 		
 		HttpSession session = request.getSession();
-//		if(session != null && (session.getAttribute("userId")) != null) {
+		if(request.getSession().getAttribute("memberId") != null) {
 			String userId = (String)session.getAttribute("userId");
 			Notice notice = new Notice();
 			notice.setSubject(subject);
 			notice.setContents(content);
 			notice.setUserId(userId);
-			notice.setImage_name(fileName);
-			notice.setImage_path(filePath);
-			notice.setImage_size(fileSize);
+			notice.setImageName(fileName);
+			notice.setImagePath(filePath);
+			notice.setImageSize(fileSize);
 			
 			
 			int result = new NoticeService().insertNotice(notice);
@@ -86,17 +86,17 @@ public class NoticeWriteServlet extends HttpServlet {
 				out.flush();
 				out.close();
 			}
-//		}else {
-//			response.setContentType("text/html; charset=utf-8");
-//			PrintWriter out = response.getWriter();
-//			String msg = "로그인을 해주세요."; // 오류 메세지
-//			out.println("<script>");
-//			out.println("alert('" + msg + "');");
-//			out.println("history.back();");
-//			out.println("</script>");
-//			out.flush();
-//			out.close();
-//		}
+		}else {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "로그인을 해주세요."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
+		}
 	}
 	
 }

@@ -1,6 +1,7 @@
 package board.model.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Board {
 
@@ -8,8 +9,11 @@ public class Board {
 	private String memberId;
 	private String boardTitle;
 	private String boardContent;
-	private Date boardDate;
-	private String fileDir;
+	private Timestamp boardDate;
+	private int noStatus;
+	private String imageName;
+	private String imagePath;
+	private long imageSize;
 	
 	public Board() {}
 
@@ -45,25 +49,52 @@ public class Board {
 		this.boardContent = boardContent;
 	}
 
-	public Date getBoardDate() {
+	public Timestamp getBoardDate() {
 		return boardDate;
 	}
 
-	public void setBoardDate(Date boardDate) {
+	public void uploadTime(Timestamp boardDate) {
 		this.boardDate = boardDate;
 	}
 
-	public String getFileDir() {
-		return fileDir;
+	public int getNoStatus() {
+		return noStatus;
 	}
 
-	public void setFileDir(String fileDir) {
-		this.fileDir = fileDir;
+	public void setNoStatus(int noStatus) {
+		this.noStatus = noStatus;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public long getImageSize() {
+		return imageSize;
+	}
+
+	public void setImageSize(long imageSize) {
+		this.imageSize = imageSize;
 	}
 
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", memberId=" + memberId + ", boardTitle=" + boardTitle + ", boardContent="
-				+ boardContent + ", boardDate=" + boardDate + ", fileDir=" + fileDir + "]";
+				+ boardContent + ", boardDate=" + boardDate + ", noStatus=" + noStatus + ", imageName=" + imageName
+				+ ", imagePath=" + imagePath + ", imageSize=" + imageSize + "]";
 	}
-}
+
+	}
+	

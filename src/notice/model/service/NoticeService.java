@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import notice.model.dao.NoticeDAO;
 import notice.model.vo.Notice;
+import notice.model.vo.NoticeComment;
 import notice.model.vo.NoticePageData;
 
 public class NoticeService {
@@ -17,7 +18,6 @@ public class NoticeService {
 		factory = JDBCTemplate.getConnection();
 	}
 
-	// ����Ʈ �� (����Ʈ ) ��ü ���� �������� �޼ҵ�
 	public NoticePageData printAllList(int currentPage) {
 		Connection conn = null;
 		NoticePageData pd = new NoticePageData();
@@ -70,7 +70,6 @@ public class NoticeService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
-		System.out.println(notice+"난서비스얌");
 		return notice;
 	}
 	
@@ -109,4 +108,35 @@ public class NoticeService {
 		} 
 		return pd;	
 	}
+	
+	public int deleteNotice(int noticeNo) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new NoticeDAO().deleteNotice(conn, noticeNo);
+			if(result >0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	
+	public int registerNoticeComment(NoticeComment noComment) {
+		Connection conn = null;
+		int result = 0;
+		
+		//conn = factory.createConnection();
+		//result = new NoticeDAO()
+		
+		return 0;
+	}
+	
 }
