@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import orderlist.model.service.OrderListService;
-import orderlist.model.vo.OrderList;
+import order.model.service.OrderService;
+import order.model.vo.OrderVO;
 
 /**
  * Servlet implementation class OrderListEnrollServlet
@@ -22,7 +22,7 @@ public class OrderListEnrollServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		OrderList orderlist = new OrderList();
+		OrderVO orderlist = new OrderVO();
 		orderlist.setOrderNo(Integer.parseInt(request.getParameter("shopNo")));
 		orderlist.setShopNo(Integer.parseInt(request.getParameter("shopNo")));
 		orderlist.setMemberId(request.getParameter("memberId"));
@@ -30,9 +30,9 @@ public class OrderListEnrollServlet extends HttpServlet {
 		orderlist.setOrderStatus(Integer.parseInt(request.getParameter("orderStatus")));
 		orderlist.setShopName(request.getParameter("shopName"));
 		orderlist.setOrderReject(request.getParameter("orderReject"));
-		orderlist.setShopRuntime(request.getParameter("runTime"));
+//		orderlist.setShopRuntime(request.getParameter("runTime"));
 		
-		int result = new OrderListService().registerOrder(orderlist);
+		int result = new OrderService().registerOrder(orderlist);
 		
 		if(result> 0) {
 			response.sendRedirect("");

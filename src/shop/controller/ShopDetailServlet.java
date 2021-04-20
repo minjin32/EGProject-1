@@ -40,8 +40,6 @@ public class ShopDetailServlet extends HttpServlet {
 		Shop shop = new ShopService().selectOneByShopNo(shopNo);
 		ArrayList<MenuVO> menuList = new ArrayList<>();
 		menuList = new MenuService().selectListByShopNumber(shopNo);
-		System.out.println("shopNo " + shopNo);
-		System.out.println(menuList.size());
 		
 		if (shop == null) {
 			response.setContentType("text/html; charset=utf-8");

@@ -199,21 +199,29 @@ $(document).ready(function() {
 						<div class="row">
 							<% for (MenuVO menu : menuList) { %>
 							<div class="col-lg-6">
-								<div class="card m-4">
+								<form class="card m-4" action="/shop/order.do" method="GET">
 									<div class="row p-4">
-										<div class="col-9">
+										<div class="col">
 											<h5><%= menu.getName() %></h5>
 											<p><%= menu.getPrice() %>원</p>
 											<p><%= menu.getBowlSize() %>cm</p>
-											<a href="#">장바구니 담기</a>
-										</div>
-										<div class="col-3">
-											<img class="w-100"
-												src="<%=request.getContextPath()%>/files/images/sample-normal.jpg"
-												alt="메뉴 이미지">
+											<input type="hidden" name="shopNumber" value="<%= shop.getShopNumber() %>">
+											<input type="hidden" name="menuNumber" value="<%= menu.getMenuNumber() %>">
+											<input type="hidden" name="memberId" value="<%= session.getAttribute("memberId") %>">
 										</div>
 									</div>
-								</div>
+									<div class="row p-2">
+										<div class="col-2 ms-2">
+											<p>요청사항</p>
+										</div>
+										<div class="col">
+											<input type="text" class="form-control" id="orderMsg" name="orderMsg">
+										</div>
+										<div class="col-4">
+											<input style="width: 80%; height: 40px;" type="submit" class="btn btn-primary btn-sm" value="주문하기">
+										</div>
+									</div>
+								</form>
 							</div>
 							<% } %>
 						</div>
@@ -258,79 +266,6 @@ $(document).ready(function() {
 						</div>
 						<!-- 이미지 없는 리뷰 end -->
 					</div>
-					
-					
-					<!-- 
-					<div class="tab-pane fade" id="review">
-						<div class="container-lg">
-								<div class="member">
-	      							<table border="0" width="100%" cellspacing="0" cellpadding="0" class="info_bg" style="table-layout:fixed;padding:0 0 0 0">
-     	       							<tbody>
-    	       								<tr valign="top">
-						                        <td class="info_bg" width="6px"></td>
-						                        <td class="separator2" width="3px"></td>
-						                        <td width="3px"></td>
-						                        <td style=" padding:2px 4px 4px 5px;word-break:break-all;">
-						                            
-						                        <b>회원 ID</b>
-						                        
-						                        <div id="commentContent_1977088" class="over_hide link-point" style="position:relative;overflow:hidden;width:100%;padding:4px 0 0 0;color:#000;min-height: 40px;line-height: 18px;">
-					                                존맛탱 족발은 무조건 여기서밖에 안먹음<br>
-					                          		담주에 또 시킬게요~<br>
-					                            </div>
-					                            <div class="mt8 over_hide">
-					                                <font class="eng-day" title="">12:01:30</font>
-					                                <span class="comment-btn-layout">
-					                               </span>
-                            					</div>
-                            					<nav class="navbar navbar-dark bg-dark">
-												  <div class="container-fluid">
-												    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-												      <span class="navbar-toggler-icon"></span>
-												    </button>
-												  </div>
-												</nav>
-												<div class="collapse" id="navbarToggleExternalContent">
-												  <div class="bg-dark p-4">
-												    <h5 class="text-white h4">Collapsed content</h5>
-												    <span class="text-muted">이미지 넣어야하구 색깔도 바꿔야해</span>
-												  </div>
-												</div>
-     	       							</tbody>
-    	       						</table>
-    	       						<p style="border-bottom:1px solid #efefef;"></p>
-								</div>
-								<div class="Entrepreneur">
-	      							<table border="0" width="100%" cellspacing="0" cellpadding="0" class="info_bg" style="table-layout:fixed;padding:0 0 0 0">
-     	       							<tbody>
-    	       								<tr valign="top">
-						                        <td width="100px" align="right" style="padding:0 0 0 0">
-						                        <img class="w-100"
-													src="<%=request.getContextPath()%>/files/images/earth.jpg" alt="답글 이미지">
-												</td>
-						                        <td class="info_bg" width="6px"></td>
-						                        <td class="separator2" width="3px"></td>
-						                        <td width="3px"></td>
-						                        <td style=" padding:2px 4px 4px 5px;word-break:break-all;">
-						                            
-						                        <b>사장님 댓글</b>
-						                        
-						                        <div id="commentContent_1977088" class="over_hide link-point" style="position:relative;overflow:hidden;width:100%;padding:4px 0 0 0;color:#000;min-height: 40px;line-height: 18px;">
-					                                감사합니다 고객님.<br>
-					                          		앞으로도 좋은 음식으로 보답하겠습니다.<br>
-					                            </div>
-					                            <div class="mt8 over_hide">
-					                                <font class="eng-day" title="">12:01:30</font>
-					                                <span class="comment-btn-layout">
-					                               </span>
-                            					</div>
-	  	       							</tbody>
-    	       						</table>
-    	       						<p style="border-bottom:1px solid #efefef;"></p>
-								</div>
-							</div>
-						</div>
-						-->
 				</div>
 			</div>
 		</div>

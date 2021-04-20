@@ -3,6 +3,7 @@ package shop.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,8 +16,8 @@ import member.model.service.MemberService;
 import member.model.vo.Member;
 import menu.model.service.MenuService;
 import menu.model.vo.MenuVO;
-import orderlist.model.service.OrderListService;
-import orderlist.model.vo.OrderList;
+import order.model.service.OrderService;
+import order.model.vo.OrderVO;
 import shop.model.service.ShopService;
 import shop.model.vo.Menu;
 import shop.model.vo.Shop;
@@ -74,7 +75,7 @@ public class ShopManageServlet extends HttpServlet {
 		ArrayList<MenuVO> menuList = new MenuService().selectListByShopNumber(shop.getShopNumber());
 		
 		// 사업자 ID로 주문내역을 가져오기
-		ArrayList<OrderList> orderList = new OrderListService().selectListByOwnerID(memberId);
+		ArrayList<OrderVO> orderList = new OrderService().selectListByOwnerID(memberId);
 		
 		request.setAttribute("shop", shop);
 		request.setAttribute("orderList", orderList);

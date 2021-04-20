@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import orderlist.model.service.OrderListService;
-import orderlist.model.vo.OrderList;
+import order.model.service.OrderService;
+import order.model.vo.OrderVO;
 
 /**
  * Servlet implementation class OrderListModifyServlet
@@ -22,10 +22,10 @@ public class OrderListModifyServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		OrderList orderlist = new OrderList();
+		OrderVO orderlist = new OrderVO();
 		orderlist.setOrderNo(Integer.parseInt(request.getParameter("orderNo")));
 		
-		int result= new OrderListService().modifyOrderCancel(orderlist);
+		int result= new OrderService().modifyOrderCancel(orderlist);
 		if(result>0) {
 			response.sendRedirect("");
 		}else {

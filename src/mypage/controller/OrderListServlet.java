@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import orderlist.model.service.OrderListService;
-import orderlist.model.vo.OrderList;
+import order.model.service.OrderService;
+import order.model.vo.OrderVO;
 
 /**
  * Servlet implementation class OrderListServlet
@@ -29,8 +29,8 @@ public class OrderListServlet extends HttpServlet {
 		String memberId = (String) request.getSession().getAttribute("memberId");
 		int orderNo = 0;
 		if (memberId != null) {
-			OrderListService orderlistservice = new OrderListService();
-			OrderList orderlist = orderlistservice.selectByMemberIdList(memberId);
+			OrderService orderlistservice = new OrderService();
+			OrderVO orderlist = orderlistservice.selectByMemberIdList(memberId);
 			
 			if (orderlist != null) {
 				request.setAttribute("orderlist", orderlist);
@@ -45,6 +45,7 @@ public class OrderListServlet extends HttpServlet {
 				out.println("</script>");
 				out.flush();
 				out.close();
+				return;
 			}
 			// memberId 이걸로 조회
 		} else {
@@ -57,6 +58,7 @@ public class OrderListServlet extends HttpServlet {
 			out.println("</script>");
 			out.flush();
 			out.close();
+			return;
 		}
 		
 		// orderNo는 상세정보를 불러올 때 필요할텐데 여기 왜 있을까요?

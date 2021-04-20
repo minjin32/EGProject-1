@@ -1,8 +1,8 @@
-package orderlist.model.vo;
+package order.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
-public class OrderList {
+public class OrderVO {
 
 	private int orderNo;
 	private int shopNo;
@@ -12,7 +12,7 @@ public class OrderList {
 	private String shopName;
 	private Date orderDateTime;
 	private String orderReject;
-	private String shopRuntime;
+	private Date shopRuntime;
 	private String orderMenu;
 	private String orderMessage;
 	private String phone;
@@ -85,11 +85,11 @@ public class OrderList {
 		this.orderReject = orderReject;
 	}
 
-	public String getShopRuntime() {
+	public Date getShopRuntime() {
 		return shopRuntime;
 	}
 
-	public void setShopRuntime(String shopRuntime) {
+	public void setShopRuntime(Date shopRuntime) {
 		this.shopRuntime = shopRuntime;
 	}
 

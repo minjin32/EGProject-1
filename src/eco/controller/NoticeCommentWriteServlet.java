@@ -44,7 +44,7 @@ public class NoticeCommentWriteServlet extends HttpServlet implements Servlet {
 		noComment.setCoParentNo(coParentNo);
 		noComment.setCoContents(coContent);
 
-		//int result = new NoticeService().registerNoticeCommnet(noComment);
+//		int result = new NoticeService().registerNoticeCommnet(noComment);
 
 //		if (0 < result) {
 //			response.sendRedirect("/noticeDetail.jsp");

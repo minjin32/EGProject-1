@@ -1,26 +1,26 @@
-package orderlist.model.service;
+package order.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
-import orderlist.model.dao.OrderListDAO;
-import orderlist.model.vo.OrderList;
+import order.model.dao.OrderDAO;
+import order.model.vo.OrderVO;
 
-public class OrderListService {
+public class OrderService {
 	private JDBCTemplate factory;
 
-	public OrderListService() {
+	public OrderService() {
 		factory = JDBCTemplate.getConnection();
 	} 	
 	
-	public OrderList selectAll(int orderNo) {
+	public OrderVO selectAll(int orderNo) {
 		Connection conn = null;
-		OrderList oList = null;
+		OrderVO oList = null;
 		try {
 			conn = factory.createConnection();
-			oList = new OrderListDAO().selectByOrderList(conn, orderNo);
+			oList = new OrderDAO().selectByOrderList(conn, orderNo);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,12 +31,12 @@ public class OrderListService {
 		return oList;
 	}
 
-	public OrderList selectByOrderList(int orderNo) {
+	public OrderVO selectByOrderList(int orderNo) {
 		Connection conn = null;
-		OrderList oList = null;
+		OrderVO oList = null;
 		try {
 			conn = factory.createConnection();
-			oList = new OrderListDAO().selectByOrderList(conn, orderNo);
+			oList = new OrderDAO().selectByOrderList(conn, orderNo);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,13 +47,13 @@ public class OrderListService {
 		return oList;
 	}
 
-	public OrderList selectByMemberIdList(String memberId) {
+	public OrderVO selectByMemberIdList(String memberId) {
 		Connection conn = null;
-		OrderList oList = null;
+		OrderVO oList = null;
 
 		try {
 			conn = factory.createConnection();
-			oList = new OrderListDAO().selectByMemberIdList(conn, memberId);
+			oList = new OrderDAO().selectByMemberIdList(conn, memberId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,13 +63,13 @@ public class OrderListService {
 		return oList;
 	}
 	
-	public int registerOrder(OrderList orderList) {
+	public int registerOrder(OrderVO order) {
 		int result = 0;
 		Connection conn = null;
 		
 		try {
 			conn=factory.createConnection();
-			result = new OrderListDAO().insertOrderList(conn,orderList);
+			result = new OrderDAO().insertOrderList(conn, order);
 			if(result >0) {
 				JDBCTemplate.commit(conn);
 			}else {
@@ -87,13 +87,13 @@ public class OrderListService {
 	}
 	
 	
-	public int modifyOrderCancel(OrderList orderList) {
+	public int modifyOrderCancel(OrderVO orderList) {
 		int result = 0;
 		Connection conn = null;
 		
 		try {
 			conn= factory.createConnection();
-			result = new OrderListDAO().modifyOrderCancel(conn, orderList);
+			result = new OrderDAO().modifyOrderCancel(conn, orderList);
 			if(result>0) {
 				JDBCTemplate.commit(conn);
 			}else {
@@ -107,13 +107,13 @@ public class OrderListService {
 		return result;
 	}
 	
-	public int modifyOrderList(OrderList orderList) {
+	public int modifyOrder(OrderVO orderVO) {
 		int result = 0;
 		Connection conn = null;
 		
 		try {
 			conn= factory.createConnection();
-			result = new OrderListDAO().modifyOrderList(conn,orderList);
+			result = new OrderDAO().modifyOrderList(conn,orderVO);
 			if(result>0) {
 				JDBCTemplate.commit(conn);
 			}else {
@@ -127,13 +127,13 @@ public class OrderListService {
 		return result;
 	}
 
-	public ArrayList<OrderList> selectListByShopNumber(int shopNumber) {
-		ArrayList<OrderList> list = null;
+	public ArrayList<OrderVO> selectListByShopNumber(int shopNumber) {
+		ArrayList<OrderVO> list = null;
 		Connection conn = null;
 		
 		try {
 			conn = factory.createConnection();
-			list = new OrderListDAO().selectListByShopNumber(conn, shopNumber);
+			list = new OrderDAO().selectListByShopNumber(conn, shopNumber);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -143,13 +143,13 @@ public class OrderListService {
 		return list;
 	}
 
-	public ArrayList<OrderList> selectListByOwnerID(String memberId) {
-		ArrayList<OrderList> list = null;
+	public ArrayList<OrderVO> selectListByOwnerID(String memberId) {
+		ArrayList<OrderVO> list = null;
 		Connection conn = null;
 		
 		try {
 			conn = factory.createConnection();
-			list = new OrderListDAO().selectListByOwnerId(conn, memberId);
+			list = new OrderDAO().selectListByOwnerId(conn, memberId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

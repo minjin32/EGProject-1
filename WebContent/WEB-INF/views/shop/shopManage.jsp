@@ -1,32 +1,18 @@
+<%@page import="java.util.Collections"%>
 <%@page import="shop.model.vo.Shop"%>
 <%@page import="menu.model.vo.MenuVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="orderlist.model.vo.OrderList"%>
+<%@page import="order.model.vo.OrderVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-	ArrayList<OrderList> orderList = (ArrayList<OrderList>) request.getAttribute("orderList");
+<%
+	ArrayList<OrderVO> orderList = (ArrayList<OrderVO>) request.getAttribute("orderList");
 	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>) request.getAttribute("menuList");
 	Shop shop = (Shop) request.getAttribute("shop");
 	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("MM월 dd일 ");
 	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
-	
-	int waiting = 0;
-	int processing = 0;
-	int completed = 0;
-	
-	for (OrderList order : orderList) {
-		if (order.getOrderStatus() == 0) {
-			waiting ++;
-		} else if (processing == 1) {
-			processing ++;
-		} else if (completed == 2) {
-			completed ++;
-		}
-			
-	}
 %>
 <!DOCTYPE html>
 <html>
@@ -50,6 +36,17 @@
 	.list-group-item.active {
 		background-color: #605759;
 		border-color: #605759;
+	}
+	
+	#acceptMode.active {
+		color: white;
+		background-color: green;
+		border-color: #0e2c01;
+	}
+	#acceptMode.inactive {
+		color: white;
+		background-color: crimson;
+		border-color: crimson;
 	}
 
 	.menubox {
@@ -76,6 +73,32 @@
 <script>
 	window.addEventListener("DOMContentLoaded", function() {
 		
+		var reload = true;
+		
+		setInterval(function() {
+			if (reload) {
+				window.location.reload();
+			}
+		}, 2000);
+		
+		var acceptModeButton = document.getElementById('acceptMode');
+		acceptMode.addEventListener('click', toggleAcceptMode);
+		
+		function toggleAcceptMode () {
+			if (reload) {
+				reload = false;
+				this.innerHTML = '주문접수-OFF';
+				this.classList.add('inactive');
+				this.classList.remove('active');
+			} else {
+				reload = true;
+				this.innerHTML = '주문접수-ON';
+				this.classList.add('active');
+				this.classList.remove('inactive');
+			}
+		}
+		
+		
 		// 토글 탭, 토글 뷰 가져오기
 		var mainTabs = document.getElementsByClassName("toggle-main-tab");
 		var mainViews = document.getElementsByClassName("toggle-main-view");
@@ -96,7 +119,20 @@
 				}
 			}
 		};
-	});
+		
+		// 주문 알림
+		var audio = new Audio('<%= request.getContextPath() %>/files/sounds/bellsound.mp3');
+		audio.loop = false;
+		
+		document.getElementById('orderAlarm').addEventListener('click', function () {
+			audio.play();
+		});
+		
+		if (document.getElementById('list-order-waiting')) {
+			audio.play();
+		}
+	})
+	
 </script>
 </head>
 <body>
@@ -216,10 +252,16 @@
 					<a class="nav-link toggle-main-tab" href="#">매장 관리</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link active" id="acceptMode">주문접수-ON</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" data-bs-target="#modal-accept" data-bs-toggle="modal" style="color:black;">테스트(주문접수)</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-bs-target="#modal-eco" data-bs-toggle="modal" style="color:black;">테스트(번호입력)</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="orderAlarm" style="color:black;">테스트(주문알림)</a>
 				</li>
 			</ul>
 		</div>
@@ -246,7 +288,7 @@
 			    				<h3>접수대기</h3>
 			    			</div>
 			    			<div class="col-4">
-			    				<h1><%= waiting %></h1>
+			    				<h1></h1>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -256,7 +298,7 @@
 			    				<h3>처리중</h3>
 			    			</div>
 			    			<div class="col-4">
-			    				<h1><%= processing %></h1>
+			    				<h1></h1>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -266,7 +308,7 @@
 			    				<h3>완료</h3>
 			    			</div>
 			    			<div class="col-4">
-			    				<h1><%= completed %></h1>
+			    				<h1></h1>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -276,7 +318,7 @@
 			    				<h3>전체</h3>
 			    			</div>
 			    			<div class="col-4">
-			    				<h1><%= waiting + processing + completed %></h1>
+			    				<h1></h1>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -286,103 +328,139 @@
 			<div class="col-lg-9 pt-4">
 				<div class="tab-content" id="nav-tabContent">
 			    	<div class="tab-pane fade show active" id="list-order-waiting" role="tabpanel" aria-labelledby="list-order-home-list">
-			    		<% 
-			    		for (OrderList order : orderList) { 
-			    			if (order.getOrderStatus() == 0) {		
+			    		<%
+			    			for (OrderVO order : orderList) { 
+    			    			if (order.getOrderStatus() == 0) {
 			    		%>
 						<div class="row"><!-- 주문내역 시작 -->
 							<div class="col-3 d-flex justify-content-center align-items-center">
 								<div class="row pe-1">
-									<h4><%= dateFormat.format(order.getOrderDateTime()) %></h4>
+									<h4><%=dateFormat.format(order.getOrderDateTime())%></h4>
 								</div>
 								<div class="row">
-									<h4><%= timeFormat.format(order.getOrderDateTime()) %></h4>
+									<h4><%=timeFormat.format(order.getOrderDateTime())%></h4>
 								</div>
 							</div>
 							<div class="col-6">
-								<h5><%= order.getMemberId() %></h5>
-								<p><%= order.getOrderMenu() %></p>
+								<h5><%=order.getMemberId()%></h5>
+								<p><%=order.getOrderMenu()%></p>
 								<h5>[요청사항]</h5>
-								<p><%= order.getOrderMessage() %></p>
+								<p><%=order.getOrderMessage()%></p>
 								<h5>[연락처]</h5>
-								<p><%= order.getPhone() %></p>
+								<p><%=order.getPhone()%></p>
 							</div>
 							<div class="col-3">
-								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
+								<div class="row g-2">
+									<div class="col-lg">
+										<a href="/shop/order/response?orderNumber=<%= order.getOrderNo() %>&responseType=1">
+											<input type="button" class="btn btn-primary" value="접수하기">
+										</a>
+									</div>
+									<div class="col-lg">
+										<a href="/shop/order/response?orderNumber=<%= order.getOrderNo() %>&responseType=99">
+											<input type="button" class="btn btn-primary" value="거절하기">
+										</a>
+									</div>
+								</div>
+								<!-- <img class="w-100" src="request.getContextPath()%>/files/images/sample-normal.jpg" style="cursor: pointer"> -->
 							</div>
 						</div><!-- 주문내역 끝 -->
 						<hr>
-						<% 
-			    			}
-						} 
+						<%
+							}
+						}
 						%>
 					</div>
 			    	<div class="tab-pane fade" id="list-order-progressing" role="tabpanel" aria-labelledby="list-order-progressing-list">
-			    		<% 
-			    		for (OrderList order : orderList) { 
-			    			if (order.getOrderStatus() == 1) {		
+			    		<%
+			    			for (OrderVO order : orderList) { 
+			    			    			if (order.getOrderStatus() == 1) {
 			    		%>
 						<div class="row"><!-- 주문내역 시작 -->
 							<div class="col-3 d-flex justify-content-center align-items-center">
 								<div class="row pe-1">
-									<h4><%= dateFormat.format(order.getOrderDateTime()) %></h4>
+									<h4><%=dateFormat.format(order.getOrderDateTime())%></h4>
 								</div>
 								<div class="row">
-									<h4><%= timeFormat.format(order.getOrderDateTime()) %></h4>
+									<h4><%=timeFormat.format(order.getOrderDateTime())%></h4>
 								</div>
 							</div>
 							<div class="col-6">
-								<h5><%= order.getMemberId() %></h5>
-								<p><%= order.getOrderMenu() %></p>
+								<h5><%=order.getMemberId()%></h5>
+								<p><%=order.getOrderMenu()%></p>
 								<h5>[요청사항]</h5>
-								<p><%= order.getOrderMessage() %></p>
+								<p><%=order.getOrderMessage()%></p>
 								<h5>[연락처]</h5>
-								<p><%= order.getPhone() %></p>
+								<p><%=order.getPhone()%></p>
 							</div>
 							<div class="col-3">
-								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
+								<div class="row g-2">
+									<div class="col-lg">
+										<a href="/shop/order/response?orderNumber=<%= order.getOrderNo() %>&responseType=2">
+											<input type="button" class="btn btn-primary" value="완료하기">
+										</a>
+									</div>
+								</div>
+								<!-- <img class="w-100" src="request.getContextPath()%>/files/images/sample-normal.jpg" style="cursor: pointer"> -->
 							</div>
 						</div><!-- 주문내역 끝 -->
 						<hr>
-						<% 
-			    			}
-						} 
+						<%
+							}
+										}
 						%>
 			    	</div>
 			    	<div class="tab-pane fade" id="list-order-completed" role="tabpanel" aria-labelledby="list-order-completed-list">
-			    	<% 
-			    		for (OrderList order : orderList) { 
-			    			if (order.getOrderStatus() == 2) {		
-			    		%>
+			    	<%
+			    		for (OrderVO order : orderList) { 
+			    		    			if (order.getOrderStatus() == 2) {
+			    	%>
 						<div class="row"><!-- 주문내역 시작 -->
 							<div class="col-3 d-flex justify-content-center align-items-center">
 								<div class="row pe-1">
-									<h4><%= dateFormat.format(order.getOrderDateTime()) %></h4>
+									<h4><%=dateFormat.format(order.getOrderDateTime())%></h4>
 								</div>
 								<div class="row">
-									<h4><%= timeFormat.format(order.getOrderDateTime()) %></h4>
+									<h4><%=timeFormat.format(order.getOrderDateTime())%></h4>
 								</div>
 							</div>
 							<div class="col-6">
-								<h5><%= order.getMemberId() %></h5>
-								<p><%= order.getOrderMenu() %></p>
+								<h5><%=order.getMemberId()%></h5>
+								<p><%=order.getOrderMenu()%></p>
 								<h5>[요청사항]</h5>
-								<p><%= order.getOrderMessage() %></p>
+								<p><%=order.getOrderMessage()%></p>
 								<h5>[연락처]</h5>
-								<p><%= order.getPhone() %></p>
+								<p><%=order.getPhone()%></p>
 							</div>
 							<div class="col-3">
-								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
+								<div class="row g-2">
+									<div class="col-lg">
+										<input type="button" class="btn btn-primary" value="완료됨" disabled>
+										<div class="row">
+											<p>완료시각</p>
+											<% 
+												if (order.getShopRuntime() != null) { 
+											%>
+													<p><%= dateFormat.format(order.getShopRuntime()) + " " + timeFormat.format(order.getShopRuntime()) %></p>
+											<%
+												}
+											%>
+										</div>
+									</div>
+								</div>
+								<!-- <img class="w-100" src="request.getContextPath()%>/files/images/sample-normal.jpg" style="cursor: pointer"> -->
 							</div>
 						</div><!-- 주문내역 끝 -->
 						<hr>
-						<% 
-			    			}
-						} 
+						<%
+							}
+										}
 						%>
 					</div>
 			    	<div class="tab-pane fade" id="list-order-all" role="tabpanel" aria-labelledby="list-order-all-list">
-						<% for (OrderList order : orderList) { %>
+						<%
+							for (OrderVO order : orderList) {
+						%>
 						<div class="row"><!-- 주문내역 시작 -->
 							<div class="col-3 d-flex justify-content-center align-items-center">
 								<div class="row pe-1">
@@ -401,7 +479,15 @@
 								<p><%= order.getPhone() %></p>
 							</div>
 							<div class="col-3">
-								<img class="w-100" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="접수하기">
+								<%
+									if (order.getOrderStatus() == 0) {
+										out.println("<button class='btn btn-primary'>접수대기</button>");
+									} else if (order.getOrderStatus() == 1) {
+										out.println("<button class='btn btn-primary' disabled>처리중</button>");
+									} else if (order.getOrderStatus() == 2) {
+										out.println("<button class='btn btn-primary' disabled>완료됨</button>");
+									} 
+								%>
 							</div>
 						</div><!-- 주문내역 끝 -->
 						<hr>
@@ -468,25 +554,15 @@
 					<div class="col-lg-6">
 						<div class="card m-4">
 							<div class="row p-4">
-								<div class="col-9">
+								<div class="col">
 									<h5><%= menu.getName() %></h5>
 									<p><%= menu.getBowlSize() %>(cm)</p>
 									<p><%= menu.getPrice() %>원</p>
-								</div>
-								<div class="col-3">
-									<img class="w-100" src="<%=request.getContextPath()%>/files/images/<%= menu.getImagePath() %>" alt="메뉴 이미지">
 								</div>
 							</div>
 						</div>
 					</div>
 					<% } %>
-					<div class="col-lg-6">
-						<div class="card m-4 box-menu">
-							<div class="row p-4">
-								<img class="rounded mx-auto d-block" style="width: 25%;" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="메뉴추가">
-							</div>
-						</div>
-					</div>
 				</div>
 			</div><!-- 전체메뉴 영역 end -->
 		</div><!-- 매장관리 end -->
