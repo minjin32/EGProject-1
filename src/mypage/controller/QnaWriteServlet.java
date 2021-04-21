@@ -58,12 +58,16 @@ public class QnaWriteServlet extends HttpServlet {
 		String qaContent = multi.getParameter("qaContent");
 		String fileName = multi.getFilesystemName("upFile");
 		File uploadFile = multi.getFile("upFile");
-		String filePath = uploadFile.getPath();
-		long fileSize = uploadFile.length();
+		String filePath = null;
+		long fileSize = 0;
+		if(fileName != null && uploadFile != null) {
+			filePath = uploadFile.getPath();
+			fileSize = uploadFile.length();
+		}
 
 		HttpSession session = request.getSession(); 
 //		if (session != null && (session.getAttribute("userId")) != null) {
-			String mbId = (String) session.getAttribute("mbId");
+			String mbId = (String) session.getAttribute("memberId");
 			MypageQaData mypageQaData = new MypageQaData();
 			mypageQaData.setQaTitle(qaTitle);
 			mypageQaData.setQaContent(qaContent);

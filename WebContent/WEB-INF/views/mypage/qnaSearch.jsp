@@ -10,7 +10,7 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보</title>
+<title>QNA 검색</title>
 <link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css"
 	rel="stylesheet">
 <script

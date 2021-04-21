@@ -32,59 +32,54 @@
 			</div>
 			<div class="col-lg-9 p-5">
 				<div>
-					<h2 class="pb-2">
-					QnA
-					</h2>
+					<h2 class="pb-2">QnA</h2>
 					<form class="p-4"
 						style="border: 1px solid #789F6F; border-radius: 5px;">
 						<div class="mb-3">
 							<div class="row">
 								<div class="col">
-									<b>작성자 </b> <%=mypageQaData.getMbId()%>
+									<b>작성자 </b>
+									<%=mypageQaData.getMbId()%>
 								</div>
 								<div class="col gap-2 d-md-flex justify-content-md-end">
-									<b>작성일시 </b> <%=mypageQaData.getQaDateTime()%>
+									<b>작성일시 </b>
+									<%=mypageQaData.getQaDateTime()%>
 								</div>
 							</div>
 						</div>
 						<div class="mb-3">
-							제목 <input type="text" class="form-control" value="<%=mypageQaData.getQaTitle()%>">
+							제목 <input type="text" class="form-control"
+								value="<%=mypageQaData.getQaTitle()%>">
 						</div>
 						<div class="mb-3">
-							내용 <p class="form-control">
-							<%=mypageQaData.getQaContent()%>
+							내용
+							<p class="form-control">
+								<%=mypageQaData.getQaContent()%>
 							</p>
 						</div>
 						<div class="mb-3">
-						<img class="img-fluid rounded mx-auto d-block"
-								src="<%=request.getContextPath()%>/upload/<%= mypageQaData.getImage_name() %>"
+							<img class="img-fluid rounded mx-auto d-block"
+								src="<%=request.getContextPath()%>/upload/<%=mypageQaData.getImage_name()%>"
 								style="max-width: 100%;" alt="첨부이미지">
-<!-- 							<a -->
-<%-- 								href="<%=request.getContextPath()%>" --%>
-<!-- 								download> <img -->
-<%-- 								src="<%=request.getContextPath()%>" --%>
-<!-- 								style="max-width: 120px;" alt="첨부파일"> -->
-<!-- 							</a> -->
 						</div>
 						<!-- TODO 작성자만 보여야 하는 버튼 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 						<!-- TODO 답변이 달리기 전에만 취소버튼이 나타남 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
-						<div class="gap-2 d-md-flex justify-content-md-end">
-							<button type="reset" class="btn btn-primary">취소</button>
-						</div>
+<!-- 						<div class="gap-2 d-md-flex justify-content-md-end"> -->
+<!-- 							<button type="reset" class="btn btn-primary">취소</button> -->
+<!-- 						</div> -->
 					</form>
 					<div class="row mt-4">
 						<div class="col-1">
-							<img
-								src="<%=request.getContextPath()%>/files/images/reply.png"
+							<img src="<%=request.getContextPath()%>/files/images/reply.png"
 								style="width: 100%;" alt="답변">
 						</div>
 						<div class="col">
 							<form class="p-4"
 								style="border: 1px solid #789F6F; border-radius: 5px;">
 								<div class="mb-3">
-									
+
 									<input type="text" class="form-control"
-										value= "RE:<%=mypageQaData.getQaTitle()%>">
+										value="RE:<%=mypageQaData.getQaTitle()%>">
 								</div>
 								<!-- TODO 관리자만 보여야 하는 버튼 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 								<div class="mb-3">
