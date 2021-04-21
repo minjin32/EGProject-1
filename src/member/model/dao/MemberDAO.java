@@ -232,32 +232,37 @@ public class MemberDAO {
 		return result;
 	}
 
-	public int updateMember(Connection conn, Member member) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String hashPwd = PasswordUtil.getHashedPassword(member.getMbId(), member.getMbPassword());
-		String query = "UPDATE MEMBER SET MB_NAME=?, MB_NICKNAME=?, MB_PASSWORD=?, MB_ADDRESS1=?, MB_ADDRESS2=?, "
-				+ "MB_ADDRESS3=?, MB_PHONE=?, MB_EMAIL=? WHERE MB_ID=?";
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, member.getMbName());
-			pstmt.setString(2, member.getMbNickname());
-			pstmt.setString(3, hashPwd);
-			pstmt.setString(4, member.getMbAddress1());
-			pstmt.setString(5, member.getMbAddress2());
-			pstmt.setString(6, member.getMbAddress3());
-			pstmt.setString(7, member.getMbPhone());
-			pstmt.setString(8, member.getMbEmail());
-			pstmt.setString(9, member.getMbId());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(pstmt);
-		}
-		return result;
-	}
+	 public int updateMember(Connection conn, Member member) {
+	      PreparedStatement pstmt = null;
+	      int result = 0;
+	      String hashPwd = PasswordUtil.getHashedPassword(member.getMbId(), member.getMbPassword());
+//	      String query = "UPDATE MEMBER SET MB_NAME=?, MB_NICKNAME=?, MB_PASSWORD=?, MB_ADDRESS1=?, MB_ADDRESS2=?, "
+//	            + "MB_ADDRESS3=?, MB_PHONE=?, MB_EMAIL=? MB_SEX=? WHERE MB_ID=?";
+	      
+	      String query = "UPDATE MEMBER SET MB_PASSWORD=?,MB_NAME=?, MB_NICKNAME=?, MB_ADDRESS1=?, MB_PHONE=?, MB_EMAIL=? WHERE MB_ID=?";
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setString(1, hashPwd);
+	         pstmt.setString(2, member.getMbName());
+	         pstmt.setString(3, member.getMbNickname());
+	         pstmt.setString(4, member.getMbAddress1());
+//	         pstmt.setString(5, member.getMbAddress2());
+//	         pstmt.setString(6, member.getMbAddress3());
+	         pstmt.setString(5, member.getMbPhone());
+	         pstmt.setString(6, member.getMbEmail());
+	         pstmt.setString(7, member.getMbId());
+	         //pstmt.setString(10, member.getMbSex());
+	         
+	         result = pstmt.executeUpdate();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(pstmt);
+	      }
+	      System.out.println("난다오얌"+result);
+	      return result;
+	   }
+
 
 	public ArrayList<Member> selectMemberList(Connection conn,String usertype, int currentPage) {
 		PreparedStatement pstmt = null;

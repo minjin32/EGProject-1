@@ -19,46 +19,49 @@ import member.model.vo.Member;
  */
 @WebServlet("/mypage/modify")
 public class ModifyServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	public ModifyServlet() {
-		super();
-	}
+   public ModifyServlet() {
+      super();
+   }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/modify.jsp");
-		view.forward(request, response);
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  String memberId = (String)request.getSession().getAttribute("memberId");
+	  Member member = new MemberService().selectOneById(memberId);
+	  request.setAttribute("member",member);
+	  RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mypage/modify.jsp");
+	  view.forward(request, response);
 
-	}
-	
+   }
+   
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String memberId = (String)request.getSession().getAttribute("memberId");
-		
-		Member member = new Member();
-		member.setMbId(memberId);
-		member.setMbPassword((String) request.getParameter("memberPw"));
-		member.setMbName((String) request.getParameter("memberName"));
-		member.setMbNickname((String) request.getParameter("memberNickName"));
-		member.setMbAddress1((String)request.getParameter("memberAddress1"));
-		member.setMbPhone((String)request.getParameter("memberPhone"));
-		member.setMbEmail((String) request.getParameter("memberEmail"));
-		
-		int result = new MemberService().modifyMember(member);
-		if (0 < result) {
-			response.sendRedirect("/mypage/info?memberId="+memberId);
-		} else {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			String msg = "가입에 실패했습니다."; // 오류 메세지
-			out.println("<script>");
-			out.println("alert('" + msg + "');");
-			out.println("history.back();");
-			out.println("</script>");
-			out.flush();
-			out.close();
-		}
-	}
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      request.setCharacterEncoding("utf-8");
+      String memberId = (String)request.getSession().getAttribute("memberId");
+      
+      Member member = new Member();
+      member.setMbId(memberId);
+      member.setMbPassword((String) request.getParameter("memberPw"));
+      member.setMbName((String) request.getParameter("memberName"));
+      member.setMbNickname((String) request.getParameter("memberNickName"));
+      member.setMbAddress1((String)request.getParameter("memberAddress1"));
+      member.setMbPhone((String)request.getParameter("memberPhone"));
+      member.setMbEmail((String) request.getParameter("memberEmail"));
+      
+      int result = new MemberService().modifyMember(member);
+      if (0 < result) {
+         response.sendRedirect("/mypage/info?memberId="+memberId);
+      } else {
+         response.setContentType("text/html; charset=utf-8");
+         PrintWriter out = response.getWriter();
+         String msg = "가입에 실패했습니다."; // 오류 메세지
+         out.println("<script>");
+         out.println("alert('" + msg + "');");
+         out.println("history.back();");
+         out.println("</script>");
+         out.flush();
+         out.close();
+      }
+   }
 
 }

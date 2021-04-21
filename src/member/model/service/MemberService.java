@@ -1,7 +1,6 @@
 package member.model.service;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,7 +11,7 @@ import member.model.vo.MemberPageData;
 
 public class MemberService {
 
-	private JDBCTemplate factory;
+   private JDBCTemplate factory;
 
    public MemberService() {
       factory = JDBCTemplate.getConnection();
@@ -52,104 +51,106 @@ public class MemberService {
       return member;
    }
 
-	// JoinViewServlet.java
-	// 유저 등록
-	// Servlet → Member member = new MemberService().registerMember(member);
-	public int registerMember(Member member) {
-		int result = 0;
-		Connection conn = null;
+   // JoinViewServlet.java
+   // 유저 등록
+   // Servlet → Member member = new MemberService().registerMember(member);
+   // 회원가입
+   public int registerMember(Member member) {
+      int result = 0;
+      Connection conn = null;
 
-		try {
-			conn = factory.createConnection();
-			result = new MemberDAO().insertMember(conn, member);
-			if (result > 0) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return result;
-	}
+      try {
+         conn = factory.createConnection();
+         result = new MemberDAO().insertMember(conn, member);
+         if (result > 0) {
+            JDBCTemplate.commit(conn);
+         } else {
+            JDBCTemplate.rollback(conn);
+         }
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         JDBCTemplate.close(conn);
+      }
+      return result;
+   }
 
-	// MyinfoServlet.java
-	// 유저 등록시 ID중복 체크
-	// 유저ID가 있으면 1 없으면 0 반환
-//	public Member selectOneById(String userId) {
-	public int selectIdCheck(Member member) {
-//		Member member = null;
-		int result = 0;
-		Connection conn = null;
-		try {
-			conn = factory.createConnection();
-			result = new MemberDAO().selectIdCheck(conn, member);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return result;
-	}
+   // MyinfoServlet.java
+   // 유저 등록시 ID중복 체크
+   // 유저ID가 있으면 1 없으면 0 반환
+//   public Member selectOneById(String userId) {
+   // 아이디체크
+   public int selectIdCheck(Member member) {
+//      Member member = null;
+      int result = 0;
+      Connection conn = null;
+      try {
+         conn = factory.createConnection();
+         result = new MemberDAO().selectIdCheck(conn, member);
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         JDBCTemplate.close(conn);
+      }
+      return result;
+   }
 
-	// 회원수정
-	public int modifyMember(Member member) {
-		int result = 0;
-		Connection conn = null;
-		try {
-			conn = factory.createConnection();
-			result = new MemberDAO().updateMember(conn, member);
-			if (result > 0) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return result;
-	}
+   // 회원수정
+   public int modifyMember(Member member) {
+	      Connection conn = null;
+	      int result = 0;
+	      try {
+	         conn = factory.createConnection();
+	         result = new MemberDAO().updateMember(conn, member);
+	         if (result > 0) {
+	            JDBCTemplate.commit(conn);
+	         } else {
+	            JDBCTemplate.rollback(conn);
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(conn);
+	      }
+	      return result;
+	   }
 
-	// 회원 리스트
-	public MemberPageData selectMemberList(String usertype, int currentPage) {
-		Connection conn = null;
-		MemberPageData pagedata = new MemberPageData();
-		try {
-			conn = factory.createConnection();
-			pagedata.setMemberList(new MemberDAO().selectMemberList(conn, usertype, currentPage));
-			pagedata.setPageNavi(new MemberDAO().getPageNavi(conn, usertype, currentPage));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return pagedata;
-	}
 
-	// 회원 검색
-	public MemberPageData selectByIdList(String usertype, String search, int currentPage) {
-		Connection conn = null;
-		MemberPageData pagedata = new MemberPageData();
-		try {
-			conn = factory.createConnection();
-			pagedata.setMemberList(new MemberDAO().selectByIdList(conn, usertype,search, currentPage));
-			pagedata.setPageNavi(new MemberDAO().getSearchPageNavi(conn, usertype,search, currentPage));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		System.out.println("난서비스얌"+pagedata);
-		return pagedata;
-	}
+   // 회원 리스트
+   public MemberPageData selectMemberList(String usertype, int currentPage) {
+      Connection conn = null;
+      MemberPageData pagedata = new MemberPageData();
+      try {
+         conn = factory.createConnection();
+         pagedata.setMemberList(new MemberDAO().selectMemberList(conn, usertype, currentPage));
+         pagedata.setPageNavi(new MemberDAO().getPageNavi(conn, usertype, currentPage));
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         JDBCTemplate.close(conn);
+      }
+      return pagedata;
+   }
 
-	public MemberPageData selectSearchList(String usertype, String keyword, int currentPage) {
+   // 회원 검색
+   public MemberPageData selectByIdList(String usertype, String search, int currentPage) {
+      Connection conn = null;
+      MemberPageData pagedata = new MemberPageData();
+      try {
+         conn = factory.createConnection();
+         pagedata.setMemberList(new MemberDAO().selectByIdList(conn, usertype,search, currentPage));
+         pagedata.setPageNavi(new MemberDAO().getSearchPageNavi(conn, usertype,search, currentPage));
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         JDBCTemplate.close(conn);
+      }
+      return pagedata;
+   }
+   
+   public MemberPageData selectSearchList(String usertype, String keyword, int currentPage) {
 		Connection conn = null;
 		MemberPageData pd = new MemberPageData();
 		System.out.println("서비스지롱" + usertype);
@@ -164,19 +165,6 @@ public class MemberService {
 		
 		return pd;
 	}
-	
-	public int selectMemberList() {
-		Connection conn = null;
-		int result = 0;
 
-		try {
-			conn = factory.createConnection();
-			result = new MemberDAO().selectAmountByEnrollMonth(conn);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return result;
-	}
+  
 }

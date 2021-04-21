@@ -1,8 +1,9 @@
 <%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%
-	Member member = (Member)session.getAttribute("member");
+	Member member = (Member)request.getAttribute("member");
 %>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@
 					<form action="/mypage/modify" method="post">
 						<div class="mb-3">
 							<label for="id" class="form-label">아이디</label>
-							<input type="text" class="form-control" id="id" value="<%= member.getMbId() %>" name="memberId" disabled>
+							<input type="text" class="form-control" id="id" value="<%=member.getMbId() %>" name="memberId" disabled>
 							<div id="idHelp" class="form-text">아이디는 수정이 불가능합니다.</div>
 						</div>
 						<div class="mb-3">
