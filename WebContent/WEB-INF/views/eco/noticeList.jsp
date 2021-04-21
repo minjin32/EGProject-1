@@ -1,4 +1,5 @@
 <%@page import="notice.model.vo.Notice"%>
+<%@page import="member.model.vo.Member"%>
 <%@page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,6 +21,11 @@
 	
 	.td-title {
 		text-align: left !important;
+	}
+	#pageNavi ul{
+    list-style:none;
+    position:relative;
+    left:35%;
 	}
 </style>
 </head>
@@ -58,32 +64,43 @@
 						</tr>
 					</thead>
 					<tbody>
-						<% for(Notice notice : nList) { %>
-						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail?noticeNo=<%= notice.getNoticeNo() %>';">
-							<th scope="row"><%= notice.getNoticeNo() %></th>
-							<td class="td-title"><%= notice.getSubject() %></td>
-							<td><%= notice.getRegDate() %></td>
+<%-- 						<% for(Notice notice : nList) { %> --%>
+<%-- 						<% for(int i = nList.size()-1; i >= 0; i--) { --%>
+						<% for(int i = 0; i <= nList.size()-1; i++) {
+							Notice notice = nList.get(i);
+						%>
+						<tr style="cursor: pointer;" onclick="window.location='/eco/notice/detail?noticeNo=<%= notice.getNoNo() %>';">
+							<th scope="row"><%= notice.getNum() %></th>
+							<td class="td-title"><%= notice.getNoTitle() %></td>
+							<td><%= notice.getNoDatetime() %></td>
 						</tr>
 						<% } %>
 					</tbody>
 				</table>
-				<div class="row">
+				<div id="pageNavi" class="row">
 					<div class="mx-auto" style="width: 300px;">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
+					<ul class="pagination">
+						<%= pageNavi %>
+					</ul>
 					</div>
 				</div>
+<!-- 				<div class="row"> -->
+<!-- 					<div class="mx-auto" style="width: 300px;"> -->
+<!-- 						<ul class="pagination"> -->
+<!-- 							<li class="page-item"><a class="page-link" href="#" -->
+<!-- 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span> -->
+<!-- 							</a></li> -->
+<%-- 							<%= pageNavi %> --%>
+<!-- 							<li class="page-item"><a class="page-link" href="#">1</a></li> -->
+<!-- 							<li class="page-item"><a class="page-link" href="#">2</a></li> -->
+<!-- 							<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!-- 							<li class="page-item"><a class="page-link" href="#">4</a></li> -->
+<!-- 							<li class="page-item"><a class="page-link" href="#">5</a></li> -->
+<!-- 							<li class="page-item"><a class="page-link" href="#"aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<%-- 			<% if(memberType == "9") { %> --%>
 				<div>
 					<a href="/eco/notice/write"><button type="button" class="btn btn-primary mx-1" style="float: right;">글쓰기</button></a>
 				</div>

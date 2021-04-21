@@ -22,17 +22,17 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
-@WebServlet("/eco/notice/write")
-public class NoticeWriteServlet extends HttpServlet {
+@WebServlet("/eco/notice/modify")
+public class NoticeModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public NoticeWriteServlet() {
+    public NoticeModifyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeWrite.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeModify.jsp");
 		view.forward(request, response);
 	}
 

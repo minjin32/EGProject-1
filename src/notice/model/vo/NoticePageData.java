@@ -6,7 +6,7 @@ public class NoticePageData {
 	private ArrayList<Notice> noticeList;
 	private String pageNavi;
 	
-	public NoticePageData() {} // »ý¼ºÀÚ
+	public NoticePageData() {}
 	
 	public ArrayList<Notice> getNoticeList(){
 		return noticeList;
