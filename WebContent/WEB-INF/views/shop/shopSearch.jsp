@@ -27,7 +27,7 @@
 				url: "/shop/search",
 				Headers : {
 					Accept : "application/json; charset=utf-8",
-					"Content-Type" : "application/json; charset=utf-8";
+					"Content-Type" : "application/json; charset=utf-8"
 				},
 				success : function(result) {
 					var pd = $.parseJSON(result);
@@ -102,12 +102,12 @@
 					<a href="/shop/detail?shopNumber=<%= shop.getShopNumber() %>" style="text-decoration: none;">
 						<div class="row g-4" >
 							<div class="col-md-3">
-								<img src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" class="img-thumbnail d-block w-100" alt="음식점 이미지">
+								<img src="<%=request.getContextPath()%><%= shop.getImagePath1() %>" class="img-thumbnail d-block w-100" alt="음식점 이미지">
 							</div>
 							<div class="col-md-9" >
 								<h5 class="card-title" style="color: #af8d2f"><%= shop.getShopName() %></h5>
 						        <p class="card-text"><%= shop.getShopIntroduce() %></p>
-						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00</small></p>
+						        <p class="card-text"><small class="text-muted">영업시간: 11:00 ~ 20:00...<%= shopList.size() %></small></p>
 							</div>
 						</div>
 						</a>

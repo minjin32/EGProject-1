@@ -31,6 +31,19 @@ public class ShopOrderServlet extends HttpServlet {
 		String orderMsg = request.getParameter("orderMsg");
 		Member member = new MemberService().selectOneById(memberId);
 		
+		if (member == null) {
+			response.setContentType("text/html; charset=utf-8");
+            PrintWriter out = response.getWriter();
+            String msg = "로그인을 해주세요."; // 오류 메세지 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            out.println("<script>");
+            out.println("alert('" + msg + "');");
+            out.println("location.href='/member/login'");
+            out.println("</script>");
+            out.flush();
+            out.close();
+            return;
+		}
+		
 		if (member.getMbType() != '0') {
 			response.setContentType("text/html; charset=utf-8");
             PrintWriter out = response.getWriter();

@@ -18,6 +18,8 @@ public class Shop {
 	private String shopIntroduce;
 	private String shopOrigin;
 	private int shopType;
+	private String imagePath1;
+	private String imagePath2;
 	
 	public int getShopNumber() {
 		return shopNumber;
@@ -108,6 +110,18 @@ public class Shop {
 	}
 	public void setShopType(int shopType) {
 		this.shopType = shopType;
+	}
+	public String getImagePath1() {
+		return imagePath1;
+	}
+	public void setImagePath1(String imagePath1) {
+		this.imagePath1 = imagePath1;
+	}
+	public String getImagePath2() {
+		return imagePath2;
+	}
+	public void setImagePath2(String imagePath2) {
+		this.imagePath2 = imagePath2;
 	}
 	@Override
 	public String toString() {

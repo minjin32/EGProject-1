@@ -272,36 +272,7 @@ select {
 					class="int" maxlength="100" placeholder="선택입력">
 				</span> <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
 			</div>
-			<!-- BIRTH_DD -->
-			<div id="bir_dd">
-				<span class="box"> <input type="text" id="dd" class="int"
-					maxlength="2" placeholder="일">
-				</span>
-			</div>
 			<span class="error_next_box"></span>
-			<!-- GENDER -->
-			<div>
-				<h3 class="join_title">
-					<label for="gender">성별</label>
-				</h3>
-				<span class="box gender_code"> <select id="gender"
-					class="sel">
-						<option>성별</option>
-						<option value="M">남자</option>
-						<option value="F">여자</option>
-				</select>
-				</span> <span class="error_next_box">필수 정보입니다.</span>
-			</div>
-
-			<!-- EMAIL -->
-			<div>
-				<h3 class="join_title">
-					<label for="email">본인확인 이메일<span class="optional">(선택)</span></label>
-				</h3>
-				<span class="box int_email"> <input type="text" id="email"
-					name="memberEmail" class="int" maxlength="100" placeholder="선택입력">
-				</span> <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
-			</div>
 
 			<!-- MOBILE -->
 			<div>

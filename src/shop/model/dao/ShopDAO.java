@@ -20,7 +20,9 @@ public class ShopDAO {
 		ArrayList<Shop> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = "SELECT * FROM SHOP WHERE SH_ADDRESS1 = ? AND SH_ADDRESS2 = ? AND SH_ADDRESS3 = ? AND SH_NO BETWEEN ? AND ? ORDER BY SH_NO";
+		String sql = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY SH_NO DESC) AS NUM, \r\n" + 
+				"SH_NO, MB_ID, SH_NAME, SH_BUSINESS_NO, SH_ADDRESS1, SH_ADDRESS2, SH_ADDRESS3, SH_PHONE, SH_ADDRESS, SH_OWNER, SH_OPENTIME, SH_CLOSETIME, SH_INTRODUCE, SH_ORIGIN, SH_TYPE, IMAGE_PATH1, IMAGE_PATH2 FROM SHOP) \r\n" + 
+				"WHERE SH_ADDRESS1 = ? AND SH_ADDRESS2 = ? AND SH_ADDRESS3 = ? AND NUM BETWEEN ? AND ? ORDER BY NUM DESC";
 //		String sql = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY SH_NO DESC) AS "
 //				+ "SH_NO, MB_ID, SH_NAME, SH_BUSINESS_NO, SH_ADDRESS1, SH_ADDRESS2, SH_ADDRESS3, SH_PHONE, SH_ADDRESS, SH_OWNER, SH_OPENTIME, SH_CLOSETIME, SH_INTRODUCE, SH_ORIGIN, SH_TYPE "
 //				+ "FROM SHOP WHERE SH_ADDRESS1 = ? AND SH_ADDRESS2 = ? AND SH_ADDRESS3 = ?) WHERE SH_NO BETWEEN ? AND ?";
@@ -53,6 +55,8 @@ public class ShopDAO {
 				shop.setShopCloseTime(rset.getDate("SH_CLOSETIME"));
 				shop.setShopIntroduce(rset.getString("SH_INTRODUCE"));
 				shop.setShopType(rset.getInt("SH_TYPE"));
+				shop.setImagePath1(rset.getString("IMAGE_PATH1"));
+				shop.setImagePath2(rset.getString("IMAGE_PATH2"));
 				list.add(shop);
 			}
 		} catch (SQLException e) {
@@ -89,6 +93,8 @@ public class ShopDAO {
 				shop.setShopIntroduce(rset.getString("SH_INTRODUCE"));
 				shop.setShopOrigin(rset.getString("SH_ORIGIN"));
 				shop.setShopType(rset.getInt("SH_TYPE"));
+				shop.setImagePath1(rset.getString("IMAGE_PATH1"));
+				shop.setImagePath2(rset.getString("IMAGE_PATH2"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -228,15 +234,18 @@ public class ShopDAO {
 		return list;
 	}
 	
-	public int totalCount(Connection conn) {
-		Statement stmt = null;
+	public int totalCount(Connection conn, String addr1, String addr2, String addr3) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = "SELECT COUNT(*) AS TOTALCOUNT FROM SHOP";
+		String sql = "SELECT COUNT(*) AS TOTALCOUNT FROM SHOP WHERE SH_ADDRESS1 = ? AND SH_ADDRESS2 = ? AND SH_ADDRESS3 = ?";
 		int recordTotalCount = 0;
 		
 		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, addr1);
+			pstmt.setString(2, addr2);
+			pstmt.setString(3, addr3);
+			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				recordTotalCount = rset.getInt("TOTALCOUNT");
 			}
@@ -244,14 +253,14 @@ public class ShopDAO {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(pstmt);
 		}
 		
 		return recordTotalCount;
 	}
 	
 	public String getPageNavi(Connection conn, String addr1, String addr2, String addr3, int currentPage) {
-		int recordTotalCount = totalCount(conn);
+		int recordTotalCount = totalCount(conn, addr1, addr2, addr3);
 		int recordCountPerPage = 10;
 		int pageTotalCount = 0;
 		if (recordTotalCount % recordCountPerPage > 0) {
@@ -284,18 +293,6 @@ public class ShopDAO {
 		if (endNavi == pageTotalCount) {
 			needNext = false;
 		}
-		
-//		<li class="page-item"><a class="page-link" href="#"
-//			aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-//		</a></li>
-//		<li class="page-item"><a class="page-link" href="#">1</a></li>
-//		<li class="page-item"><a class="page-link" href="#">2</a></li>
-//		<li class="page-item"><a class="page-link" href="#">3</a></li>
-//		<li class="page-item"><a class="page-link" href="#">4</a></li>
-//		<li class="page-item"><a class="page-link" href="#">5</a></li>
-//		<li class="page-item"><a class="page-link" href="#"
-//			aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-//		</a></li>
 		
 		StringBuilder sb = new StringBuilder();
 		if (needPrev) {
@@ -348,6 +345,8 @@ public class ShopDAO {
 				shop.setShopIntroduce(rset.getString("SH_INTRODUCE"));
 				shop.setShopOrigin(rset.getString("SH_ORIGIN"));
 				shop.setShopType(rset.getInt("SH_TYPE"));
+				shop.setImagePath1(rset.getString("IMAGE_PATH1"));
+				shop.setImagePath2(rset.getString("IMAGE_PATH2"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -2,6 +2,7 @@ package eco.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
+import notice.model.vo.NoticeComment;
 
 @WebServlet("/eco/notice/detail")
 public class NoticeDetailServlet extends HttpServlet {
@@ -24,9 +26,11 @@ public class NoticeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		Notice notice = new NoticeService().printOnebyNo(noticeNo);
+		ArrayList<NoticeComment> commentList = new NoticeService().printByComentList(noticeNo);
 		
 		if(notice != null) {
 			request.setAttribute("notice", notice);
+			request.setAttribute("commentList", commentList);
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeDetail.jsp");
 			view.forward(request, response);
 		}else {

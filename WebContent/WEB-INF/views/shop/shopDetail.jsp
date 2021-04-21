@@ -142,11 +142,11 @@ $(document).ready(function() {
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img
-						src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" class="d-block w-100" alt="...">
+						src="<%=request.getContextPath()%><%= shop.getImagePath1() %>" class="d-block w-100" alt="가게 이미지">
 				</div>
 				<div class="carousel-item">
 					<img
-						src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" class="d-block w-100" alt="...">
+						src="<%=request.getContextPath()%><%= shop.getImagePath2() %>" class="d-block w-100" alt="가게 이미지">
 				</div>
 			</div>
 		</div>
@@ -210,7 +210,7 @@ $(document).ready(function() {
 											<input type="hidden" name="memberId" value="<%= session.getAttribute("memberId") %>">
 										</div>
 									</div>
-									<div class="row p-2">
+									<div class="row p-3">
 										<div class="col-2 ms-2">
 											<p>요청사항</p>
 										</div>

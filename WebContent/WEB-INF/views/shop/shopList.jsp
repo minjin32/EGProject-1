@@ -23,7 +23,7 @@
 				url: "/shop/search",
 				Headers : {
 					Accept : "application/json; charset=utf-8",
-					"Content-Type" : "application/json; charset=utf-8";
+					"Content-Type" : "application/json; charset=utf-8"
 				},
 				success : function(result) {
 					var pd = $.parseJSON(result);

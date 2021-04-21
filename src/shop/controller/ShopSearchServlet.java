@@ -44,6 +44,7 @@ public class ShopSearchServlet extends HttpServlet {
             out.println("</script>");
             out.flush();
             out.close();
+            return;
 		}
 		
 		int page = 1;
@@ -63,7 +64,9 @@ public class ShopSearchServlet extends HttpServlet {
             out.println("</script>");
             out.flush();
             out.close();
+            return;
 		}
+		
 		request.setAttribute("shopList", shopPd.getShopList());
 		request.setAttribute("pageNav", shopPd.getPageNavi());
 		

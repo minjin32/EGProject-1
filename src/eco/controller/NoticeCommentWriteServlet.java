@@ -15,50 +15,68 @@ import javax.servlet.http.HttpSession;
 import notice.model.service.NoticeService;
 import notice.model.vo.NoticeComment;
 
-@WebServlet("/eco/notice/comment/write/")
+
+
+
+@WebServlet("/eco/notice/comment/write")
 public class NoticeCommentWriteServlet extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
+       
 
-	public NoticeCommentWriteServlet() {
-		super();
-	}
+    public NoticeCommentWriteServlet() {
+        super();
+    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeWrite.jsp");
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeDetail.jsp");
 		view.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
-		String memberId = (String) request.getSession().getAttribute("memberId");
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		int coParentNo = Integer.parseInt(request.getParameter("coParentNo"));
-		String coContent = request.getParameter("coContent");
-
-		NoticeComment noComment = new NoticeComment();
-		noComment.setMemberId(memberId);
-		noComment.setBoardNo(noticeNo);
-		noComment.setCoParentNo(coParentNo);
-		noComment.setCoContents(coContent);
-
-//		int result = new NoticeService().registerNoticeCommnet(noComment);
-
-//		if (0 < result) {
-//			response.sendRedirect("/noticeDetail.jsp");
-//		} else {
-//			response.setContentType("text/html; charset=utf-8");
-//			PrintWriter out = response.getWriter();
-//			String msg = "댓글 입력에 실패했습니다."; // 오류 메세지
-//			out.println("<script>");
-//			out.println("alert('" + msg + "');");
-//			out.println("history.back();");
-//			out.println("</script>");
-//			out.flush();
-//			out.close();
-//		}
-
+		
+		// 로그인 여부 확인
+		if (request.getSession().getAttribute("memberId") != null) {
+			
+			String memberId = (String)request.getSession().getAttribute("memberId");
+			int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+			String coContent = (String)request.getParameter("comment");
+			
+			NoticeComment noComment = new NoticeComment();
+			noComment.setMemberId(memberId);
+			noComment.setNoticeNo(noticeNo);
+			noComment.setCoContent(coContent);
+			
+			int result = new NoticeService().registerNoticeCommnet(noComment);
+			
+			if (0 < result) {
+				response.sendRedirect("/eco/notice/detail?noticeNo="+noticeNo);
+			} else {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out = response.getWriter();
+				String msg = "댓글 입력에 실패했습니다."; // 오류 메세지
+				out.println("<script>");
+				out.println("alert('" + msg + "');");
+				out.println("history.back();");
+				out.println("</script>");
+				out.flush();
+				out.close();
+				return;
+			}
+			// 비회원일 경우 오류메세지 출력, 뒤로가기
+		} else {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "로그인을 해주세요"; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
+			return;
+		}
 	}
 }

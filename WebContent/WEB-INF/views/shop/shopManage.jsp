@@ -124,13 +124,16 @@
 		var audio = new Audio('<%= request.getContextPath() %>/files/sounds/bellsound.mp3');
 		audio.loop = false;
 		
-		document.getElementById('orderAlarm').addEventListener('click', function () {
-			audio.play();
-		});
+		var alarmOn = true;
 		
-		if (document.getElementById('list-order-waiting')) {
-			audio.play();
-		}
+		setInterval(function () {
+			var inner = document.getElementById('list-order-waiting').innerHTML.replace(/\s/g, '');
+			console.log(inner);
+			if (inner != "") {
+				audio.play();
+			}
+		}, 1000);
+		
 	})
 	
 </script>
@@ -332,7 +335,7 @@
 			    			for (OrderVO order : orderList) { 
     			    			if (order.getOrderStatus() == 0) {
 			    		%>
-						<div class="row"><!-- 주문내역 시작 -->
+						<div class="row order-waiting"><!-- 주문내역 시작 -->
 							<div class="col-3 d-flex justify-content-center align-items-center">
 								<div class="row pe-1">
 									<h4><%=dateFormat.format(order.getOrderDateTime())%></h4>
@@ -353,12 +356,12 @@
 								<div class="row g-2">
 									<div class="col-lg">
 										<a href="/shop/order/response?orderNumber=<%= order.getOrderNo() %>&responseType=1">
-											<input type="button" class="btn btn-primary" value="접수하기">
+											<input type="button" id="btn-accept" class="btn btn-primary" value="접수하기">
 										</a>
 									</div>
 									<div class="col-lg">
 										<a href="/shop/order/response?orderNumber=<%= order.getOrderNo() %>&responseType=99">
-											<input type="button" class="btn btn-primary" value="거절하기">
+											<input type="button" id="btn-reject" class="btn btn-primary" value="거절하기">
 										</a>
 									</div>
 								</div>
@@ -437,7 +440,7 @@
 									<div class="col-lg">
 										<input type="button" class="btn btn-primary" value="완료됨" disabled>
 										<div class="row">
-											<p>완료시각</p>
+											<!-- <p>완료시각</p> -->
 											<% 
 												if (order.getShopRuntime() != null) { 
 											%>
@@ -534,8 +537,8 @@
 						<h5>매장 메인사진</h5>
 					</div>
 					<div class="row pe-5">
-						<img class="ms-5 py-2" style="border-radius: 50px; max-height: 200px;" src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" alt="">
-						<img class="ms-5 py-2" style="border-radius: 50px; max-height: 200px;" src="<%=request.getContextPath()%>/files/images/sample-horizontal.jpg" alt="">
+						<img class="ms-5 py-2" style="border-radius: 50px; max-height: 200px;" src="<%=request.getContextPath()%><%= shop.getImagePath1() %>" alt="가게 이미지">
+						<img class="ms-5 py-2" style="border-radius: 50px; max-height: 200px;" src="<%=request.getContextPath()%><%= shop.getImagePath2() %>" alt="가게 이미지">
 					</div>
 				</div>
 			</div>

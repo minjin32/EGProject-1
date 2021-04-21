@@ -21,8 +21,7 @@ public class NoticeDeleteServlet extends HttpServlet implements Servlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		int result = new NoticeService().deleteNotice(noticeNo);
 		if (result > 0) {
@@ -37,6 +36,7 @@ public class NoticeDeleteServlet extends HttpServlet implements Servlet {
 			out.println("</script>");
 			out.flush();
 			out.close();
+			return;
 		}
 	}
 

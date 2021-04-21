@@ -61,7 +61,7 @@ public class ShopManageServlet extends HttpServlet {
             String msg = "로그인을 해주세요."; // 오류 메세지 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             out.println("<script>");
             out.println("alert('" + msg + "');");
-            out.println("history.back();");
+            out.println("location.href='/member/login';");
             out.println("</script>");
             out.flush();
             out.close();
