@@ -74,21 +74,23 @@
 		</div>
 		<div class="row row-cols-1 row-cols-md-2">
 			<div class="col" style="padding:60px;">
-				<img src="<%=request.getContextPath()%>/files/images/wireframe.jpg" class="d-block w-100" style="max-height: 400px" alt="...">
+				<a href="https://map.kakao.com/?urlX=496274&urlY=1130105&urlLevel=3&itemId=276378404&q=KH%EC%A0%95%EB%B3%B4%EA%B5%90%EC%9C%A1%EC%9B%90%20%EC%A2%85%EB%A1%9C%EC%A7%80%EC%9B%90&srcid=276378404&map_type=TYPE_MAP">
+					<img src="<%=request.getContextPath()%>/files/images/map.jpg" class="d-block w-100" style="max-height: 400px" alt="...">
+				</a>
 			</div>
 			<div class="col" style="padding:60px;">
 				<div class="row align-items-center" style="padding:40px;">
-					<h3>운영시간</h3>
+					<h3>주소</h3>
 					<br>
 					<p>
-						설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다.
+						서울특별시 종로구
 					</p>
 				</div>
 				<div class="row align-items-center" style="padding:40px;">
 					<h3>운영시간</h3>
 					<br>
 					<p>
-						설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다. 설명글 입니다.
+						월 - 금 am 09:00 ~ pm 06:00
 					</p>
 				</div>
 			</div>
