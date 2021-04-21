@@ -18,7 +18,7 @@ public class MypageQaDAO {
 	      ArrayList<MypageQaData> mqList = null;
 	      String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY QA_NO DESC) AS NUM, QA_NO, QA_TITLE, QA_CONTENT, MB_ID, QA_DATETIME FROM QNA) WHERE NUM BETWEEN ? AND ?";
 
-	      int recordCountPerPage = 5;
+	      int recordCountPerPage = 10;
 	      int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
 	      int end = currentPage * recordCountPerPage;
 
@@ -127,7 +127,6 @@ public class MypageQaDAO {
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println("난 다오야" + result);
 		return result;
 	}
 
@@ -153,7 +152,7 @@ public class MypageQaDAO {
 
 	public String getPageNavi(Connection conn, int currentPage) {
 		int recordTotalCount = totalCount(conn);
-		int recordCountPerPage = 5;
+		int recordCountPerPage = 10;
 		int pageTotalCount = 0;
 		if (recordTotalCount % recordCountPerPage > 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;

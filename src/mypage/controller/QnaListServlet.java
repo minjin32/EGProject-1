@@ -36,6 +36,9 @@ public class QnaListServlet extends HttpServlet {
 
 		PageData pageData = new MypageQaService().printAllList(currentPage);
 		ArrayList<MypageQaData> mqList = pageData.getQaList();
+		for (MypageQaData mq : mqList) {
+			System.out.println(mq.getMbId());
+		}
 		String PageNavi = pageData.getPageNavi();
 		if (!mqList.isEmpty()) {
 			request.setAttribute("mqList", mqList);

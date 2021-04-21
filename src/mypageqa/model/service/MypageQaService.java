@@ -86,7 +86,6 @@ public class MypageQaService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
-		System.out.println(result +"난서비스야");
 		return result;
 	}
 
