@@ -216,7 +216,7 @@ select {
 				<h3 class="join_title">
 					<label for="pswd1">비밀번호</label>
 				</h3>
-				<span class="box int_pass"> <input type="text" id="pswd1"
+				<span class="box int_pass"> <input type="password" id="pswd1"
 					name="memberPw" class="int" maxlength="20"> <span
 					id="alertTxt">사용불가</span>
 				</span> <span class="error_next_box"></span>
@@ -226,7 +226,7 @@ select {
 				<h3 class="join_title">
 					<label for="pswd2">비밀번호 재확인</label>
 				</h3>
-				<span class="box int_pass_check"> <input type="text"
+				<span class="box int_pass_check"> <input type="password"
 					id="pswd2" class="int" maxlength="20">
 				</span> <span class="error_next_box"></span>
 			</div>
