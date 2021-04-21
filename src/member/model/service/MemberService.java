@@ -145,14 +145,14 @@ public class MemberService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
-		System.out.println("난서비스얌"+pagedata);
+
 		return pagedata;
 	}
 
 	public MemberPageData selectSearchList(String usertype, String keyword, int currentPage) {
 		Connection conn = null;
 		MemberPageData pd = new MemberPageData();
-		System.out.println("서비스지롱" + usertype);
+
 		try {
 			conn = factory.createConnection();
 			pd.setMemberList(new MemberDAO().selectSearchList(conn, usertype, keyword, currentPage));

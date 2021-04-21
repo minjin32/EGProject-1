@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Member {
 	
+	private int num;
 	private String mbId;
 	private int mbNo;
 	private String mbPassword;
@@ -21,6 +22,13 @@ public class Member {
 	private Date mbJoindate;
 	private String mbStatus;
 	private String gender;
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	
 	public String getMbId() {
 		return mbId;
@@ -126,11 +134,13 @@ public class Member {
 	}
 	@Override
 	public String toString() {
-		return "Member [mbId=" + mbId + ", mbNo=" + mbNo + ", mbPassword=" + mbPassword + ", mbName=" + mbName
-				+ ", mbNickname=" + mbNickname + ", mbEmail=" + mbEmail + ", mbPhone=" + mbPhone + ", mbAddress1="
-				+ mbAddress1 + ", mbAddress2=" + mbAddress2 + ", mbAddress3=" + mbAddress3 + ", mbType=" + mbType
-				+ ", shOwner=" + shOwner + ", shBusinessno=" + shBusinessno + ", shEcopoint=" + shEcopoint
-				+ ", mbJoindate=" + mbJoindate + ", mbStatus=" + mbStatus + ", gender=" + gender + "]";
+		return "Member [num=" + num + ", mbId=" + mbId + ", mbNo=" + mbNo + ", mbPassword=" + mbPassword + ", mbName="
+				+ mbName + ", mbNickname=" + mbNickname + ", mbEmail=" + mbEmail + ", mbPhone=" + mbPhone
+				+ ", mbAddress1=" + mbAddress1 + ", mbAddress2=" + mbAddress2 + ", mbAddress3=" + mbAddress3
+				+ ", mbType=" + mbType + ", shOwner=" + shOwner + ", shBusinessno=" + shBusinessno + ", shEcopoint="
+				+ shEcopoint + ", mbJoindate=" + mbJoindate + ", mbStatus=" + mbStatus + ", gender=" + gender + "]";
 	}
+
+	
 	
 }

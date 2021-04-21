@@ -59,7 +59,7 @@
 						<%
 							for (Member m : mList) {
 						%>
-						<tr style="cursor: pointer;">
+						<tr style="cursor: pointer;" onclick="window.location='/mypage/info?memberId=<%= m.getMbId() %>';">
 							<th scope="row"><%=m.getMbNo()%></th>
 							<td><%=m.getMbId()%></td>
 							<td class="td-title"><%=m.getMbNickname()%></td>
@@ -86,10 +86,6 @@
 							</a></li>
 						</ul>
 					</div>
-				</div>
-				<div>
-					<a href="#"><button type="button"
-							class="btn btn-primary mx-1" style="float: right;">수정하기</button></a>
 				</div>
 			</div>
 		</div>
