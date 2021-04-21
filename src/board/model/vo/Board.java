@@ -9,7 +9,7 @@ public class Board {
 	private String memberId;
 	private String boardTitle;
 	private String boardContent;
-	private Timestamp boardDate;
+	private Date boardDate;
 	private int noStatus;
 	private String imageName;
 	private String imagePath;
@@ -49,11 +49,11 @@ public class Board {
 		this.boardContent = boardContent;
 	}
 
-	public Timestamp getBoardDate() {
+	public Date getBoardDate() {
 		return boardDate;
 	}
 
-	public void uploadTime(Timestamp boardDate) {
+	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
 
@@ -95,6 +95,5 @@ public class Board {
 				+ boardContent + ", boardDate=" + boardDate + ", noStatus=" + noStatus + ", imageName=" + imageName
 				+ ", imagePath=" + imagePath + ", imageSize=" + imageSize + "]";
 	}
-
-	}
+}
 	

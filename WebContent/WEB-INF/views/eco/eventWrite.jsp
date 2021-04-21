@@ -31,7 +31,7 @@
 						style="border: 1px solid #789F6F; border-radius: 5px;"
 						enctype="multipart/form-data">
 						<div class="mb-3">
-							<input type="text" class="form-control" placeholder="제목을 입력하세요." name="subject">
+							<input type="text" class="form-control" placeholder="제목을 입력하세요." name="title">
 						</div>
 						<!-- <div class="mb-3">
 							<textarea rows="12" class="form-control" placeholder="내용을 입력하세요."></textarea>

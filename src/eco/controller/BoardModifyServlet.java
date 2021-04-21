@@ -23,12 +23,13 @@ import board.model.vo.Board;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
-@WebServlet("/eco/board/write")
-public class BoardWriteServlet extends HttpServlet {
+@WebServlet("/eco/board/modify")
+public class BoardModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public BoardWriteServlet() {
+	public BoardModifyServlet() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,6 +50,22 @@ public class BoardWriteServlet extends HttpServlet {
 			return;
 		}
 		
+		Member member = new MemberService().selectOneById(memberId);
+		
+		// 본인의 글 혹은 관리자가 아닐 경우 오류메세지 출력 후 리스트로
+		if (!(memberId == member.getMbName() || member.getMbType() == 9)) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "권한이 없습니다."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("location.href='/eco/board/list';");
+			out.println("</script>");
+			out.flush();
+			out.close();
+			return;
+		}
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/boardWrite.jsp");
 		view.forward(request, response);
 	}
@@ -57,7 +74,6 @@ public class BoardWriteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println(request.getParameter("title"));
 		String title = (String) request.getParameter("title");
 		String content = (String) request.getParameter("content");
 		
@@ -103,7 +119,6 @@ public class BoardWriteServlet extends HttpServlet {
 		board.setImagePath(filePath);
 		board.setImageSize(fileSize);
 		
-		System.out.println(board.toString());
 		int result = new BoardService().insertBoard(board);
 
 		if (result > 0) {

@@ -34,7 +34,6 @@ public class BoardService {
 		} finally {
 			JDBCTemplate.commit(conn);
 		}
-		System.out.println("안녕 난 서비스얌" +result);
 		return result;
 	}
 	
@@ -74,7 +73,7 @@ public class BoardService {
 		return board;
 	}
 	
-	public BoardPageData printALLlist(int currentPage) {
+	public BoardPageData printAllList(int currentPage) {
 		Connection conn = null;
 		ArrayList<Board> nList = null;
 		String pageNavi = null;

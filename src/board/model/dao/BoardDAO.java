@@ -15,7 +15,7 @@ public class BoardDAO {
 	public int insertBoard(Connection conn, Board board) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?, SYSTIMESTAMP, ?, ?, ?, ?)";
+		String query = "INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, ?, ?, ?, ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -32,14 +32,13 @@ public class BoardDAO {
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println("안녕 난 다오얌"+result);
 		return result;
 	}
 	
 	public int updateNotice(Connection conn, Board board) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query ="UPDATE BOARD SET MB_ID=?, BO_TITLE=?, BO_CONTENT=?, FI_DIR=? WHERE BO_NO=?";
+		String query ="UPDATE BOARD SET MB_ID=?, BO_TITLE=?, BO_CONTENT=?, BO_IMAGEPATH=? WHERE BO_NO=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -89,7 +88,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Board> nList = null;
-		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY BO_NO DESC) AS NUM, BO_NO, MB_ID, BO_TITLE, BO_CONTENT, BO_DATETIME, FI_DIR FROM BOARD) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY BO_NO DESC) AS NUM, BO_NO, MB_ID, BO_TITLE, BO_CONTENT, BO_DATETIME, BO_IMAGEPATH FROM BOARD) WHERE NUM BETWEEN ? AND ?";
 		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
 		int end = currentPage * recordCountPerPage;
@@ -106,6 +105,8 @@ public class BoardDAO {
 				board.setMemberId(rset.getString("MB_ID"));
 				board.setBoardTitle(rset.getString("BO_TITLE"));
 				board.setBoardContent(rset.getString("BO_CONTENT"));
+				board.setBoardDate(rset.getDate("BO_DATETIME"));
+				board.setImagePath(rset.getString("BO_IMAGEPATH"));
 				
 				nList.add(board);
 			}
@@ -148,15 +149,31 @@ public class BoardDAO {
 			needNext = false;
 		}
 		StringBuilder sb = new StringBuilder();
-		if(needPrev) {
-			sb.append("<a href='/notice/list?currentPage=" + (startNavi-1)+ "'> < </a>");
+		if (needPrev) {
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href=\"/eco/board/list?"
+					+ "page=" + (startNavi - 1) + "\"\r\n"
+					+ "			aria-label=\"Previous\"> <span aria-hidden=\"true\">&laquo;</span>\r\n"
+					+ "		</a></li>");
+		} 
+		for (int i = startNavi; i <= endNavi; i ++) {
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href=\"/eco/board/list?"
+					+ "page=" + i + "\">" + i + "</a></li>");
 		}
-		for(int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='/notice/list?currentPage=\" + i + \"'>\" + i + \" </a>");
+		if (needNext) {
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href=\"/eco/board/list?"
+					+ "page=" + (endNavi + 1) + "\"\r\n"
+					+ "			aria-label=\"Next\"> <span aria-hidden=\"true\">&raquo;</span>\r\n"
+					+ "		</a></li>");
 		}
-		if(needNext) {
-			sb.append("<a href='/notice/list?currentPage=" + (endNavi + 1) + "'> > </a>");
-		}
+//		if(needPrev) {
+//			sb.append("<a href='/notice/list?currentPage=" + (startNavi-1)+ "'> < </a>");
+//		}
+//		for(int i = startNavi; i <= endNavi; i++) {
+//			sb.append("<a href='/notice/list?currentPage=\" + i + \"'>\" + i + \" </a>");
+//		}
+//		if(needNext) {
+//			sb.append("<a href='/notice/list?currentPage=" + (endNavi + 1) + "'> > </a>");
+//		}
 		return sb.toString();
 	}
 
@@ -184,7 +201,7 @@ public class BoardDAO {
 	public ArrayList<Board> selectSearchList(Connection conn, String search, int currentPage){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY BO_NO DESC) AS NUM, BO_NO, MB_ID, BO_TITLE, BO_CONTENT, BO_DATETIME, FI_DIR FROM BOARD WHERE BO_TITLE LIKE ?)WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY BO_NO DESC) AS NUM, BO_NO, MB_ID, BO_TITLE, BO_CONTENT, BO_DATETIME, BO_IMAGEPATH FROM BOARD WHERE BO_TITLE LIKE ?)WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Board> nList = null;
 		int recordCountPerPage = 10;
 		int start = currentPage * recordCountPerPage - (recordCountPerPage -1);

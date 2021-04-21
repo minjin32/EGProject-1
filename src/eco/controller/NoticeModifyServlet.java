@@ -19,6 +19,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import member.model.service.MemberService;
+import member.model.vo.Member;
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
@@ -32,6 +34,41 @@ public class NoticeModifyServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		if (memberId == null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "로그인을 해주세요."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
+			return;
+		}
+		
+		// 멤버 ID로 멤버 객체를 가져옴
+		Member member = new MemberService().selectOneById(memberId);
+		
+		System.out.println(member.getMbType());
+		
+		// 관리자 회원이 아닐경우 권한오류 및 뒤로가기
+		if (member.getMbType() != '9') {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "권한이 없습니다."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
+			return;
+		}
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeModify.jsp");
 		view.forward(request, response);
 	}

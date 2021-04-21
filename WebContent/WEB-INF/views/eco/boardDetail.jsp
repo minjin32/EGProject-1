@@ -1,5 +1,9 @@
+<%@page import="board.model.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	Board board = (Board) request.getAttribute("board");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,9 +60,9 @@
 							</p>
 						</div>
 						<div class="gap-2 d-md-flex justify-content-md-end">
-							<button type="button" class="btn btn-danger">삭제</button>
-							<button type="button" class="btn btn-primary">수정</button>
-							<button type="button" class="btn btn-primary">목록</button>
+							<a href="/eco/board/delete?boardNumber=<%= board.getBoardNo() %>"><button type="button" class="btn btn-danger">삭제</button></a>
+							<a href="/eco/board/modify?boardNumber=<%= board.getBoardNo() %>"><button type="button" class="btn btn-primary">수정</button></a>
+							<a href="/eco/board/list"><button type="button" class="btn btn-primary">목록</button></a>
 						</div>
 					</form>
 				</div>

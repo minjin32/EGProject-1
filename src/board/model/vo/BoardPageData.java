@@ -6,9 +6,9 @@ public class BoardPageData {
 	private ArrayList<Board> boardList;
 	private String pageNavi;
 	
-	public BoardPageData() {} // ¾ê´Â »ý¼ºÀÚ¾ß!
+	public BoardPageData() {} // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¾ï¿½!
 	
-	public ArrayList<Board> getNoticeList(){
+	public ArrayList<Board> getBoardList(){
 		return boardList;
 	}
 	

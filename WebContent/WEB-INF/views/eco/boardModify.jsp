@@ -1,10 +1,14 @@
+<%@page import="board.model.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	Board board = (Board) request.getAttribute("board");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판 - EGProject</title>
+<title>자유게시판 글수정 - EGProject</title>
 <!-- Bootstrap & css-->
 <link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css"
 	rel="stylesheet">
@@ -27,13 +31,14 @@
 			<div class="col-lg-9 p-5">
 				<div>
 					<h2 class="pb-2">자유게시판</h2>
-					<form class="p-4" action="/eco/board/write" method="POST" style="border: 1px solid #789F6F; border-radius: 5px;"
+					<form class="p-4" action="/eco/board/modify" method="post"
+						style="border: 1px solid #789F6F; border-radius: 5px;"
 						enctype="multipart/form-data">
 						<div class="mb-3">
-							<input type="text" class="form-control" placeholder="제목을 입력하세요." name="title">
+							<input type="text" class="form-control" placeholder="제목을 입력하세요." name="title" value="<%= board.getBoardTitle() %>">
 						</div>
 						<div class="mb-3">
-							<textarea rows="12" class="form-control" placeholder="내용을 입력하세요." name="content"></textarea>
+							<textarea rows="12" class="form-control" placeholder="내용을 입력하세요." name="content"><%= board.getBoardContent() %></textarea>
 						</div>
 						<p style="margin-bottom: 0;">첨부파일</p>
 						<div class="mb-3">

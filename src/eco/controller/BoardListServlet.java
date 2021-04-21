@@ -1,6 +1,8 @@
 package eco.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,34 +11,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class BoardListServlet
- */
+import board.model.service.BoardService;
+import board.model.vo.Board;
+import board.model.vo.BoardPageData;
+
 @WebServlet("/eco/board/list")
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public BoardListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		BoardPageData pd = null;
+		int page = 1;
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		pd = new BoardService().printAllList(page);
+		
+		request.setAttribute("boardList", pd.getBoardList());
+		request.setAttribute("pageNav", pd.getPageNavi());
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/boardList.jsp");
 		view.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

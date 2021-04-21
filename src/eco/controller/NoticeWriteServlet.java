@@ -19,6 +19,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import member.model.service.MemberService;
+import member.model.vo.Member;
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
@@ -32,12 +34,81 @@ public class NoticeWriteServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		if (memberId == null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "로그인을 해주세요."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
+			return;
+		}
+		
+		// 멤버 ID로 멤버 객체를 가져옴
+		Member member = new MemberService().selectOneById(memberId);
+		
+		System.out.println(member.getMbType());
+		
+		// 관리자 회원이 아닐경우 권한오류 및 뒤로가기
+		if (member.getMbType() != '9') {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "권한이 없습니다."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
+			return;
+		}
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/noticeWrite.jsp");
 		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		if (memberId == null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "로그인을 해주세요."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
+			return;
+		}
+		
+		// 멤버 ID로 멤버 객체를 가져옴
+		Member member = new MemberService().selectOneById(memberId);
+		
+		System.out.println(member.getMbType());
+		
+		// 관리자 회원이 아닐경우 권한오류 및 뒤로가기
+		if (member.getMbType() != '9') {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String msg = "권한이 없습니다."; // 오류 메세지
+			out.println("<script>");
+			out.println("alert('" + msg + "');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
+			return;
+		}
+		
 		int uploadFileSizeLimit = 5*1024*1024;
 		String encType = "utf-8";
 		
@@ -59,42 +130,29 @@ public class NoticeWriteServlet extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 //		Timestamp uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
 		
-		HttpSession session = request.getSession();
-		if(session != null && (session.getAttribute("memberId")) != null) {
-			String memberId = (String)session.getAttribute("memberId");
-			Notice notice = new Notice();
-			notice.setNoTitle(subject);
-			notice.setNoContent(content);
-			notice.setMbId(memberId);
-			notice.setImageName(fileName);
-			notice.setImagePath(filePath);
-			notice.setImageSize(fileSize);
-			
-			int result = new NoticeService().insertNotice(notice);
-			
-			if(result > 0) {
-				response.sendRedirect("/eco/notice/list");
-			}else {
-				response.setContentType("text/html; charset=utf-8");
-				PrintWriter out = response.getWriter();
-				String msg = "오류가 발생했습니다."; // 오류 메세지
-				out.println("<script>");
-				out.println("alert('" + msg + "');");
-				out.println("history.back();");
-				out.println("</script>");
-				out.flush();
-				out.close();
-			}
+		Notice notice = new Notice();
+		notice.setNoTitle(subject);
+		notice.setNoContent(content);
+		notice.setMbId(memberId);
+		notice.setImageName(fileName);
+		notice.setImagePath(filePath);
+		notice.setImageSize(fileSize);
+		
+		int result = new NoticeService().insertNotice(notice);
+		
+		if (result > 0) {
+			response.sendRedirect("/eco/notice/list");
 		}else {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			String msg = "로그인을 해주세요."; // 오류 메세지
+			String msg = "공지사항 작성에 실패했습니다."; // 오류 메세지
 			out.println("<script>");
 			out.println("alert('" + msg + "');");
 			out.println("history.back();");
 			out.println("</script>");
 			out.flush();
 			out.close();
+			return;
 		}
 	}
 	
