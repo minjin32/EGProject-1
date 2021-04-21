@@ -53,7 +53,7 @@ public class OrderService {
 
 		try {
 			conn = factory.createConnection();
-			oList = new OrderDAO().selectByMemberIdList(conn, memberId);
+			oList = new OrderDAO().selectOneByMemberId(conn, memberId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -150,6 +150,22 @@ public class OrderService {
 		try {
 			conn = factory.createConnection();
 			list = new OrderDAO().selectListByOwnerId(conn, memberId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<OrderVO> selectListByMemberId(String memberId) {
+		ArrayList<OrderVO> list = null;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			list = new OrderDAO().selectListByMemberId(conn, memberId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

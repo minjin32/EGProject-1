@@ -85,7 +85,7 @@ public class OrderDAO {
 		return oList;
 	}
 
-	public OrderVO selectByMemberIdList(Connection conn, String memberId) {
+	public OrderVO selectOneByMemberId(Connection conn, String memberId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		OrderVO oList = null;
@@ -191,6 +191,42 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = "select * from (select m.mb_id, s.sh_no from member m join shop s on m.mb_id = s.mb_id where m.mb_id = ?) s join menuorder o on s.sh_no = o.sh_no";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<OrderVO>();
+			while (rset.next()) {
+				OrderVO order = new OrderVO();
+				order.setOrderNo(rset.getInt("OR_NO"));
+				order.setShopNo(rset.getInt("SH_NO"));
+				order.setMemberId(rset.getString("MB_ID"));
+				order.setOrderPrice(rset.getInt("OR_PRICE"));
+				order.setOrderStatus(rset.getInt("OR_STATUS"));
+				order.setShopName(rset.getString("SH_NAME"));
+				order.setOrderDateTime(rset.getDate("OR_DATETIME"));
+				order.setOrderReject(rset.getString("OR_REJECT"));
+				order.setShopRuntime(rset.getDate("SH_RUNTIME"));
+				order.setOrderMenu(rset.getString("OR_MENU"));
+				order.setPhone(rset.getString("OR_PHONE"));
+				order.setOrderMessage(rset.getString("OR_MESSAGE"));
+				list.add(order);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<OrderVO> selectListByMemberId(Connection conn, String memberId) {
+		ArrayList<OrderVO> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "SELECT * FROM MENUORDER WHERE MB_ID = ? ORDER BY OR_DATETIME DESC";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);

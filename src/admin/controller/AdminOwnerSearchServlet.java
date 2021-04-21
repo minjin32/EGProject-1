@@ -19,13 +19,13 @@ import notice.model.vo.Notice;
  * Servlet implementation class AdminMemberSearchServlet
  */
 @WebServlet("/admin/owner/search")
-public class OwnerSearchServlet extends HttpServlet {
+public class AdminOwnerSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OwnerSearchServlet() {
+    public AdminOwnerSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

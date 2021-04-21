@@ -24,7 +24,7 @@ public class MypageQaService {
 		try {
 			conn = factory.createConnection();
 			pd.setMypageQaList(new MypageQaDAO().selectAllList(conn, currentPage));
-			pd.setPageNavi(new MypageQaDAO().getPageNavi(conn, currentPage));
+			pd.setPageNavi(new MypageQaDAO().getAdminPageNavi(conn, currentPage));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,8 +124,23 @@ public class MypageQaService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
-		System.out.println(pd);
 		return pd;
+	}
+
+	public int insertQaAnswer(MypageQaData qa) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new MypageQaDAO().insertQaAnswer(conn, qa);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
 	}
 
 }

@@ -18,13 +18,13 @@ import member.model.vo.MemberPageData;
  * Servlet implementation class NoticeListServlet
  */
 @WebServlet("/admin/member/list")
-public class MemberListServlet extends HttpServlet {
+public class AdminMemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberListServlet() {
+    public AdminMemberListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

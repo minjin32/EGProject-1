@@ -65,7 +65,7 @@
 							for (MypageQaData mypageQaData : mqList) {
 						%>
 						<tr style="cursor: pointer;"
-							onclick="window.location='/mypage/qna/detail?qaNo=<%=mypageQaData.getQaNo()%>';">
+							onclick="window.location='/admin/qna/detail?qaNo=<%=mypageQaData.getQaNo()%>';">
 							<th scope="row"><%=mypageQaData.getQaNo()%></th>
 							<th scope="td-mbId"><%=mypageQaData.getMbId()%></th>
 							<td class="td-title"><%=mypageQaData.getQaTitle()%></td>

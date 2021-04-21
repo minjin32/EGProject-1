@@ -16,24 +16,14 @@ import member.model.vo.Member;
 import mypageqa.model.vo.PageData;
 import notice.model.service.NoticeService;
 
-/**
- * Servlet implementation class AdminServlet
- */
 @WebServlet("/admin")
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AdminServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberId = null;
 		
@@ -43,45 +33,37 @@ public class AdminServlet extends HttpServlet {
 			
 			Member member = new MemberService().selectOneById(memberId);
 			
-			if (member.getMbType() == '9') {
-				
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp");
-				view.forward(request, response);
-				System.out.println(member.getMbType());
-
-			} else if (member.getMbType() != '9') {
+			if (member == null) {
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out = response.getWriter();
-				String msg = "관리자 회원이 아닙니다."; // 오류 메세지
+				String msg = "로그인을 해주세요."; // 오류 메세지
 				out.println("<script>");
 				out.println("alert('" + msg + "');");
-				out.println("history.back();");
+				out.println("location.href='/member/login';");
 				out.println("</script>");
 				out.flush();
 				out.close();
 				return;
-			} else {
-				 response.setContentType("text/html; charset=utf-8");
-		         PrintWriter out = response.getWriter();
-		         String msg = "로그인을 해주세요."; // 오류 메세지
-		         out.println("<script>");
-		         out.println("alert('" + msg + "');");
-		         out.println("history.back();");
-		         out.println("</script>");
-		         out.flush();
-		         out.close();
-		         return;
+			}
+			
+			if (member.getMbType() != '9') {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out = response.getWriter();
+				String msg = "권한이 없습니다."; // 오류 메세지
+				out.println("<script>");
+				out.println("alert('" + msg + "');");
+				out.println("location.href='/';");
+				out.println("</script>");
+				out.flush();
+				out.close();
+				return;
 			}
 		}
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp");
 		view.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

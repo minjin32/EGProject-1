@@ -20,13 +20,13 @@ import member.model.vo.MemberPageData;
  * Servlet implementation class ownerListServlet
  */
 @WebServlet("/admin/owner/list")
-public class ownerListServlet extends HttpServlet {
+public class AdminOwnerListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ownerListServlet() {
+    public AdminOwnerListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

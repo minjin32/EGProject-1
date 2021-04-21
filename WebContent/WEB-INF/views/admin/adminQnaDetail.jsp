@@ -48,8 +48,7 @@
 							</div>
 						</div>
 						<div class="mb-3">
-							제목 
-							<p class="form-control"><%=mypageQaData.getQaTitle()%></p>
+							제목 <p type="text" class="form-control"><%=mypageQaData.getQaTitle()%></p>
 						</div>
 						<div class="mb-3">
 							내용
@@ -80,31 +79,33 @@
 								style="width: 100%;" alt="답변">
 						</div>
 						<div class="col">
-							<form class="p-4"
+							<form class="p-4" action="/admin/qna/answer" method="POST"
 								style="border: 1px solid #789F6F; border-radius: 5px;">
 								<div class="mb-3">
-								<p class="form-control">RE:<%=mypageQaData.getQaTitle()%></p>
+									<p class="form-control">RE:<%=mypageQaData.getQaTitle()%></p>
 								</div>
 								<!-- TODO 관리자만 보여야 하는 버튼 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 								<div class="mb-3">
-									<%
-										if (mypageQaData.isAnswered()) {
-									%>
+								<%
+									if (mypageQaData.isAnswered()) {
+								%>
 									<p class="form-control">
 										<%= mypageQaData.getAnswerContent() %>
 									</p>
-									<%
-										} else {
-									%>
-									<p class="form-control">
-										답변 대기중입니다.
-									</p>
-									<%
-										}
-									%>
+								<%
+									} else {
+								%>
+									<textarea rows="12" class="form-control" placeholder="답변을 입력해주세요." name="content"></textarea>
+								<%
+									}
+								%>
 								</div>
 								<div class="gap-2 d-md-flex justify-content-md-end">
-									<a href="/mypage/qna/list"><button type="button" class="btn btn-primary">뒤로</button></a>
+									<input type="hidden" name="qaNo" value="<%= mypageQaData.getQaNo() %>">
+									<a href="/admin/qna/list"><button type="reset" class="btn btn-primary">취소</button></a>
+									<% if (!mypageQaData.isAnswered()) { %>
+									<button type="submit" class="btn btn-primary">완료</button>
+									<% } %>
 								</div>
 							</form>
 						</div>

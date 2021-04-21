@@ -56,6 +56,7 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 							<th scope="col">작성자</th>
 							<th scope="col">제목</th>
 							<th scope="col">작성일</th>
+							<th scope="col">답변상태</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -68,6 +69,17 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 							<th scope="td-mbId"><%=mypageQaData.getMbId()%></th>
 							<td class="td-title"><%=mypageQaData.getQaTitle()%></td>
 							<td><%=mypageQaData.getQaDateTime()%></td>
+						<%
+							if (mypageQaData.isAnswered()) {
+						%>
+							<td><b style="color: green;">답변완료</b></td>
+						<%
+							} else {						
+						%>
+							<td><b style="color: gray;">답변대기</b></td>
+						<%
+							}
+						%>
 						</tr>
 						<%
 							}

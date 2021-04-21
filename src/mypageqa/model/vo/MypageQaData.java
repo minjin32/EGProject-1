@@ -12,6 +12,9 @@ public class MypageQaData {
 	private String image_name;
 	private String image_path;
 	private long image_size;
+	private boolean answered = false;
+	private Date answeredDateTime;
+	private String answerContent;
 
 	public MypageQaData() {
 	}
@@ -78,6 +81,30 @@ public class MypageQaData {
 
 	public void setImage_size(long image_size) {
 		this.image_size = image_size;
+	}
+
+	public boolean isAnswered() {
+		return answered;
+	}
+
+	public void setAnswered(boolean commented) {
+		this.answered = commented;
+	}
+
+	public Date getAnsweredDateTime() {
+		return answeredDateTime;
+	}
+
+	public void setAnsweredDateTime(Date answeredDateTime) {
+		this.answeredDateTime = answeredDateTime;
+	}
+
+	public String getAnswerContent() {
+		return answerContent;
+	}
+
+	public void setAnswerContent(String answerContent) {
+		this.answerContent = answerContent;
 	}
 
 	@Override

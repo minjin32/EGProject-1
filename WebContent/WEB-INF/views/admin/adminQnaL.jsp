@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	ArrayList<MypageQaData> mqList = (ArrayList<MypageQaData>) request.getAttribute("mqList");
-	String pageNavi = (String) request.getAttribute("pageNavi");
+	String pageNavi = (String) request.getAttribute("pageNav");
 %>
 <!DOCTYPE html>
 <html>
@@ -57,6 +57,7 @@
 							<th scope="col">작성자</th>
 							<th scope="col">제목</th>
 							<th scope="col">작성일</th>
+							<th scope="col">답변상태</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -64,11 +65,22 @@
 							for (MypageQaData mypageQaData : mqList) {
 						%>
 						<tr style="cursor: pointer;"
-							onclick="window.location='/mypage/qna/detail?qaNo=<%=mypageQaData.getQaNo()%>';">
+							onclick="window.location='/admin/qna/detail?qaNo=<%=mypageQaData.getQaNo()%>';">
 							<th scope="row"><%=mypageQaData.getQaNo()%></th>
 							<th scope="td-mbId"><%=mypageQaData.getMbId()%></th>
 							<td class="td-title"><%=mypageQaData.getQaTitle()%></td>
 							<td><%=mypageQaData.getQaDateTime()%></td>
+							<% 
+								if (!mypageQaData.isAnswered()) { 
+							%>
+							<td style="color: green;"><b>답변대기</b></td>
+							<%
+								} else {
+							%>
+							<td style="color: gray;"><b>답변완료</b></td>
+							<%
+								}
+							%>
 						</tr>
 						<%
 							}

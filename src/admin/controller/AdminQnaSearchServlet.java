@@ -23,13 +23,13 @@ import mypageqa.model.vo.PageData;
  * Servlet implementation class QnAListServlet
  */
 @WebServlet("/admin/qna/search")
-public class QnASearchServlet extends HttpServlet {
+public class AdminQnaSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnASearchServlet() {
+    public AdminQnaSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,7 +52,7 @@ public class QnASearchServlet extends HttpServlet {
 		if (mqList != null) {
 			request.setAttribute("mqList", mqList);
 			request.setAttribute("pageNavi", pageNavi);
-			request.getRequestDispatcher("/WEB-INF/views/admin/adminQnASearch.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/admin/adminQnaSearch.jsp").forward(request, response);
 		} else {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();

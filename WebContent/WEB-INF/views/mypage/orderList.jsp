@@ -1,5 +1,12 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="order.model.vo.OrderVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	ArrayList<OrderVO> orderList = (ArrayList<OrderVO>) request.getAttribute("orderList");
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,101 +44,47 @@
 						<h1>주문내역</h1>
 					</div>
 					<div class="pt-4">
+						<% 
+							for (OrderVO order : orderList) {
+						%>
 						<div class="row order-history"><!-- 주문 한개 start -->
 							<div class="col-lg-2">
 								<img src="<%=request.getContextPath()%>/files/images/dumpling.jpg" class="rounded mx-auto d-block w-100" alt="메뉴사진">
 							</div>
 							<div class="col-lg-8 mt-2">
-								<h5>군만두 A세트(야채군만두 + 콜라 1.25리터)</h5>
-								<p>짭짤이만두</p>
+								<h5><%= order.getOrderMenu() %></h5>
+								<p><%= order.getOrderMessage() %></p>
 								<div class="row">
 									<div class="col">
-										<p>15,000원</p>
+										<p><%= order.getOrderPrice() %></p>
 									</div>
 									<div class="col">
 										<div class="gap-2 d-md-flex justify-content-md-end">
-											<p >2021-04-16 12:12</p>
+											<p ><%= dateFormat.format(order.getOrderDateTime()) %></p>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-2">
-								<input type="button" class="btn btn-primary btn-cancel-order" value="주문취소">
-							</div>
-						</div><!-- 주문 한개 end -->
-						<hr>
-						<div class="row order-history"><!-- 주문 한개 start -->
-							<div class="col-lg-2">
-								<img src="<%=request.getContextPath()%>/files/images/dumpling.jpg" class="rounded mx-auto d-block w-100" alt="메뉴사진">
-							</div>
-							<div class="col-lg-8 mt-2">
-								<h5>군만두 A세트(야채군만두 + 콜라 1.25리터)</h5>
-								<p>짭짤이만두</p>
-								<div class="row">
-									<div class="col">
-										<p>15,000원</p>
-									</div>
-									<div class="col">
-										<div class="gap-2 d-md-flex justify-content-md-end">
-											<p >2021-04-16 12:12</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-2">
+								<% if (order.getOrderStatus() == 0) { %>
+								<input type="button" class="btn btn-primary btn-cancel-order" value="수락 대기중">
+								<% } else if (order.getOrderStatus() == 1) { %>
 								<input type="button" class="btn btn-primary btn-cancel-order" value="조리중" disabled>
+								<% } else if (order.getOrderStatus() == 2) { %>
+								<input type="button" class="btn btn-primary btn-cancel-order" value="완료" disabled>
+								<% } %>
 							</div>
 						</div><!-- 주문 한개 end -->
 						<hr>
-						<div class="row order-history"><!-- 주문 한개 start -->
-							<div class="col-lg-2">
-								<img src="<%=request.getContextPath()%>/files/images/dumpling.jpg" class="rounded mx-auto d-block w-100" alt="메뉴사진">
-							</div>
-							<div class="col-lg-8 mt-2">
-								<h5>군만두 A세트(야채군만두 + 콜라 1.25리터)</h5>
-								<p>짭짤이만두</p>
-								<div class="row">
-									<div class="col">
-										<p>15,000원</p>
-									</div>
-									<div class="col">
-										<div class="gap-2 d-md-flex justify-content-md-end">
-											<p >2021-04-16 12:12</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-2">
-								<input type="button" class="btn btn-primary btn-cancel-order" value="완료" disabled>
-							</div>
-						</div><!-- 주문 한개 end -->
-						<hr>
-						<div class="row order-history"><!-- 주문 한개 start -->
-							<div class="col-lg-2">
-								<img src="<%=request.getContextPath()%>/files/images/dumpling.jpg" class="rounded mx-auto d-block w-100" alt="메뉴사진">
-							</div>
-							<div class="col-lg-8 mt-2">
-								<h5>군만두 A세트(야채군만두 + 콜라 1.25리터)</h5>
-								<p>짭짤이만두</p>
-								<div class="row">
-									<div class="col">
-										<p>15,000원</p>
-									</div>
-									<div class="col">
-										<div class="gap-2 d-md-flex justify-content-md-end">
-											<p >2021-04-16 12:12</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-2">
-								<input type="button" class="btn btn-primary btn-cancel-order" value="완료" disabled>
-							</div>
-						</div><!-- 주문 한개 end -->
+						<%
+							}
+						%>
 					</div>
+					<!-- 
 					<div class="row">
 						<button class="btn btn-primary mt-4">더 불러오기</button>
 					</div>
+					 -->
 				</div>
 			</div>
 		</div>
