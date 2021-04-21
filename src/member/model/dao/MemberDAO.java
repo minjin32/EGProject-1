@@ -263,8 +263,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Member> memberlist = null;		
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY MB_NO DESC) AS MB_NO ,MB_ID ,MB_PASSWORD ,MB_NAME ,MB_NICKNAME ,MB_EMAIL ,MB_PHONE ,MB_ADDRESS1 ,MB_ADDRESS2 ,MB_ADDRESS3 ,MB_TYPE ,SH_OWNER ,SH_BUSINESS_NO ,SH_ECOPOINT ,MB_JOINDATE ,MB_STATUS FROM MEMBER WHERE MB_TYPE = ? AND MB_STATUS = 'Y') WHERE MB_NO BETWEEN ? AND ?";
-		int recordCountPerPage = 10;
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY MB_NO DESC) AS COUNT, MB_NO ,MB_ID ,MB_PASSWORD ,MB_NAME ,MB_NICKNAME ,MB_EMAIL ,MB_PHONE ,MB_ADDRESS1 ,MB_ADDRESS2 ,MB_ADDRESS3 ,MB_TYPE ,SH_OWNER ,SH_BUSINESS_NO ,SH_ECOPOINT ,MB_JOINDATE ,MB_STATUS FROM MEMBER WHERE MB_TYPE = ? AND MB_STATUS = 'Y') A LEFT JOIN (SELECT ROW_NUMBER() OVER(ORDER BY MB_NO ASC) AS NUM, MB_NO FROM MEMBER) B ON A.MB_NO = B.MB_NO WHERE COUNT BETWEEN ? AND ?";int recordCountPerPage = 10;
 		int start = currentPage*recordCountPerPage - (recordCountPerPage - 1);
 		int end = currentPage*recordCountPerPage;
 		
@@ -277,6 +276,7 @@ public class MemberDAO {
 			memberlist = new ArrayList<Member>();
 			while(rset.next()) {
 				Member member = new Member();
+				member.setNum(rset.getInt("NUM"));
 				member.setMbId(rset.getString("MB_ID"));
 				member.setMbNo(rset.getInt("MB_NO"));
 				member.setMbPassword(rset.getString("MB_PASSWORD"));
@@ -415,7 +415,7 @@ public class MemberDAO {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println("난다오얌"+memberlist);
+
 		return memberlist;
 	}
 
@@ -425,7 +425,7 @@ public class MemberDAO {
 		int recordTotalCount = searchTotalCount(conn,usertype, search); // 전체 게시물의 갯수
 		// 123개의 게시물을 10개씩 보여준다라고 했을 때 페이지 갯수는 13개
 		int pageTotalCount = 0; // 페이지의 갯수
-		System.out.println("다오지롱" + usertype);
+
 		if(recordTotalCount % recordCountPerPage > 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
@@ -545,11 +545,11 @@ public class MemberDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			System.out.println(pstmt + "짜잔");
+
 			rset = pstmt.executeQuery(query);
 			// result가 0 보다 크면 성공했다는 뜻. 성공했으니까 rset의 길이를 return
 			if (rset.next()) {
-				System.out.println("asdfadsf");
+
 				result = Integer.parseInt(rset.getString("amount"));
 			}
 			

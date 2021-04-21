@@ -1,17 +1,17 @@
-<%@page import="member.model.vo.MemberPageData"%>
-<%@page import="member.model.vo.Member"%>
+<%@page import="mypageqa.model.vo.MypageQaData"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%	
-	ArrayList<Member> mList = (ArrayList<Member>) request.getAttribute("mList");
+<%
+	ArrayList<MypageQaData> mqList = (ArrayList<MypageQaData>) request.getAttribute("mqList");
 	String pageNavi = (String) request.getAttribute("pageNavi");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 관리</title>
+<title>관리자 QnA</title>
 <link href="<%=request.getContextPath()%>/bootstrap/bootstrap.css"
 	rel="stylesheet">
 <script
@@ -20,12 +20,12 @@
 	crossorigin="anonymous"></script>
 <!-- <link href="./css/egproject.css" rel="stylesheet"> -->
 <!-- Bootstrap & css end -->
-</head>
 <style>
 .page-link {
 	color: darkgreen;
 }
 </style>
+</head>
 <body>
 	<%@ include file="/WEB-INF/views/nav.jsp"%>
 
@@ -36,32 +36,40 @@
 			</div>
 			<div class="col-lg-9 p-5">
 				<div class="row">
-					<h1>회원관리</h1>
+					<h1>QnA</h1>
 				</div>
-				<table class="table">
-					<form action="/admin/member/search" >
-						<a href="/admin/member/search"><button type="submit" class="btn btn-primary mx-1"
-								style="float: right;">검색</button></a>
-						<input type="text" name="searchKeyword" class="form-control mx-1"
-							style="float: right; width: 200px;" placeholder="검색어">
-					</form>
+				<form action="/admin/qna/search" method="get">
+					<button type="submit" class="btn btn-primary mx-1"
+						style="float: right;">검색</button>
+					<input type="text" name="searchKeyword" class="form-control mx-1"
+						style="float: right; width: 200px;" placeholder="검색어"> <select
+						class="form-select mx-1" style="float: right; max-width: 100px;"
+						aria-label="Default select example">
+						<option selected>--</option>
+						<option value="1">제목</option>
+						<option value="2">내용</option>
+					</select>
+				</form>
+				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
 							<th scope="col">번호</th>
 							<th scope="col">회원아이디</th>
-							<th scope="col" style="text-align: center;">닉네임</th>
+							<th scope="col">닉네임</th>
 							<th scope="col">가입일</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<% if (mList != null) {
-							for (Member m : mList) {
+						<% if(mqList != null){
+							for (MypageQaData mypageQaData : mqList) {
 						%>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/info?memberId=<%= m.getMbId() %>';">
-							<th scope="row"><%=m.getNum()%></th>
-							<td><%=m.getMbId()%></td>
-							<td class="td-title"><%=m.getMbNickname()%></td>
-							<td><%=m.getMbJoindate()%></td>	
+						<tr style="cursor: pointer;"
+							onclick="window.location='/mypage/qna/detail?qaNo=<%=mypageQaData.getQaNo()%>';">
+							<th scope="row"><%=mypageQaData.getQaNo()%></th>
+							<th scope="td-mbId"><%=mypageQaData.getMbId()%></th>
+							<td class="td-title"><%=mypageQaData.getQaTitle()%></td>
+							<td><%=mypageQaData.getQaDateTime()%></td>
 						</tr>
 						<%
 							}

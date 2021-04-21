@@ -22,7 +22,7 @@
 	      <li style="list-style:none; font-size:30px;"><a href="/admin">관리자페이지</a></li>
 	      <li class="list-group-item"><a href="/admin/member/list" style="text-decoration : none">회원 관리</a></li>
 	      <li class="list-group-item"><a href="/admin/owner/list" style="text-decoration : none">사업자관리</a></li>
-	      <li class="list-group-item"><a href="/admin/qna" style="text-decoration : none">QnA문의</a></li>
+	      <li class="list-group-item"><a href="/admin/qna/list" style="text-decoration : none">QnA문의</a></li>
 	   </ul>
 	</div>
 </div>
@@ -30,17 +30,17 @@
 <!-- 모바일 서브내비 start -->
 <div class="d-lg-none d-block pb-4">
 	<div class="btn-group" role="group" style="width: 100%;">
-		<button type="button" class="btn btn-primary">
+		<button type="button" class="btn btn-primary" onclick="location.href='/admin' ">
 			관리자 홈
 		</button>
-		<button type="button" class="btn btn-primary">
-			회원 관리
+		<button type="button" class="btn btn-primary" onclick="location.href='/admin/member/list'">
+				회원 관리
 		</button>
-		<button type="button" class="btn btn-primary">
-			사업자 관리
+		<button type="button" class="btn btn-primary" onclick="location.href='/admin/owner/list'">
+				사업자 관리
 		</button>
-		<button type="button" class="btn btn-primary">
-			QnA 문의
+		<button type="button" class="btn btn-primary" onclick="location.href='/admin/qna/list'">
+				QnA 문의
 		</button>
 	</div>
 </div>

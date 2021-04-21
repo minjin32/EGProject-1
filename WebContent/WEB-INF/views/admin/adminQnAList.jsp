@@ -1,5 +1,11 @@
+<%@page import="mypageqa.model.vo.MypageQaData"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	ArrayList<MypageQaData> mqList = (ArrayList<MypageQaData>) request.getAttribute("mqList");
+	String pageNavi = (String) request.getAttribute("pageNavi");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,57 +37,49 @@
 				<div class="row">
 					<h1>QnA 관리</h1>
 				</div>
-				<table class="table">
+				<form action="/admin/qna/search" method="get">
+					<button type="submit" class="btn btn-primary mx-1"
+						style="float: right;">검색</button>
+					</a> <input type="text" name="searchKeyword" class="form-control mx-1"
+						style="float: right; width: 200px;" placeholder="검색어"> <select
+						class="form-select mx-1" style="float: right; max-width: 100px;"
+						aria-label="Default select example">
+						<option selected>--</option>
+						<option value="1">제목</option>
+						<option value="2">내용</option>
+					</select>
+				</form>
+
+				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
 							<th scope="col">번호</th>
 							<th scope="col">작성자</th>
-							<th scope="col" style="text-align: center;">제목</th>
+							<th scope="col">제목</th>
 							<th scope="col">작성일</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">6</th>
-							<td>이효정</td>
-							<td class="td-title">한 번도 못했던 말 울면서 할 줄은 나 몰랐던 말</td>
-							<td>2021-04-16</td>
+						<%	if(mqList != null){
+							for (MypageQaData mypageQaData : mqList) {
+						%>
+						<tr style="cursor: pointer;"
+							onclick="window.location='/mypage/qna/detail?qaNo=<%=mypageQaData.getQaNo()%>';">
+							<th scope="row"><%=mypageQaData.getQaNo()%></th>
+							<th scope="td-mbId"><%=mypageQaData.getMbId()%></th>
+							<td class="td-title"><%=mypageQaData.getQaTitle()%></td>
+							<td><%=mypageQaData.getQaDateTime()%></td>
 						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">5</th>
-							<td>박은영</td>
-							<td class="td-title">오늘 했던 모든 말 저 하늘 위로</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">4</th>
-							<td>김나혜</td>
-							<td class="td-title">무슨 말을 하는지</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">3</th>
-							<td>김민진</td>
-							<td class="td-title">내게 왜 이러는지</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">2</th>
-							<td>오우철</td>
-							<td class="td-title">흐르지 못하게 또 활짝 웃어</td>
-							<td>2021-04-16</td>
-						</tr>
-						<tr style="cursor: pointer;" onclick="window.location='/mypage/qna/detail';">
-							<th scope="row">1</th>
-							<td>김동현</td>
-							<td class="td-title">눈물이 차올라서 고갤들어</td>
-							<td>2021-04-16</td>
-						</tr>
+						<%
+							}
+						}
+						%>
 					</tbody>
 				</table>
 				<div class="row">
 					<div class="mx-auto" style="width: 300px;">
-						<ul class="pagination">
+					<%= pageNavi %>
+<!-- 						<ul class="pagination">
 							<li class="page-item"><a class="page-link" href="#"
 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 							</a></li>
@@ -93,11 +91,8 @@
 							<li class="page-item"><a class="page-link" href="#"
 								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 							</a></li>
-						</ul>
+						</ul> -->
 					</div>
-				</div>
-				<div>
-					<a href="/mypage/qna/write"><button type="button" class="btn btn-primary mx-1" style="float: right;">문의하기</button></a>
 				</div>
 			</div>
 		</div>

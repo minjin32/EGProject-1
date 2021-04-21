@@ -50,6 +50,7 @@
 							<th scope="col">사업자아이디</th>
 							<th scope="col" style="text-align: center;">닉네임</th>
 							<th scope="col">가입일</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -59,6 +60,7 @@
 							<td><%= m.getMbId() %></td>
 							<td class="td-title"><%= m.getMbNickname() %></td>
 							<td><%= m.getMbJoindate() %></td>
+							<td><input class="form-check-input" type="checkbox" value="<%= m.getMbId() %>" id="flexCheckDefault"></td>
 						</tr>
 					<% } %>
 					</tbody>
@@ -81,7 +83,25 @@
 					</div>
 				</div>
 				<div>
-					<a href="/mypage/qna/write"><button type="button" class="btn btn-primary mx-1" style="float: right;">승인하기</button></a>
+					<button type="button" class="btn btn-primary mx-1" style="float: right;" data-bs-toggle="modal" data-bs-target="#exampleModal">승인하기</button></a>
+				</div>
+				<!-- 팝업창 -->
+				<div class="modal fade" id="exampleModal" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 10%;">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">승인 확인</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">승인이 정상적으로 처리되었습니다.</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
