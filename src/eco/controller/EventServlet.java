@@ -26,14 +26,14 @@ public class EventServlet extends HttpServlet {
 		//RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/eco/event.jsp");
 		//view.forward(request, response);
 		
-		ArrayList<Event> eList = new EventService().printAllList();
-		if(eList != null) {
-			request.setAttribute("eList", eList);
+		//ArrayList<Event> eList = new EventService().printAllList();
+		//if(eList != null) {
+		//	request.setAttribute("eList", eList);
 			RequestDispatcher view= request.getRequestDispatcher("/WEB-INF/views/eco/event.jsp");
 			view.forward(request, response);
-		}else {
-			System.out.println("표시할 내용이 없습니다.");
-		}
+		//}else {
+		//	System.out.println("표시할 내용이 없습니다.");
+		//}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
