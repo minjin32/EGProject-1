@@ -4,9 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-Notice notice = (Notice) request.getAttribute("notice");
-Member member = (Member)session.getAttribute("member");
-ArrayList<NoticeComment> commentList = (ArrayList<NoticeComment>) request.getAttribute("commentList");
+	Notice notice = (Notice) request.getAttribute("notice");
+	Member member = (Member)session.getAttribute("member");
+	ArrayList<NoticeComment> commentList = (ArrayList<NoticeComment>) request.getAttribute("commentList");
 
 %>
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ ArrayList<NoticeComment> commentList = (ArrayList<NoticeComment>) request.getAtt
 						</div>
 						<div class="mb-3">
 							<img class="img-fluid rounded mx-auto d-block"
-								src="<%=request.getContextPath()%>/upload/<%=notice.getImageName()%>"
+								src="<%=request.getContextPath()%>/upload/<%= notice.getImageName() %>"
 								;
 								style="max-width: 100%;" alt="첨부이미지">
 						</div>
@@ -64,12 +64,15 @@ ArrayList<NoticeComment> commentList = (ArrayList<NoticeComment>) request.getAtt
 							</p>
 						</div>
 						<div class="gap-2 d-md-flex justify-content-md-end">
-							<a href="/eco/notice/delete?noticeNo=<%=notice.getNoNo()%>"><button
-									type="button" class="btn btn-danger">삭제</button></a> <a
-								href="/eco/notice/update?noticeNo=<%=notice.getNoNo()%>"><button
-									type="button" class="btn btn-primary">수정</button></a> <a
-								href="/eco/notice/list"><button type="button"
-									class="btn btn-primary">목록</button></a>
+							<% 
+								if (member != null && member.getMbType() == '9') {
+							%>
+							<a href="/eco/notice/delete?noticeNo=<%=notice.getNoNo()%>"><button type="button" class="btn btn-danger">삭제</button></a> 
+							<a href="/eco/notice/update?noticeNo=<%=notice.getNoNo()%>"><button type="button" class="btn btn-primary">수정</button></a> 
+							<%
+								}
+							%>
+							<a href="/eco/notice/list"><button type="button" class="btn btn-primary">목록</button></a>
 						</div>
 					</form>
 				</div>

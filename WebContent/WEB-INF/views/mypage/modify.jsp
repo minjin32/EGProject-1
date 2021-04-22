@@ -45,23 +45,31 @@
 						</div>
 						<div class="mb-3">
 							<label for="name" class="form-label">이름</label>
-							<input type="text" class="form-control" value="" name="memberName">
+							<input type="text" class="form-control" value="<%= member.getMbName() %>" name="memberName">
 						</div>
 						<div class="mb-3">
 							<label for="nickname" class="form-label">닉네임</label>
-							<input type="text" class="form-control" value="" name="memberNickName">
+							<input type="text" class="form-control" value="<%= member.getMbNickname() %>" name="memberNickName">
 						</div>
 						<div class="mb-3">
-							<label for="address" class="form-label">주소</label>
-							<input type="text" class="form-control" value="" name="memberAddress1">
+							<label for="address" class="form-label">주소1</label>
+							<input type="text" class="form-control" value="<%= member.getMbAddress1() %>" name="memberAddress1">
+						</div>
+						<div class="mb-3">
+							<label for="address" class="form-label">주소2</label>
+							<input type="text" class="form-control" value="<%= member.getMbAddress2() %>" name="memberAddress1">
+						</div>
+						<div class="mb-3">
+							<label for="address" class="form-label">주소3</label>
+							<input type="text" class="form-control" value="<%= member.getMbAddress3() %>" name="memberAddress1">
 						</div>
 						<div class="mb-3">
 							<label for="phone" class="form-label">휴대전화</label>
-							<input type="text" class="form-control" value="" name="memberPhone">
+							<input type="text" class="form-control" value="<%= member.getMbPhone() %>" name="memberPhone">
 						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label">이메일</label>
-							<input type="email" class="form-control" value="" name="memberEmail">
+							<input type="email" class="form-control" value="<%= member.getMbEmail() %>" name="memberEmail">
 						</div>
 						<button type="submit" class="btn btn-primary mx-1" style="float: right;">수정완료</button>
 						<a href="/mypage/info"><button type="button" class="btn btn-primary mx-1" style="float: right; background-color: gray; border: 1px solid gray;">취소</button></a>

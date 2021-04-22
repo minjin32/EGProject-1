@@ -65,7 +65,7 @@
 					<%= eOne.getEventEndDate() %> 
 				<div class="row">
 					<div class="row">
-						<img src="<%=request.getContextPath()%>/upload/<%=eOne.getImagePath() %>" style="width:900px; height:200px;" alt="이벤트이미지">
+						<img src="<%=request.getContextPath()%>/<%=eOne.getImagePath() %>" style="width:900px; height:200px;" alt="이벤트이미지">
 					</div>
 				</div>
 				

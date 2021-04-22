@@ -28,7 +28,7 @@
 	<div class="container-lg">
 		<div class="row">
 			<div class="col-lg-3 p-3" align="center">
-				<%@ include file="/WEB-INF/views/mypage/subnav.jsp"%>
+				<%@ include file="/WEB-INF/views/admin/subnav.jsp"%>
 			</div>
 			<div class="col-lg-9 p-5">
 				<div>

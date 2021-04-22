@@ -27,6 +27,12 @@ public class NoticeListServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("memberId") != null) {
+			String memberId = (String)session.getAttribute("memberId");
+			Member member = new MemberService().selectOneById(memberId);
+			request.setAttribute("member", member);
+		}
 		
 		// 페이징 처리
 		int currentPage = 0;
@@ -35,6 +41,7 @@ public class NoticeListServlet extends HttpServlet {
 		} else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		
 		
 		// 공지사항 전체 리스트
 		NoticePageData noPageData = new NoticeService().printAllList(currentPage);

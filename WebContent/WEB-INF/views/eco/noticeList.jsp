@@ -6,6 +6,7 @@
 <% 
    ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
    String pageNavi = (String)request.getAttribute("pageNavi");
+   Member member = (Member)request.getAttribute("member");
 %>
 <!DOCTYPE html>
 <html>
@@ -101,9 +102,17 @@
 <!--                </div> -->
 <!--             </div> -->
 <%--          <% if(memberType == "9") { %> --%>
+			<%
+				if (member != null) {
+					if (member.getMbType() == '9') {
+			%>
             <div>
                <a href="/eco/notice/write"><button type="button" class="btn btn-primary mx-1" style="float: right;">글쓰기</button></a>
             </div>
+            <%
+					}
+				}
+            %>
          </div>
       </div>
    </div>

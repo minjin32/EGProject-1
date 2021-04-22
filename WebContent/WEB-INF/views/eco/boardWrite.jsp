@@ -26,7 +26,7 @@
 			</div>
 			<div class="col-lg-9 p-5">
 				<div>
-					<h2 class="pb-2">자유게시판</h2>
+					<h2 class="pb-2">에코게시판</h2>
 					<form class="p-4" action="/eco/board/write" method="POST" style="border: 1px solid #789F6F; border-radius: 5px;"
 						enctype="multipart/form-data">
 						<div class="mb-3">

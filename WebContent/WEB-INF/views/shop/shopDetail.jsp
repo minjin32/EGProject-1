@@ -192,7 +192,7 @@ $(document).ready(function() {
 			<div class="col">
 				<ul class="nav nav-tabs">
 					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menuAll">전체메뉴</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#review-area">리뷰</a></li>
+					<!-- <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#review-area">리뷰</a></li> -->
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="menuAll">
@@ -226,8 +226,8 @@ $(document).ready(function() {
 							<% } %>
 						</div>
 					</div>
+					<!-- 
 					<div id="review-area" class="container tab-pane fade mt-2">
-						<!-- 이미지 포함된 리뷰 start -->
 						<div id="review" class="row review justify-content-lg-center px-1 py-2">
 							<div class="col-md-2">
 								<img class="review-img img-fluid img-thumbnail" src="<%=request.getContextPath()%>/files/images/sample-normal.jpg" alt="리뷰이미지" data-bs-toggle="modal" data-bs-target="#review-image-modal">
@@ -246,9 +246,7 @@ $(document).ready(function() {
 								</div>
 							</div>
 						</div>
-						<!-- 이미지 포함된 리뷰 end -->
 						<hr>
-						<!-- 이미지 없는 리뷰 start -->
 						<div id="review" class="row review justify-content-lg-center px-1 py-2">
 							<div class="col py-2">
 								<div class="row">
@@ -264,18 +262,20 @@ $(document).ready(function() {
 								</div>
 							</div>
 						</div>
-						<!-- 이미지 없는 리뷰 end -->
 					</div>
+					 -->
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- 장바구니 start -->
+	<!-- 
 		<div class="d-flex flex-row-reverse bd-highlight" id="cart">
 			<a href="#" onclick="window.open(this.href,'_self', 'width=600px,height=800px);">
 			<img src="/files/images/carts.png" style="width: 80px;">
 			</a>
 		</div>
+		 -->
 	<!-- 장바구니 end -->
 	<!-- 리뷰이미지 확대 start -->
 	<div class="modal fade" id="review-image-modal" tabindex="-1">

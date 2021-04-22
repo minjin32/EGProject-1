@@ -73,7 +73,8 @@ public class BoardDAO {
 				board.setMemberId(rset.getString("MB_ID"));
 				board.setBoardTitle(rset.getString("BO_TITLE"));
 				board.setBoardContent(rset.getString("BO_CONTENT"));
-	
+				board.setImageName(rset.getNString("BO_IMAGENAME"));
+				board.setBoardDate(rset.getDate("BO_DATETIME"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
