@@ -102,7 +102,7 @@
 								</div>
 								<div class="gap-2 d-md-flex justify-content-md-end">
 									<input type="hidden" name="qaNo" value="<%= mypageQaData.getQaNo() %>">
-									<a href="/admin/qna/list"><button type="reset" class="btn btn-primary">취소</button></a>
+									<a href="/admin/qna/list"><button class="btn btn-primary">취소</button></a>
 									<% if (!mypageQaData.isAnswered()) { %>
 									<button type="submit" class="btn btn-primary">완료</button>
 									<% } %>

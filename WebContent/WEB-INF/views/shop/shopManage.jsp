@@ -127,6 +127,9 @@
 		var alarmOn = true;
 		
 		setInterval(function () {
+			if (reload == false) {
+				return;
+			}
 			var inner = document.getElementById('list-order-waiting').innerHTML.replace(/\s/g, '');
 			console.log(inner);
 			if (inner != "") {
@@ -257,6 +260,7 @@
 				<li class="nav-item">
 					<a class="nav-link active" id="acceptMode">주문접수-ON</a>
 				</li>
+				<!-- 
 				<li class="nav-item">
 					<a class="nav-link" data-bs-target="#modal-accept" data-bs-toggle="modal" style="color:black;">테스트(주문접수)</a>
 				</li>
@@ -266,6 +270,7 @@
 				<li class="nav-item">
 					<a class="nav-link" id="orderAlarm" style="color:black;">테스트(주문알림)</a>
 				</li>
+				 -->
 			</ul>
 		</div>
 	</div>
@@ -275,10 +280,10 @@
 		<div class="row toggle-main-view"><!-- 주문접수 start -->
 		<div class="row d-lg-none d-block py-3"><!-- 모바일 탭 start -->
 			<div class="row d-flex justify-content-around align-items-center mx-auto">
-				<input type="button" class="btn btn-primary col" value="접수대기" style="border: 1px solid gray;">
-				<input type="button" class="btn btn-primary col" value="처리중" style="border: 1px solid gray;">
-				<input type="button" class="btn btn-primary col" value="완료" style="border: 1px solid gray;">
-				<input type="button" class="btn btn-primary col" value="전체" style="border: 1px solid gray;">
+				<input type="button" class="btn btn-primary col mobile-tab" value="접수대기" style="border: 1px solid gray;">
+				<input type="button" class="btn btn-primary col mobile-tab" value="처리중" style="border: 1px solid gray;">
+				<input type="button" class="btn btn-primary col mobile-tab" value="완료" style="border: 1px solid gray;">
+				<input type="button" class="btn btn-primary col mobile-tab" value="전체" style="border: 1px solid gray;">
 			</div>
 		</div><!-- 모바일 탭 end -->
 		
